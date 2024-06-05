@@ -1,0 +1,4 @@
+#ifndef DTREGISTRO_PRODUCTO
+#define DTREGISTRO_PRODUCTO
+
+#endif

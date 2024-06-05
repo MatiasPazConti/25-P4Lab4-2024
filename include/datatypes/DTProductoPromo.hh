@@ -1,0 +1,4 @@
+#ifndef DTPRODUCTO_PROMO
+#define DTPRODUCTO_PROMO
+
+#endif
