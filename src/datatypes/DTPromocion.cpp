@@ -1,0 +1,1 @@
+#include "../../include/datatypes/DTPromocion.hh"
