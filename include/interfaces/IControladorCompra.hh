@@ -1,0 +1,4 @@
+#ifndef I_CONTROLADOR_COMPRA
+#define I_CONTROLADOR_COMPRA
+
+#endif

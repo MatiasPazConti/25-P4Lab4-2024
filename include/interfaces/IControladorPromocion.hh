@@ -1,0 +1,4 @@
+#ifndef I_CONTROLADOR_PROMOCION
+#define I_CONTROLADOR_PROMOCION
+
+#endif
