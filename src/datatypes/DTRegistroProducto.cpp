@@ -18,6 +18,8 @@ float DTRegistroProducto::getPrecio(){
 bool DTRegistroProducto::getEnviadoCorrectamente(){
     return enviadoCorrectamente;
 }
+DTRegistroProducto::DTRegistroProducto(){}
+
 DTRegistroProducto::DTRegistroProducto(int i, std::string n, int cant,float p,bool e)
 {
   id = i;
