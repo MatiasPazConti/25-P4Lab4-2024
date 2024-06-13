@@ -6,6 +6,12 @@
 class ControladorUsuario : public IControladorUsuario
 {
 private:
+  std::string nickname;
+  std::string contrasenia;
+  DTFecha fechaNacimiento;
+  std::string ciudadResidencia;
+  DTDireccion direccion;
+  int codigoRUT;
   static ControladorUsuario *instancia;
   ControladorUsuario();
 
