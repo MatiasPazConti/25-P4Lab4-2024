@@ -21,6 +21,7 @@ public:
   Compra();
   Compra(DTFecha, float,Cliente);
   ~Compra();
+  float Compra::calcularMontoFinal(); // PENDIENTE
 };
 
 #endif

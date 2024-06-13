@@ -32,3 +32,4 @@ Compra::Compra(DTFecha fecha, float monto, Cliente c)
   *cliente = c;
 }
 Compra::~Compra(){}
+float Compra::calcularMontoFinal(){} // PENDIENTE
