@@ -4,6 +4,7 @@
 #include "../datatypes/DTFecha.hh"
 #include "../datatypes/DTDireccion.hh"
 #include "../datatypes/DTCliente.hh"
+#include "../datatypes/DTVendedor.hh"
 
 #include <iostream>
 #include <set>
@@ -17,6 +18,7 @@ public:
   virtual void altaNuevoUsuario() = 0;
   virtual std::set<DTUsuario> listarUsuarios() = 0;
   virtual std::set<DTCliente> listarClientes() = 0;
+  virtual std::set<DTVendedor> listarVendedores() = 0;
 };
 
 #endif
