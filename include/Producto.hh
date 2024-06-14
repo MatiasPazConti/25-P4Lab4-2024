@@ -1,23 +1,18 @@
 #ifndef PRODUCTO
 #define PRODUCTO
 #include <iostream>
+#include "../include/TipoProducto.hh"
+
 
 
 class Producto
 {
-public:
-enum class TipoProducto {   
-    Electrodomesticos,
-    Ropa,
-    Otros
-};
 private:
   int id;
   std::string nombre;
   std::string descripcion;
   float precio;
   int cantidadEnStock;
-  // ???
   TipoProducto tipo;
 public:
   int getId();

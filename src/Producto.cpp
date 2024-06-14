@@ -30,22 +30,20 @@ int Producto::getCantidadEnStock(){
 void Producto::setCantidadEnStock(int cant){
   cantidadEnStock = cant;
 }
-/*
-TipoProducto getTipoProducto(){
+TipoProducto Producto::getTipoProducto(){
   return tipo;
 }
-void Producto::setTipoProducto(TipoProducto tipo){
-  tipoProducto = tipo;
-};
-*/
+void Producto::setTipoProducto(TipoProducto t){
+  tipo = t;
+}
 Producto::Producto(){}
-Producto::Producto(int i, std::string n, std::string d,float p, int cant,TipoProducto tipo){
+Producto::Producto(int i, std::string n, std::string d,float p, int cant,TipoProducto t){
   id = i;
   nombre = n;
   descripcion = d;
   precio = p;
   cantidadEnStock = cant;
-  // tipoProducto = tipo;
+  tipo = t;
 }
 Producto::~Producto(){};
 
