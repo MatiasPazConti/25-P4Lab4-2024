@@ -9,7 +9,7 @@
 #include "../include/datatypes/DTProducto.hh"
 
 
-class ControladorProducto
+class ControladorProducto : public IControladorProducto
 {
 private:
   int id;
@@ -18,7 +18,7 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
-  std::set<Producto> productos;
+  std::set<Producto*> productos;
 public:
   int getId();
   void setId(int);

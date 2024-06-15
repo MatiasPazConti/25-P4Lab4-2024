@@ -30,6 +30,10 @@ public:
   Producto();
   Producto(int, std::string, std::string,float,int,TipoProducto);
   ~Producto();
+    void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
+
+std::ostream &operator<<(std::ostream &out, Producto &obj); // cout Producto
+
 
 #endif

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "../../include/controladores/ControladorProducto.hh"
 
 int ControladorProducto::getId(){
@@ -50,17 +49,14 @@ ControladorProducto::~ControladorProducto(){};
 
 void ControladorProducto::altaNuevoProducto(){
     Producto prod = Producto(this->id,this->nombre,this->descripcion,this->precio,this->cantidadEnStock,this->tipo);
-    this->productos.insert(prod);
+    this->productos.insert(&prod);
 };
 
 void ControladorProducto::listarProductosDisponibles(){
     std::cout << "Elementos del set: ";
 
-    for (std::set<Producto>::iterator it = productos.begin(); it != productos.end(); ++it) {
-        // Falta Imprimir cada elemento.
+    for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it) {
+        std::cout << *it;
     }
     std::cout << std::endl;
 };
-=======
-#include "../../include/controladores/ControladorProducto.hh"
->>>>>>> 7f6e88014ae15dba5ee102d00cb242ad

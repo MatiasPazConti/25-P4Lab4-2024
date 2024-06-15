@@ -47,3 +47,14 @@ Producto::Producto(int i, std::string n, std::string d,float p, int cant,TipoPro
 }
 Producto::~Producto(){};
 
+// Sobrecarga de operador '<<'
+void Producto::setPrint(std::ostream &out)
+{
+  out << id << ", " << nombre;
+}
+
+std::ostream &operator<<(std::ostream &out, Producto &obj)
+{
+  obj.setPrint(out);
+  return out;
+}
