@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "../../include/controladores/ControladorProducto.hh"
 
 int ControladorProducto::getId(){
@@ -61,6 +60,3 @@ void ControladorProducto::listarProductosDisponibles(){
     }
     std::cout << std::endl;
 };
-=======
-#include "../../include/controladores/ControladorProducto.hh"
->>>>>>> 7f6e88014ae15dba5ee102d00cb242ad
