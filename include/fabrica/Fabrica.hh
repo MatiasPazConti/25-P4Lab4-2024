@@ -4,13 +4,17 @@
 #include "../interfaces/IControladorUsuario.hh"
 #include "../interfaces/IControladorCompra.hh"
 #include "../interfaces/IControladorProducto.hh"
+#include "../interfaces/IControladorPromocion.hh"
+#include "../interfaces/IControladorNotificacion.hh"
 
 class Fabrica
 {
 public:
   static IControladorUsuario *getInterfazUsuario();
-  static IControladorUsuario *getInterfazProducto();
-  static IControladorUsuario *getInterfazCompra();
+  // static IControladorCompra *getInterfazCompra();
+  // static IControladorProducto *getInterfazProducto();
+  // static IControladorPromocion *getInterfazPromocion();
+  // static IControladorNotificacion *getInterfazNotificacion();
 };
 
 #endif

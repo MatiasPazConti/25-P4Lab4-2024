@@ -1,12 +1,16 @@
 #ifndef DTUSUARIO
 #define DTUSUARIO
 
+#include "./DTFecha.hh"
+
 class DTUsuario
 {
 private:
-  /* data */
+  std::string nickname;
+  DTFecha fechaNacimiento;
+
 public:
-  DTUsuario(/* args */);
+  DTUsuario(std::string, DTFecha);
   ~DTUsuario();
 };
 

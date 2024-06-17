@@ -15,7 +15,7 @@ private:
 public:
   DTDireccion getDireccion();
   std::string getCiudadDeResidencia();
-  DTCliente(DTDireccion, std::string);
+  DTCliente(std::string, DTFecha, DTDireccion, std::string);
   ~DTCliente();
 };
 
