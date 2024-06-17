@@ -10,7 +10,7 @@ private:
 
 public:
   int getCodigoRUT();
-  DTVendedor(int);
+  DTVendedor(std::string, DTFecha, int);
   ~DTVendedor();
 };
 

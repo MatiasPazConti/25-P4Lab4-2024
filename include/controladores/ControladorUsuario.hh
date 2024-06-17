@@ -2,10 +2,16 @@
 #define CONTROLADOR_USUARIO
 
 #include "../interfaces/IControladorUsuario.hh"
+#include "../Cliente.hh"
+#include "../Vendedor.hh"
+
+#include <map>
 
 class ControladorUsuario : public IControladorUsuario
 {
 private:
+  std::map<std::string, Cliente> clientes;
+  std::map<std::string, Vendedor> vendedores;
   std::string nickname;
   std::string contrasenia;
   DTFecha fechaNacimiento;
