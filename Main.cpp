@@ -396,6 +396,38 @@ void NuevoVendedor()
   std::cout << "Escriba su codigo RUT" << std::endl;
   std::cin >> rutUS;
   Vendedor *US = new Vendedor(nickUS, passUS, fechaUS, rutUS);
+  std::cout << "Vendedor registrado con exito." << std::endl;
+}
+void NuevoCliente()
+{
+  std::string nickUS;
+  std::cout << "Escriba su nickname" << std::endl;
+  std::cin >> nickUS;
+  std::string passUS;
+  std::cout << "Escriba su password" << std::endl;
+  std::cin >> passUS;
+  int diaUS;
+  std::cout << "Escriba su dia de naciemiento" << std::endl;
+  std::cin >> diaUS;
+  int mesUS;
+  std::cout << "Escriba su mes de naciemiento" << std::endl;
+  std::cin >> mesUS;
+  int anioUS;
+  std::cout << "Escriba su anio de naciemiento" << std::endl;
+  std::cin >> anioUS;
+  DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
+  std::string calleUS;
+  std::cout << "Escriba la calle de su domicilio" << std::endl;
+  std::getline(std::cin >> std::ws, calleUS);
+  int nroPuertaUS;
+  std::cout << "Escriba su numero de puerta" << std::endl;
+  std::cin >> nroPuertaUS;
+  DTDireccion adressUS = DTDireccion(calleUS, nroPuertaUS);
+  std::string cityUS;
+  std::cout << "Escriba la ciudad en la que vive" << std::endl;
+  std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes
+  Cliente *US4 = new Cliente(nickUS, passUS, fechaUS, adressUS, cityUS);
+  std::cout << "Cliente registrado con exito." << std::endl;
 }
 
 int main()
@@ -424,22 +456,23 @@ int main()
         NuevoVendedor();
         break;
       case 2:
-        /* nuevo cliente */
+        NuevoCliente();
         break;
-
       default:
         std::cout << "Opcion invalida" << std::endl;
         break;
       }
-
       break;
+
     case 3:
       return 0;
       break;
+
     default:
       std::cout << "Opcion invalida" << std::endl;
       break;
     }
   }
+
   return 0;
 }
