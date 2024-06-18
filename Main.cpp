@@ -9,27 +9,29 @@ void CargarDatos()
 {
 
   // Precargar los datos
+  Fabrica *fabrica = Fabrica::getInstance();
+  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
 
   // US1 - Usuario Uno - Vendedor
   std::string nickUS1 = "ana23";
   std::string passUS1 = "qwer1234";
   DTFecha fechaUS1 = DTFecha(15, 5, 1988);
   std::string rutUS1 = "212345678001";
-  Vendedor *US1 = new Vendedor(nickUS1, passUS1, fechaUS1, rutUS1);
+  controladorUsuario->resgitrarDatosVendedor(nickUS1, passUS1, fechaUS1, rutUS1);
 
   // US2 - Usuario Dos - Vendedor
   std::string nickUS2 = "carlos78";
   std::string passUS2 = "asdfghj";
   DTFecha fechaUS2 = DTFecha(18, 6, 1986);
   std::string rutUS2 = "356789012345";
-  Vendedor *US2 = new Vendedor(nickUS2, passUS2, fechaUS2, rutUS2);
+  controladorUsuario->resgitrarDatosVendedor(nickUS2, passUS2, fechaUS2, rutUS2);
 
   // US3 - Usuario Tres - Vendedor
   std::string nickUS3 = "diegom";
   std::string passUS3 = "zxcvbn";
   DTFecha fechaUS3 = DTFecha(28, 7, 1993);
   std::string rutUS3 = "190123456789";
-  Vendedor *US3 = new Vendedor(nickUS3, passUS3, fechaUS3, rutUS3);
+  controladorUsuario->resgitrarDatosVendedor(nickUS3, passUS3, fechaUS3, rutUS3);
 
   // US4 - Usuario Cuatro - Cliente
   std::string nickUS4 = "juan87";
@@ -37,7 +39,7 @@ void CargarDatos()
   DTFecha fechaUS4 = DTFecha(20, 10, 1992);
   DTDireccion adressUS4 = DTDireccion("Av. 18 de Julio", 456);
   std::string cityUS4 = "Melo";
-  Cliente *US4 = new Cliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
+  controladorUsuario->resgitrarDatosCliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
 
   // US5 - Usuario Cinco - Cliente
   std::string nickUS5 = "laura";
@@ -45,14 +47,14 @@ void CargarDatos()
   DTFecha fechaUS5 = DTFecha(22, 9, 1979);
   DTDireccion adressUS5 = DTDireccion("Rondeau", 1617);
   std::string cityUS5 = "Montevideo";
-  Cliente *US5 = new Cliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
+  controladorUsuario->resgitrarDatosCliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
 
   // US6 - Usuario Seis - Vendedor
   std::string nickUS6 = "maria01";
   std::string passUS6 = "5tgb6yhn";
   DTFecha fechaUS6 = DTFecha(25, 3, 1985);
   std::string rutUS6 = "321098765432";
-  Vendedor *US6 = new Vendedor(nickUS6, passUS6, fechaUS6, rutUS6);
+  controladorUsuario->resgitrarDatosVendedor(nickUS6, passUS6, fechaUS6, rutUS6);
 
   // US7 - Usuario Siete - Cliente
   std::string nickUS7 = "natalia";
@@ -60,7 +62,7 @@ void CargarDatos()
   DTFecha fechaUS7 = DTFecha(14, 4, 1982);
   DTDireccion adressUS7 = DTDireccion("Paysandu", 2021);
   std::string cityUS7 = "Salto";
-  Cliente *US7 = new Cliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
+  controladorUsuario->resgitrarDatosCliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
 
   // US8 - Usuario Ocho - Cliente
   std::string nickUS8 = "pablo10";
@@ -68,7 +70,7 @@ void CargarDatos()
   DTFecha fechaUS8 = DTFecha(30, 11, 1995);
   DTDireccion adressUS8 = DTDireccion("Av. Rivera", 1819);
   std::string cityUS8 = "Mercedes";
-  Cliente *US8 = new Cliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
+  controladorUsuario->resgitrarDatosCliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
 
   // US9 - Usuario Nueve - Cliente
   std::string nickUS9 = "roberto";
@@ -76,16 +78,16 @@ void CargarDatos()
   DTFecha fechaUS9 = DTFecha(12, 8, 1990);
   DTDireccion adressUS9 = DTDireccion("Av. Brasil", 1011);
   std::string cityUS9 = "Montevideo";
-  Cliente *US9 = new Cliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
+  controladorUsuario->resgitrarDatosCliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
 
   // US10 - Usuario Diez - Vendedor
   std::string nickUS10 = "sofia25";
   std::string passUS10 = "1234asdf";
   DTFecha fechaUS10 = DTFecha(7, 12, 1983);
   std::string rutUS10 = "445678901234";
-  Vendedor *US10 = new Vendedor(nickUS10, passUS10, fechaUS10, rutUS10);
+  controladorUsuario->resgitrarDatosVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
-  // PR1 - Producto 1 - US2
+  /*// PR1 - Producto 1 - US2
   int idPR1 = 1;
   std::string nombrePR1 = "Camiseta Azul";
   std::string descripcionPR1 = "Camiseta de poliester, color azul";
@@ -233,7 +235,7 @@ void CargarDatos()
   int stockPR15 = 20;
   TipoProducto tipoPR15 = TipoProducto::Otros;
   Producto *PR15 = new Producto(idPR15, nombrePR15, descripcionPR15, precioPR15, stockPR15, tipoPR15);
-  US10->addProducto(PR15);
+  US10->addProducto(PR15);*/
 
   /////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
@@ -372,8 +374,9 @@ void CargarDatos()
          DTRegistroPrducto *primerRegistroCO9 = new DTRegistroPrducto(idPR1, nombrePR1, 5, precioPR1, false);
          */
 
-  std::cout << US1->GetNickname() << std::endl;
+  // std::cout << US1->GetNickname() << std::endl;
 }
+
 void NuevoVendedor()
 {
   std::string nickUS;
@@ -395,9 +398,12 @@ void NuevoVendedor()
   std::string rutUS;
   std::cout << "Escriba su codigo RUT" << std::endl;
   std::cin >> rutUS;
-  Vendedor *US = new Vendedor(nickUS, passUS, fechaUS, rutUS);
+  Fabrica *fabrica = Fabrica::getInstance();
+  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
+  controladorUsuario->resgitrarDatosVendedor(nickUS, passUS, fechaUS, rutUS);
   std::cout << "Vendedor registrado con exito." << std::endl;
 }
+
 void NuevoCliente()
 {
   std::string nickUS;
@@ -426,8 +432,47 @@ void NuevoCliente()
   std::string cityUS;
   std::cout << "Escriba la ciudad en la que vive" << std::endl;
   std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes
-  Cliente *US4 = new Cliente(nickUS, passUS, fechaUS, adressUS, cityUS);
+  Fabrica *fabrica = Fabrica::getInstance();
+  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
+  controladorUsuario->resgitrarDatosCliente(nickUS, passUS, fechaUS, adressUS, cityUS);
   std::cout << "Cliente registrado con exito." << std::endl;
+}
+
+void ListarUsuarios()
+{
+  Fabrica *fabrica = Fabrica::getInstance();
+  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
+  controladorUsuario->listarUsuarios();
+}
+
+void AltaDeProducto()
+{
+  Fabrica *fabrica = Fabrica::getInstance();
+  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
+  IControladorProducto *controladorProducto = fabrica->getInterfazProducto();
+  std::string nickVendedor;
+  controladorUsuario->listarVendedores();
+  std::cin >> nickVendedor;
+  std::string nombreProducto;
+  std::cout << "Escriba el nombre del producto" << std::endl;
+  std::getline(std::cin >> std::ws, nombreProducto);
+  int precioProducto;
+  std::cout << "Escriba el precio del producto" << std::endl;
+  std::cin >> precioProducto;
+  int stockProducto;
+  std::cout << "Escriba el stock del producto" << std::endl;
+  std::cin >> stockProducto;
+  std::string descripcionProducto;
+  std::cout << "Escriba la descripcion del producto" << std::endl;
+  std::getline(std::cin >> std::ws, descripcionProducto);
+  int intCategoriaProducto;
+  std::cout << "Seleccione la categoria del producto" << std::endl
+            << "1-Electrodomestico" << std::endl
+            << "2-Ropa" << std::endl
+            << "3-Otros" << std::endl;
+  std::cin >> intCategoriaProducto;
+  TipoProducto categoriaProducto = (TipoProducto)intCategoriaProducto;
+  controladorProducto->registrarDatosProductos(nombreProducto, precioProducto, stockProducto, descripcionProducto, categoriaProducto, 8);
 }
 
 int main()
@@ -439,7 +484,7 @@ int main()
               << "1-Cargar datos iniciales" << std::endl
               << "2-Registrar nuevo usuario" << std::endl
               << "3-Listado de usuarios exitentes" << std::endl
-              << "4-Registrar un nuevo producto" << std::endl
+              << "4-Alta de producto" << std::endl
               << "5-Consultar un producto" << std::endl
               << "6-Crear una nueva promocion" << std::endl
               << "7-Consultar una promocion" << std::endl
@@ -479,11 +524,11 @@ int main()
       break;
 
     case 3: // Listado de usuarios exitentes
-
+      ListarUsuarios();
       break;
 
-    case 4: // Registrar un nuevo producto
-
+    case 4: // Alta de producto
+      AltaDeProducto();
       break;
 
     case 5: // Consultar un producto

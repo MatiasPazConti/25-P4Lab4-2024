@@ -1,11 +1,17 @@
-Main: obj/Main.o obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o				
-	g++ obj/Main.o obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o		-o Main
+Main: obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o				
+	g++ obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o		-o Main
 
 obj/Main.o: Main.cpp
 	g++ -c Main.cpp -o obj/Main.o
 
 obj/Fabrica.o: src/fabrica/Fabrica.cpp include/fabrica/Fabrica.hh
 	g++ -c src/fabrica/Fabrica.cpp -o obj/Fabrica.o
+
+obj/ControladorUsuario.o: src/controladores/ControladorUsuario.cpp include/controladores/ControladorUsuario.hh
+	g++ -c src/controladores/ControladorUsuario.cpp -o obj/ControladorUsuario.o	
+
+obj/ControladorProducto.o: src/controladores/ControladorProducto.cpp include/controladores/ControladorProducto.hh
+	g++ -c src/controladores/ControladorProducto.cpp -o obj/ControladorProducto.o	
 
 obj/DTFecha.o: src/datatypes/DTFecha.cpp include/datatypes/DTFecha.hh
 	g++ -c src/datatypes/DTFecha.cpp -o obj/DTFecha.o

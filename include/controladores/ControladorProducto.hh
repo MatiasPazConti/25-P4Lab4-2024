@@ -4,10 +4,9 @@
 #include "../interfaces/IControladorProducto.hh"
 #include <iostream>
 #include <set>
-#include "../include/TipoProducto.hh"
-#include "../include/Producto.hh"
-#include "../include/datatypes/DTProducto.hh"
-
+#include "../TipoProducto.hh"
+#include "../Producto.hh"
+#include "../datatypes/DTProducto.hh"
 
 class ControladorProducto : public IControladorProducto
 {
@@ -18,7 +17,8 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
-  std::set<DTProducto*> productos;
+  std::set<DTProducto *> productos;
+
 public:
   int getId();
   void setId(int);
@@ -32,16 +32,13 @@ public:
   void setCantidadEnStock(int);
   TipoProducto getTipoProducto();
   void setTipoProducto(TipoProducto);
-
-  void registrarDatosProductos(std::string,int,int,std::string,TipoProducto,int);
+  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id);
   void altaNuevoProducto();
   void listarProductosDisponibles(); // Usa DTProducto o Producto???
-  std::set<DTProducto*> obtenerProductosDisponibles();
+  std::set<DTProducto *> obtenerProductosDisponibles();
   ControladorProducto();
-  ControladorProducto(int, std::string, std::string,float,int,TipoProducto);
+  // ControladorProducto(int, std::string, std::string, float, int, TipoProducto);
   ~ControladorProducto();
-
 };
-
 
 #endif

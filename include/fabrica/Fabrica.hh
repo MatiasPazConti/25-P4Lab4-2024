@@ -9,12 +9,23 @@
 
 class Fabrica
 {
+private:
+  static Fabrica *fabrica;
+  IControladorUsuario *controladorUsuario;
+  IControladorCompra *controladorCompra;
+  IControladorProducto *controladorProducto;
+  IControladorPromocion *controladorPromocion;
+  IControladorNotificacion *controladorNotificacion;
+  Fabrica();
+
 public:
- static IControladorUsuario *getInterfazUsuario();
- static IControladorCompra *getInterfazCompra();
- static IControladorProducto *getInterfazProducto();
- static IControladorPromocion *getInterfazPromocion();
- static IControladorNotificacion *getInterfazNotificacion();
+  ~Fabrica();
+  static Fabrica *getInstance();
+  IControladorUsuario *getInterfazUsuario();
+  IControladorCompra *getInterfazCompra();
+  IControladorProducto *getInterfazProducto();
+  IControladorPromocion *getInterfazPromocion();
+  IControladorNotificacion *getInterfazNotificacion();
 };
 
 #endif
