@@ -438,14 +438,28 @@ int main()
     std::cout << "Menu de Opciones" << std::endl
               << "1-Cargar datos iniciales" << std::endl
               << "2-Registrar nuevo usuario" << std::endl
-              << "3-Salir" << std::endl;
+              << "3-Listado de usuarios exitentes" << std::endl
+              << "4-Registrar un nuevo producto" << std::endl
+              << "5-Consultar un producto" << std::endl
+              << "6-Crear una nueva promocion" << std::endl
+              << "7-Consultar una promocion" << std::endl
+              << "8-Realizar una compra" << std::endl
+              << "9-Dejar un comentario" << std::endl
+              << "10-Eliminar un comentario" << std::endl
+              << "11-Enviar un producto" << std::endl
+              << "12-Expediente de usuario" << std::endl
+              << "13-Consulta de notificaciones" << std::endl
+              << "14-Suscribirse a notificacion" << std::endl
+              << "15-Eliminar suscripcion" << std::endl
+              << "16-Salir" << std::endl;
     std::cin >> input;
     switch (input)
     {
-    case 1:
+    case 1: // Cargar datos iniciales
       CargarDatos();
       break;
-    case 2:
+
+    case 2: // Registrar nuevo usuario
       std::cout << "Elija el tipo de usuario que desea registrar" << std::endl
                 << "1-Vendedor" << std::endl
                 << "2-Cliente" << std::endl;
@@ -464,11 +478,63 @@ int main()
       }
       break;
 
-    case 3:
+    case 3: // Listado de usuarios exitentes
+
+      break;
+
+    case 4: // Registrar un nuevo producto
+
+      break;
+
+    case 5: // Consultar un producto
+
+      break;
+
+    case 6: // Crear una nueva promocion
+
+      break;
+
+    case 7: // Consultar una promocion
+
+      break;
+
+    case 8: // Realizar una compra
+
+      break;
+
+    case 9: // Dejar un comentario
+
+      break;
+
+    case 10: // Eliminar un comentario
+
+      break;
+
+    case 11: // Enviar un producto
+
+      break;
+
+    case 12: // Expediente de usuario
+
+      break;
+
+    case 13: // Consulta de notificaciones
+
+      break;
+
+    case 14: // Suscribirse a notificacion
+
+      break;
+
+    case 15: // Eliminar suscripcion
+
+      break;
+
+    case 16: // Salir
       return 0;
       break;
 
-    default:
+    default: // Otro numero
       std::cout << "Opcion invalida" << std::endl;
       break;
     }
