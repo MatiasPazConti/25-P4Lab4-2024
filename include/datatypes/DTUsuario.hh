@@ -7,11 +7,13 @@ class DTUsuario
 {
 private:
   std::string nickname;
+  std::string password;
   DTFecha fechaNacimiento;
 
 public:
-  DTUsuario(std::string, DTFecha);
+  DTUsuario(std::string nickname, std::string password, DTFecha fechaNacimiento);
   ~DTUsuario();
+  std::string GetNickname();
 };
 
 #endif

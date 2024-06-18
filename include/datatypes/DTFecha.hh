@@ -14,11 +14,10 @@ public:
   int getMes();
   int getAnio();
   DTFecha();
-  DTFecha(int, int, int);
+  DTFecha(int dia, int mes, int anio);
   ~DTFecha();
   std::string toString();
   int compararFecha(DTFecha fecha);
 };
 
 #endif
-

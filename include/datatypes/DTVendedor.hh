@@ -2,15 +2,16 @@
 #define DTVENDEDOR
 
 #include "./DTUsuario.hh"
+#include "./DTProducto.hh"
 
-class DTVendedor
+class DTVendedor : public DTUsuario
 {
 private:
-  int codigoRUT;
+  std::string codigoRUT;
 
 public:
-  int getCodigoRUT();
-  DTVendedor(std::string, DTFecha, int);
+  std::string getCodigoRUT();
+  DTVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
   ~DTVendedor();
 };
 
