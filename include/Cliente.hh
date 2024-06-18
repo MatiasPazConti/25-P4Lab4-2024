@@ -22,6 +22,7 @@ public:
   DTUsuario getDataUsuario();
   std::set<DTNotificacion *> listarNotificaciones();
   void eliminarNotificaciones();
+  std::string getCiudadDeResidencia();
 };
 
 #endif

@@ -10,3 +10,8 @@ Cliente::Cliente(std::string nickname, std::string password, DTFecha fechaNacimi
 Cliente::~Cliente()
 {
 }
+
+std::string Cliente::getCiudadDeResidencia()
+{
+  return ciudadDeResidencia;
+}

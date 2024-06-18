@@ -5,6 +5,9 @@ Vendedor::Vendedor(std::string nickname, std::string password, DTFecha fechaNaci
   this->codigoRUT = codigoRUT;
 }
 
-Vendedor::~Vendedor()
+Vendedor::~Vendedor() {}
+
+void Vendedor::addProducto(Producto *producto)
 {
+  this->productos.insert(producto);
 }

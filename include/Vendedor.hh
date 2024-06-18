@@ -15,14 +15,15 @@ private:
   std::set<IObservador *> suscriptores;
 
 public:
+  Vendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
+  ~Vendedor();
+  void addProducto(Producto *producto);
+
   DTUsuario getDataUsuario();
   std::set<DTProducto *> listarProductos();
   DTProducto getProducto(int);
-  void addProducto(DTProducto *producto);
-  void removeProducto(DTProducto *producto);
+  void removeProducto(Producto *producto);
   void notificarObservadores();
-  Vendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
-  ~Vendedor();
 };
 
 #endif
