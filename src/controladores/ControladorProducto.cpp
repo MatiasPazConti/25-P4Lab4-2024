@@ -36,6 +36,9 @@ TipoProducto ControladorProducto::getTipoProducto(){
 void ControladorProducto::setTipoProducto(TipoProducto t){
   tipo = t;
 }
+std::set<DTProducto*> ControladorProducto::obtenerProductosDisponibles(){
+  return productos;
+}
 ControladorProducto::ControladorProducto(){}
 void ControladorProducto::registrarDatosProductos(std::string n,int p,int cant,std::string des,TipoProducto t,int i){
   id = i;
@@ -49,13 +52,14 @@ ControladorProducto::~ControladorProducto(){};
 
 void ControladorProducto::altaNuevoProducto(){
     Producto prod = Producto(this->id,this->nombre,this->descripcion,this->precio,this->cantidadEnStock,this->tipo);
-    this->productos.insert(&prod);
+    DTProducto dataprod = DTProducto(this->id,this->nombre,this->descripcion,this->precio,this->cantidadEnStock,this->tipo);
+    this->productos.insert(&dataprod);
 };
 
 void ControladorProducto::listarProductosDisponibles(){
     std::cout << "Elementos del set: ";
 
-    for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it) {
+    for (std::set<DTProducto *>::iterator it = productos.begin(); it != productos.end(); ++it) {
         std::cout << *it;
     }
     std::cout << std::endl;

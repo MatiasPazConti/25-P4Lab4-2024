@@ -20,7 +20,7 @@ public:
   virtual void resgitrarDatosVendedor(int) = 0;
   virtual void altaNuevoUsuario() = 0;
   virtual std::set<DTUsuario> listarUsuarios() = 0;
-  virtual std::set<DTCliente> listarClientes() = 0;
+  virtual std::set<DTCliente*> listarClientes() = 0; // Te agregamos un puntero.
   virtual std::set<DTVendedor> listarVendedores() = 0;
   virtual std::set<DTVendedor> listarVendedoresNoSuscritos(std::string) = 0;
   // virtual std::set<DTProducto> listarProductosVendedor(std::string) = 0;

@@ -6,6 +6,8 @@
 #include <set>
 #include <iostream>
 #include "../interfaces/IControladorCompra.hh"
+#include "../datatypes/DTUsuario.hh"
+
 
 class ControladorCompra {
     private:

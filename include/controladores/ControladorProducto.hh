@@ -18,7 +18,7 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
-  std::set<Producto*> productos;
+  std::set<DTProducto*> productos;
 public:
   int getId();
   void setId(int);
@@ -32,12 +32,15 @@ public:
   void setCantidadEnStock(int);
   TipoProducto getTipoProducto();
   void setTipoProducto(TipoProducto);
+
   void registrarDatosProductos(std::string,int,int,std::string,TipoProducto,int);
   void altaNuevoProducto();
   void listarProductosDisponibles(); // Usa DTProducto o Producto???
+  std::set<DTProducto*> obtenerProductosDisponibles();
   ControladorProducto();
   ControladorProducto(int, std::string, std::string,float,int,TipoProducto);
   ~ControladorProducto();
+
 };
 
 

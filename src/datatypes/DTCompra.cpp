@@ -18,6 +18,14 @@ DTRegistroProducto *DTCompra::getRegistroProducto(int id)
 float DTCompra::getMontoFinal(){
     return montoFinal;
 }
+void DTCompra::setCliente(DTCliente* c)
+{
+  cliente = c;
+}
+DTCliente DTCompra::getCliente()
+{
+  return *cliente;
+}
 DTCompra::DTCompra(){}
 DTCompra::DTCompra(DTFecha f, float m)
 {

@@ -7,6 +7,7 @@ public:
   virtual void registrarDatosProductos(std::string,int,int,std::string,TipoProducto,int);
   virtual void altaNuevoProducto();
   virtual void listarProductosDisponibles(); // Usa DTProducto o Producto???
+  virtual std::set<DTProducto*> obtenerProductosDisponibles();
 };
 
 #endif
