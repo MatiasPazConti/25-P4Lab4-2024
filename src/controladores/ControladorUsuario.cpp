@@ -3,6 +3,7 @@
 void ControladorUsuario::resgitrarDatosCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia)
 {
   Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadDeResidencia);
+  clientes.insert(std::pair<std::string, Cliente *>(nickname, nuevoCliente));
 }
 
 void ControladorUsuario::resgitrarDatosVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
@@ -11,19 +12,43 @@ void ControladorUsuario::resgitrarDatosVendedor(std::string nickname, std::strin
   vendedores.insert(std::pair<std::string, Vendedor *>(nickname, nuevoVendedor));
 }
 
-std::set<DTUsuario> ControladorUsuario::listarUsuarios()
+void ControladorUsuario::listarVendedores()
 {
-  return std::set<DTUsuario>();
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    std::string nick = it->second->getNickname();
+    DTFecha fecha = it->second->getFechaNacimiento();
+    int dia = fecha.getDia();
+    int mes = fecha.getMes();
+    int anio = fecha.getAnio();
+    std::string rut = it->second->getCodigoRUT();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
+    std::cout << std::endl;
+  };
 }
 
-std::set<DTCliente *> ControladorUsuario::listarClientes()
+void ControladorUsuario::listarClientes()
 {
-  return std::set<DTCliente *>();
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    std::string nick = it->second->getNickname();
+    DTFecha fecha = it->second->getFechaNacimiento();
+    int dia = fecha.getDia();
+    int mes = fecha.getMes();
+    int anio = fecha.getAnio();
+    DTDireccion direccion = it->second->getDireccion();
+    std::string calle = direccion.getNombreCalle();
+    int nroPuerta = direccion.getNroPuerta();
+    std::string ciudad = it->second->getCiudadDeResidencia();
+    std::cout << "Nickname: " << nick << ", Fecha de naciemiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
+    std::cout << std::endl;
+  };
 }
 
-std::set<DTVendedor> ControladorUsuario::listarVendedores()
+void ControladorUsuario::listarUsuarios()
 {
-  return std::set<DTVendedor>();
+  this->listarClientes();
+  this->listarVendedores();
 }
 
 std::set<DTVendedor> ControladorUsuario::listarVendedoresNoSuscritos(std::string)
@@ -54,13 +79,15 @@ std::set<DTComentario> ControladorUsuario::listarComentariosUsuario(std::string)
   return std::set<DTComentario>();
 }
 
-ControladorUsuario *ControladorUsuario::getInstancia()
+/*ControladorUsuario *ControladorUsuario::getInstancia()
 {
   return nullptr;
-}
+}*/
 
 ControladorUsuario::ControladorUsuario()
 {
+  vendedores.clear();
+  clientes.clear();
 }
 
 ControladorUsuario::~ControladorUsuario()

@@ -11,6 +11,11 @@ Cliente::~Cliente()
 {
 }
 
+DTDireccion Cliente::getDireccion()
+{
+  return direccion;
+}
+
 std::string Cliente::getCiudadDeResidencia()
 {
   return ciudadDeResidencia;

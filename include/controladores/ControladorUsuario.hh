@@ -18,17 +18,17 @@ private:
   std::string ciudadDeResidencia;
   DTDireccion direccion;
   int codigoRUT;
-  static ControladorUsuario *instancia;
+  // static ControladorUsuario *instancia;
 
 public:
   ControladorUsuario();
   ~ControladorUsuario();
   void resgitrarDatosCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
   void resgitrarDatosVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
+  void listarUsuarios();
+  void listarVendedores();
+  void listarClientes();
 
-  std::set<DTUsuario> listarUsuarios();
-  std::set<DTCliente *> listarClientes();
-  std::set<DTVendedor> listarVendedores();
   std::set<DTVendedor> listarVendedoresNoSuscritos(std::string);
   // std::set<DTProducto> listarProductosVendedor(std::string);
   std::set<DTNotificacion> listarNotificaciones(std::string);
@@ -36,10 +36,13 @@ public:
   void realizarSuscripciones(std::string, std::set<std::string>);
   void eliminarSuscripciones(std::string, std::set<std::string>);
   std::set<DTComentario> listarComentariosUsuario(std::string);
-  static ControladorUsuario *getInstancia();
+  // static ControladorUsuario *getInstancia();
 
-  // void resgitrarDatosUsuario(std::string, std::string, DTFecha); no va, no exiten usuarios solos, el cliente/vendedor llama al usuario
-  // void altaNuevoUsuario(); ya lo hace el sistema, inecesario hacerlo.
+  // std::set<DTUsuario> listarUsuarios();
+  // std::set<DTCliente *> listarClientes();
+  // std::set<DTVendedor> listarVendedores();
+  //  void resgitrarDatosUsuario(std::string, std::string, DTFecha); no va, no exiten usuarios solos, el cliente/vendedor llama al usuario
+  //  void altaNuevoUsuario(); ya lo hace el sistema, inecesario hacerlo.
 };
 
 #endif

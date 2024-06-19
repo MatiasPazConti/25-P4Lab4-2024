@@ -19,6 +19,8 @@ private:
 public:
   Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
   ~Cliente();
+  DTDireccion getDireccion();
+
   DTUsuario getDataUsuario();
   std::set<DTNotificacion *> listarNotificaciones();
   void eliminarNotificaciones();

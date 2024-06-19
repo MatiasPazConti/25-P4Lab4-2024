@@ -15,8 +15,9 @@ public:
   // virtual DTUsuario getDataUsuario() = 0;
   Usuario(std::string nickname, std::string password, DTFecha fechaNacimiento);
   ~Usuario();
-  std::string GetNickname();
-  std::string GetPassword();
+  std::string getNickname();
+  std::string getPassword();
+  DTFecha getFechaNacimiento();
 };
 
 #endif

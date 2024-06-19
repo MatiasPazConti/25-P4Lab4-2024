@@ -11,3 +11,8 @@ void Vendedor::addProducto(Producto *producto)
 {
   this->productos.insert(producto);
 }
+
+std::string Vendedor::getCodigoRUT()
+{
+  return codigoRUT;
+}

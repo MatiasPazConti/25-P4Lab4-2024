@@ -11,12 +11,17 @@ Usuario::~Usuario()
 {
 }
 
-std::string Usuario::GetNickname()
+DTFecha Usuario::getFechaNacimiento()
+{
+  return fechaNacimiento;
+}
+
+std::string Usuario::getNickname()
 {
   return nickname;
 }
 
-std::string Usuario::GetPassword()
+std::string Usuario::getPassword()
 {
   return password;
 }
