@@ -1,29 +1,18 @@
 #include "../../include/controladores/ControladorCompra.hh"
 
 
-void ControladorCompra::crearCompra(int dia,int mes, int anio){
+void ControladorCompra::crearCompra(std::string nickname,int dia,int mes, int anio){
     Compra compra = Compra();
     compra.setFechaCompra(dia,mes,anio);
+    Cliente* cliente = Fabrica::getInstance()->getInterfazUsuario()->obtenerCliente(nickname);
+    compra.setCliente(cliente);
     this->compraActual = &compra;
 };
-void ControladorCompra::asignarCliente(std::string nickname){
-    std::set<DTCliente*> clientes = Fabrica::getInterfazUsuario()->listarClientes();
-    for (std::set<DTCliente*>::iterator it = clientes.begin(); it != clientes.end(); ++it) {
-        if((*it)->GetNickname() == nickname){
-            compraActual->setCliente(*it);
-            break;
-        }        
-    }
-};
 void ControladorCompra::agregarProductoACompra(int id,int cantidad){
-    std::set<DTProducto*> productos = Fabrica::getInterfazProducto()->obtenerProductosDisponibles();
-    for (std::set<DTProducto*>::iterator it = productos.begin(); it != productos.end(); ++it) {
-        if((*it)->getId() == id){
-            DTRegistroProducto registro = DTRegistroProducto(id, (*it)->getNombre(), cantidad, (*it)->getPrecio());
-            compraActual->setRegistroProducto(registro);
-            break;
-        }        
-    }
+    Producto* producto = Fabrica::getInstance()->getInterfazProducto()->obtenerProductoDisponible(id); 
+    DTRegistroProducto registro = DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio());
+    compraActual->setRegistroProducto(registro);
+    compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio()*cantidad);                
 };
 void ControladorCompra::obtenerDatosCompra(){};
 void ControladorCompra::registrarCompraExitosa(){};

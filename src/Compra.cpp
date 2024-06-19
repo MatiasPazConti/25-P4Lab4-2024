@@ -8,9 +8,9 @@ float Compra::getMontoFinal()
 {
   return montoFinal;
 }
-DTCliente Compra::getCliente()
+Cliente* Compra::getCliente()
 {
-  return *cliente;
+  return cliente;
 }
 void Compra::setFechaCompra(int dia,int mes,int anio)
 {
@@ -20,7 +20,7 @@ void Compra::setMontoFinal(float monto)
 {
   montoFinal = monto;
 }
-void Compra::setCliente(DTCliente* c)
+void Compra::setCliente(Cliente* c)
 {
   cliente = c;
 }
@@ -40,11 +40,10 @@ void Compra::setRegistroProducto(DTRegistroProducto reg)
   registroProductos.insert(&reg);
 }
 Compra::Compra(){}
-Compra::Compra(DTFecha fecha, float monto, DTCliente c)
+Compra::Compra(DTFecha fecha, float monto, Cliente c)
 {
   fechaCompra = fecha;
   montoFinal = monto;
   *cliente = c;
 }
 Compra::~Compra(){}
-float Compra::calcularMontoFinal(){} // PENDIENTE

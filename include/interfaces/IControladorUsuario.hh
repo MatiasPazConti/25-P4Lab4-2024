@@ -8,6 +8,7 @@
 #include "../datatypes/DTNotificacion.hh"
 #include "../datatypes/DTProducto.hh"
 #include "../datatypes/DTComentario.hh"
+#include "../Cliente.hh"
 
 #include <iostream>
 #include <set>
@@ -36,6 +37,9 @@ public:
   virtual void realizarSuscripciones(std::string, std::set<std::string>) = 0;
   virtual void eliminarSuscripciones(std::string, std::set<std::string>) = 0;
   virtual std::set<DTComentario> listarComentariosUsuario(std::string) = 0;
+
+  virtual Cliente* obtenerCliente(std::string);
+
 };
 
 #endif

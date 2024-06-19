@@ -18,7 +18,7 @@ public:
   virtual void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id) = 0;
   virtual void altaNuevoProducto() = 0;
   virtual void listarProductosDisponibles() = 0; // Usa DTProducto o Producto??? usa DT
-  virtual std::set<DTProducto *> obtenerProductosDisponibles() = 0;
+  virtual Producto* obtenerProductoDisponible(int) = 0;
 };
 
 #endif

@@ -20,6 +20,7 @@ private:
   int codigoRUT;
   // static ControladorUsuario *instancia;
 
+ 
 public:
   ControladorUsuario();
   ~ControladorUsuario();
@@ -29,6 +30,7 @@ public:
   void listarVendedores();
   void listarClientes();
 
+
   std::set<DTVendedor> listarVendedoresNoSuscritos(std::string);
   // std::set<DTProducto> listarProductosVendedor(std::string);
   std::set<DTNotificacion> listarNotificaciones(std::string);
@@ -37,6 +39,8 @@ public:
   void eliminarSuscripciones(std::string, std::set<std::string>);
   std::set<DTComentario> listarComentariosUsuario(std::string);
   // static ControladorUsuario *getInstancia();
+
+  Cliente* obtenerCliente(std::string);
 
   // std::set<DTUsuario> listarUsuarios();
   // std::set<DTCliente *> listarClientes();

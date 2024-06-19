@@ -93,3 +93,7 @@ ControladorUsuario::ControladorUsuario()
 ControladorUsuario::~ControladorUsuario()
 {
 }
+
+Cliente* ControladorUsuario::obtenerCliente(std::string nickname){
+  return clientes[nickname];
+}
