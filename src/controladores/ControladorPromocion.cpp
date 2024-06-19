@@ -56,6 +56,6 @@ void ControladorPromocion::asignarAPromo() // revisar que hace exactamente la fu
 
 void ControladorPromocion::altaNuevaPromo()
 {
-  Promocion promo = Promocion(nombre, descripcion, fechaVencimiento);          //
-  DTPromocion dataprom = DTPromocion(nombre, descripcion, fechaVencimiento, ); // que hago con el set de DTProductoPromo
+  Promocion promo = Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
+  DTPromocion dataprom = DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo);
 }

@@ -2,6 +2,7 @@
 #define CONTROLADOR_PROMOCION
 
 #include <iostream>
+#include <set>
 #include <map>
 
 #include "../interfaces/IControladorPromocion.hh"
@@ -16,6 +17,10 @@ private:
   std::string nombre;
   std::string descripcion;
   DTFecha fechaVencimiento;
+  Vendedor vendedor;
+  std::set<Producto *> productos;
+  std::map<Producto, InfoPromoProducto> infoProductos;
+  std::set<DTProductoPromo> dtProductosPromo;
   std::map<std::string, Promocion *> promos; // promociones identificadas por nombre
 
 public:
