@@ -42,11 +42,14 @@ std::map<Producto, InfoPromoProducto> Promocion::getInfoProductos()
     return InfoProductos;
 }
 
-InfoPromoProducto *Promocion::getInfoProducto(Producto producto)
+InfoPromoProducto *Promocion::getInfoProducto(Producto *producto)
 {
-    if ()
+    for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
-        return &InfoProductos.at(producto);
+        if ((*it) == producto)
+        {
+            return &InfoProductos.at(*producto);
+        }
     }
     return NULL;
 }
@@ -81,15 +84,22 @@ void Promocion::setInfoProductos(std::map<Producto, InfoPromoProducto> pi)
     InfoProductos = pi;
 }
 
-void Promocion::addProducto(Producto, InfoPromoProducto)
+void Promocion::addProducto(Producto, InfoPromoProducto) //
 {
 }
 
-void addProducto(Producto, int cantMinima, float descuento)
+void addProducto(Producto, int cantMinima, float descuento) // son necesarias?
 {
 }
 
 Promocion::Promocion() {}
+
+Promocion::Promocion(std::string n, std::string d, DTFecha f)
+{
+    nombre = n;
+    descripcion = d;
+    fechaDeVencimiento = f;
+}
 
 Promocion::Promocion(std::string n, std::string d, DTFecha f, Vendedor v)
 {

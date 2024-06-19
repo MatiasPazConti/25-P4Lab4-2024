@@ -37,25 +37,25 @@ void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTF
   fechaVencimiento = f;
 }
 
-void ControladorPromocion::asignarVendedor(std::string nickname)
+void ControladorPromocion::asignarVendedor(std::string nickname) // copia de asignar cliente
 {
   std::set<DTVendedor *> vendedores = Fabrica::getInterfazUsuario()->listarVendedores();
   for (std::set<DTVendedor *>::iterator it = vendedores.begin(); it != vendedores.end(); ++it)
   {
     if ((*it)->GetNickname() == nickname)
     {
-      // hago algo
+      // hago algo (necesito una promo actual o un vendedor en controladorPromocion?)
       break;
     }
   }
 }
 
-void ControladorPromocion::asignarAPromo()
+void ControladorPromocion::asignarAPromo() // revisar que hace exactamente la funcion
 {
 }
 
 void ControladorPromocion::altaNuevaPromo()
 {
-  Promocion promo = Promocion(nombre, descripcion, fechaVencimiento, );        //
+  Promocion promo = Promocion(nombre, descripcion, fechaVencimiento);          //
   DTPromocion dataprom = DTPromocion(nombre, descripcion, fechaVencimiento, ); // que hago con el set de DTProductoPromo
 }

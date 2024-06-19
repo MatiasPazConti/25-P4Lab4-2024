@@ -27,7 +27,7 @@ public:
     std::set<Producto *> getProductos();
     Producto *getProducto(int);
     std::map<Producto, InfoPromoProducto> getInfoProductos();
-    InfoPromoProducto *getInfoProducto(Producto);
+    InfoPromoProducto *getInfoProducto(Producto *);
 
     void setNombre(std::string);
     void setDescripcion(std::string);
@@ -40,7 +40,8 @@ public:
     void addProducto(Producto, int cantidadMinima, float porcentajeDescuento);
 
     Promocion();
-    Promocion(std::string, std::string, DTFecha, Vendeedor); //?
+    Promocion(std::string, std::string, DTFecha);
+    Promocion(std::string, std::string, DTFecha, Vendedor); //?
     Promocion(std::string, std::string, DTFecha, Vendedor, std::set<Producto *>, std::map<Producto, InfoPromoProducto>);
     ~Promocion();
 };
