@@ -10,8 +10,8 @@
 class ControladorUsuario : public IControladorUsuario
 {
 private:
-  std::map<std::string, Cliente> clientes;
-  std::map<std::string, Vendedor> vendedores;
+  std::map<std::string, Cliente *> clientes;
+  std::map<std::string, Vendedor *> vendedores;
   std::string nickname;
   std::string contrasenia;
   DTFecha fechaNacimiento;

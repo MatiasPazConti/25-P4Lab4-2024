@@ -14,7 +14,7 @@ Fabrica::~Fabrica()
 
 IControladorUsuario *Fabrica::getInterfazUsuario()
 {
-  if (!this->controladorUsuario)
+  if (this->controladorUsuario == nullptr)
   {
     controladorUsuario = new ControladorUsuario();
   }

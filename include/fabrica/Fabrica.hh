@@ -11,11 +11,11 @@ class Fabrica
 {
 private:
   static Fabrica *fabrica;
-  IControladorUsuario *controladorUsuario;
-  IControladorCompra *controladorCompra;
-  IControladorProducto *controladorProducto;
-  IControladorPromocion *controladorPromocion;
-  IControladorNotificacion *controladorNotificacion;
+  IControladorUsuario *controladorUsuario = nullptr;
+  IControladorCompra *controladorCompra = nullptr;
+  IControladorProducto *controladorProducto = nullptr;
+  IControladorPromocion *controladorPromocion = nullptr;
+  IControladorNotificacion *controladorNotificacion = nullptr;
   Fabrica();
 
 public:

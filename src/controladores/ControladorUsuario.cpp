@@ -2,12 +2,13 @@
 
 void ControladorUsuario::resgitrarDatosCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia)
 {
-  new Cliente(nickname, password, fechaNacimiento, direccion, ciudadDeResidencia);
+  Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadDeResidencia);
 }
 
 void ControladorUsuario::resgitrarDatosVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
 {
-  new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
+  Vendedor *nuevoVendedor = new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
+  vendedores.insert(std::pair<std::string, Vendedor *>(nickname, nuevoVendedor));
 }
 
 std::set<DTUsuario> ControladorUsuario::listarUsuarios()
