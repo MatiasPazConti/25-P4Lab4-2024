@@ -5,6 +5,7 @@
 #include "../datatypes/DTDireccion.hh"
 #include "../datatypes/DTCliente.hh"
 #include "../datatypes/DTVendedor.hh"
+#include "../datatypes/DTNotificacion.hh"
 #include "../datatypes/DTProducto.hh"
 
 #include <iostream>
@@ -22,6 +23,7 @@ public:
   virtual std::set<DTVendedor> listarVendedores() = 0;
   virtual std::set<DTVendedor> listarVendedoresNoSuscritos(std::string) = 0;
   // virtual std::set<DTProducto> listarProductosVendedor(std::string) = 0;
+  virtual std::set<DTNotificacion> listarNotificaciones(std::string) = 0;
   virtual std::set<DTVendedor> listarSuscripciones(std::string) = 0;
 };
 
