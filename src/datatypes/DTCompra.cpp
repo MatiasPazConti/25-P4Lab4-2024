@@ -27,10 +27,12 @@ DTCliente DTCompra::getCliente()
   return *cliente;
 }
 DTCompra::DTCompra(){}
-DTCompra::DTCompra(DTFecha f, float m)
+DTCompra::DTCompra(DTFecha f, float m,std::set<DTRegistroProducto*> reg, DTCliente* c)
 {
   fechaDeCompra = f;
   montoFinal = m;
+  registroProductos = reg;
+  cliente = c;
 }
 DTCompra::~DTCompra() {}
 // Sobrecarga de operador '<<'
@@ -43,4 +45,7 @@ std::ostream &operator<<(std::ostream &out, DTCompra &obj)
 {
   obj.setPrint(out);
   return out;
+}
+std::set<DTRegistroProducto*>DTCompra::getRegistroProductos(){
+  return registroProductos;
 }

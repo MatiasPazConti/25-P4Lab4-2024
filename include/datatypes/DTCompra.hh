@@ -16,12 +16,13 @@ private:
   DTCliente *cliente;
 public:
   DTFecha getFechaDeCompra();
-  DTRegistroProducto* getRegistroProducto(int); // queremos un solo producto o todo el set?? 
+  DTRegistroProducto* getRegistroProducto(int); 
+  std::set<DTRegistroProducto*> getRegistroProductos();
   float getMontoFinal();
   DTCliente getCliente();
   void setCliente(DTCliente*);
   DTCompra();
-  DTCompra(DTFecha, float);
+  DTCompra(DTFecha, float, std::set<DTRegistroProducto*>,DTCliente*);
   ~DTCompra();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

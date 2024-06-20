@@ -13,15 +13,18 @@ class ControladorProducto : public IControladorProducto
 private:
   std::set<Producto *> productos;
   static ControladorProducto *instancia;
+  int lastID;
   ControladorProducto();
 
 public:
   static ControladorProducto *getInstancia();
-  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id);
+  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo);
   void altaNuevoProducto();
-  void listarProductosDisponibles(); // Usa DTProducto o Producto???
-  Producto *obtenerProductoDisponible(int);
+  std::set<DTProducto *> obtenerProductosDisponibles();
+  DTProducto *obtenerProductoDisponible(int);
+  std::set<DTProducto*> obtenerProductosDisponibles(); // falta hacerla en el cpp
   ~ControladorProducto();
+  
 };
 
 #endif
