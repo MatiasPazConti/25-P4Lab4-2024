@@ -5,27 +5,33 @@
 #include "../Cliente.hh"
 #include "../Vendedor.hh"
 
-#include <map>
+typedef enum
+{
+  cliente,
+  vendedor,
+  nulo
+} TipoUsuario;
 
 class ControladorUsuario : public IControladorUsuario
 {
 private:
-  std::map<std::string, Cliente> clientes;
-  std::map<std::string, Vendedor> vendedores;
+  std::set<Cliente *> clientes;
+  std::set<Vendedor *> vendedores;
+  TipoUsuario tipoUsuario;
   std::string nickname;
-  std::string contrasenia;
+  std::string password;
   DTFecha fechaNacimiento;
-  std::string ciudadResidencia;
   DTDireccion direccion;
+  std::string ciudadResidencia;
   int codigoRUT;
   static ControladorUsuario *instancia;
   ControladorUsuario();
 
 public:
-  void resgitrarDatosUsuario(std::string, std::string, DTFecha);
-  void resgitrarDatosCliente(std::string, DTDireccion);
-  void resgitrarDatosVendedor(int);
-  void altaNuevoUsuario();
+  void resgitrarDatosUsuario(std::string, std::string, DTFecha, TipoUsuario); // Implementado
+  void resgitrarDatosCliente(DTDireccion, std::string);                       // Implementado
+  void resgitrarDatosVendedor(int);                                           // Implementado
+  void altaNuevoUsuario();                                                    // Implementado
   std::set<DTUsuario> listarUsuarios();
   std::set<DTCliente> listarClientes();
   std::set<DTVendedor> listarVendedores();
