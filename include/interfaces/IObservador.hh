@@ -6,7 +6,7 @@
 class IObservador
 {
 public:
-  virtual void notificar() = 0;
+  virtual void notificar(std::string, std::string) = 0;
 };
 
 #endif

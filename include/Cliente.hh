@@ -26,9 +26,9 @@ public:
   DTCliente *getDataCliente();
   void añadirSuscripcion(Vendedor *);
   void removerSuscripcion(Vendedor *);
-  void notificar();
-  std::set<DTNotificacion *> listarNotificaciones();
+  void notificar(std::string, std::string);
   void eliminarNotificaciones();
+  std::set<DTNotificacion *> listarNotificaciones();
   Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
   ~Cliente();
 };
