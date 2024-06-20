@@ -7,11 +7,11 @@
 class DTVendedor : public DTUsuario
 {
 private:
-  int codigoRUT;
+  std::string codigoRUT;
 
 public:
   int getCodigoRUT();
-  DTVendedor(std::string, DTFecha, int);
+  DTVendedor(std::string, DTFecha, std::string);
   ~DTVendedor();
 };
 

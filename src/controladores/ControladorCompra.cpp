@@ -4,13 +4,13 @@ void ControladorCompra::crearCompra(std::string nickname, int dia, int mes, int 
 {
 	Compra compra = Compra();
 	compra.setFechaCompra(dia, mes, anio);
-	Cliente *cliente = Fabrica::getInstance()->getInterfazUsuario()->getCliente(nickname);
+	Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
 	compra.setCliente(cliente);
 	this->compraActual = &compra;
 };
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
-	Producto *producto = Fabrica::getInstance()->getInterfazProducto()->obtenerProductoDisponible(id);
+	Producto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
 	DTRegistroProducto registro = DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio());
 	compraActual->setRegistroProducto(registro);
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);

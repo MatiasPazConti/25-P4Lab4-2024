@@ -1,34 +1,14 @@
 #include "../../include/controladores/ControladorUsuario.hh"
 
-void ControladorUsuario::registrarDatosUsuario(std::string nickname, std::string password, DTFecha fechaNacimiento, TipoUsuario tipoUsuario)
+void ControladorUsuario::altaNuevoCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadResidencia)
 {
-  this->nickname = nickname;
-  this->password = password;
-  this->fechaNacimiento = fechaNacimiento;
-  this->tipoUsuario = tipoUsuario;
+  Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadResidencia);
+  clientes.insert(nuevoCliente);
 }
-void ControladorUsuario::registrarDatosCliente(DTDireccion direccion, std::string ciudadResidencia)
+void ControladorUsuario::altaNuevoVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
 {
-  this->direccion = direccion;
-  this->ciudadResidencia = ciudadResidencia;
-}
-void ControladorUsuario::registrarDatosVendedor(int codigoRUT)
-{
-  this->codigoRUT = codigoRUT;
-}
-void ControladorUsuario::altaNuevoUsuario()
-{
-  if (tipoUsuario == cliente)
-  {
-    Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadResidencia);
-    clientes.insert(nuevoCliente);
-  }
-  if (tipoUsuario == vendedor)
-  {
-    Vendedor *nuevoVendedor = new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
-    vendedores.insert(nuevoVendedor);
-  }
-  tipoUsuario = nulo;
+  Vendedor *nuevoVendedor = new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
+  vendedores.insert(nuevoVendedor);
 }
 void ControladorUsuario::realizarSuscripciones(std::string nickCliente, std::set<std::string> nicksVendedores)
 {

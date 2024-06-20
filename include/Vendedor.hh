@@ -15,21 +15,20 @@ class Cliente;
 class Vendedor : public Usuario
 {
 private:
-  int codigoRUT;
+  std::string codigoRUT;
   std::set<Producto *> productos;
   std::set<IObservador *> suscriptores;
 
 public:
-  int getCodigoRUT();
+  std::string getCodigoRUT();
   DTVendedor *getDataVendedor();
   DTProducto *getDataProducto(int);
   void añadirProducto(Producto *);
   void añadirSuscriptor(Cliente *);
   void removerProducto(Producto *);
   void removerSuscriptor(Cliente *);
-  // void notificarObservadores();
   std::set<DTProducto *> listarProductos();
-  Vendedor(std::string, std::string, DTFecha, int);
+  Vendedor(std::string, std::string, DTFecha, std::string);
   ~Vendedor();
 };
 
