@@ -5,11 +5,13 @@
 class DTNotificacion
 {
 private:
-  std::string aviso;
+  std::string nombrePromocion;
+  std::string nicknameVendedor;
 
 public:
-  std::string getAviso();
-  DTNotificacion(std::string);
+  std::string getNombrePromocion();
+  std::string getNicknameVendedor();
+  DTNotificacion(std::string, std::string);
   ~DTNotificacion();
 };
 

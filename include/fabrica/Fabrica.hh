@@ -1,31 +1,20 @@
 #ifndef FABRICA
 #define FABRICA
 
-#include "../interfaces/IControladorUsuario.hh"
-#include "../interfaces/IControladorCompra.hh"
-#include "../interfaces/IControladorProducto.hh"
-#include "../interfaces/IControladorPromocion.hh"
-#include "../interfaces/IControladorNotificacion.hh"
+#include "../controladores/ControladorUsuario.hh"
+#include "../controladores/ControladorCompra.hh"
+#include "../controladores/ControladorProducto.hh"
+#include "../controladores/ControladorPromocion.hh"
+#include "../controladores/ControladorNotificacion.hh"
 
 class Fabrica
 {
-private:
-  static Fabrica *fabrica;
-  IControladorUsuario *controladorUsuario = nullptr;
-  IControladorCompra *controladorCompra = nullptr;
-  IControladorProducto *controladorProducto = nullptr;
-  IControladorPromocion *controladorPromocion = nullptr;
-  IControladorNotificacion *controladorNotificacion = nullptr;
-  Fabrica();
-
 public:
-  ~Fabrica();
-  static Fabrica *getInstance();
-  IControladorUsuario *getInterfazUsuario();
-  IControladorCompra *getInterfazCompra();
-  IControladorProducto *getInterfazProducto();
-  IControladorPromocion *getInterfazPromocion();
-  IControladorNotificacion *getInterfazNotificacion();
+  static IControladorUsuario *getInterfazUsuario();
+  static IControladorCompra *getInterfazCompra();
+  static IControladorProducto *getInterfazProducto();
+  static IControladorPromocion *getInterfazPromocion();
+  static IControladorNotificacion *getInterfazNotificacion();
 };
 
 #endif

@@ -10,8 +10,8 @@ private:
   std::string codigoRUT;
 
 public:
-  std::string getCodigoRUT();
-  DTVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
+  int getCodigoRUT();
+  DTVendedor(std::string, DTFecha, std::string);
   ~DTVendedor();
 };
 

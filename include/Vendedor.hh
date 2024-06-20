@@ -2,10 +2,15 @@
 #define VENDEDOR
 
 #include "./interfaces/IObservador.hh"
+#include "./datatypes/DTVendedor.hh"
 #include "./datatypes/DTProducto.hh"
 #include "./Usuario.hh"
+#include "./Cliente.hh"
 #include "./Producto.hh"
+
 #include <set>
+
+class Cliente;
 
 class Vendedor : public Usuario
 {
@@ -15,16 +20,16 @@ private:
   std::set<IObservador *> suscriptores;
 
 public:
-  Vendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
-  ~Vendedor();
-  void addProducto(Producto *producto);
   std::string getCodigoRUT();
-
-  DTUsuario getDataUsuario();
+  DTVendedor *getDataVendedor();
+  DTProducto *getDataProducto(int);
+  void añadirProducto(Producto *);
+  void añadirSuscriptor(Cliente *);
+  void removerProducto(Producto *);
+  void removerSuscriptor(Cliente *);
   std::set<DTProducto *> listarProductos();
-  DTProducto getProducto(int);
-  void removeProducto(Producto *producto);
-  void notificarObservadores();
+  Vendedor(std::string, std::string, DTFecha, std::string);
+  ~Vendedor();
 };
 
 #endif

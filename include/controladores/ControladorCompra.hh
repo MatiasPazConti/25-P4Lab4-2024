@@ -9,18 +9,22 @@
 #include "../datatypes/DTUsuario.hh"
 #include "../Producto.hh"
 
+class ControladorCompra : public IControladorCompra
+{
+private:
+    std::set<Compra *> comprasExitosas;
+    Compra *compraActual;
+    static ControladorCompra *instancia;
+    ControladorCompra();
 
-
-class ControladorCompra : public IControladorCompra{
-    private:
-        std::set<Compra*> comprasExitosas;
-        Compra *compraActual;
-    public:
-        void crearCompra(std::string,int,int,int); // dia/mes/anio de hoy
-        void asignarCliente(std::string);
-        void agregarProductoACompra(int,int);
-        void obtenerDatosCompra();
-        void registrarCompraExitosa();
+public:
+    static ControladorCompra *getInstancia();
+    void crearCompra(std::string, int, int, int); // dia/mes/anio de hoy
+    void asignarCliente(std::string);
+    void agregarProductoACompra(int, int);
+    void obtenerDatosCompra();
+    void registrarCompraExitosa();
+    ~ControladorCompra();
 };
 
 #endif

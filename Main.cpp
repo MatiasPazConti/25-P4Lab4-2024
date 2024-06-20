@@ -5,33 +5,33 @@
 #include <string>
 #include <iostream>
 
+IControladorUsuario *controladorUsuario = Fabrica::getInterfazUsuario();
+IControladorProducto *controladorProducto = Fabrica::getInterfazProducto();
+IControladorPromocion *controladorPromocion = Fabrica::getInterfazPromocion();
+IControladorCompra *controladorCompra = Fabrica::getInterfazCompra();
+
 void CargarDatos()
 {
-
-  // Precargar los datos
-  Fabrica *fabrica = Fabrica::getInstance();
-  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
-
   // US1 - Usuario Uno - Vendedor
   std::string nickUS1 = "ana23";
   std::string passUS1 = "qwer1234";
   DTFecha fechaUS1 = DTFecha(15, 5, 1988);
   std::string rutUS1 = "212345678001";
-  controladorUsuario->resgitrarDatosVendedor(nickUS1, passUS1, fechaUS1, rutUS1);
+  controladorUsuario->altaNuevoVendedor(nickUS1, passUS1, fechaUS1, rutUS1);
 
   // US2 - Usuario Dos - Vendedor
   std::string nickUS2 = "carlos78";
   std::string passUS2 = "asdfghj";
   DTFecha fechaUS2 = DTFecha(18, 6, 1986);
   std::string rutUS2 = "356789012345";
-  controladorUsuario->resgitrarDatosVendedor(nickUS2, passUS2, fechaUS2, rutUS2);
+  controladorUsuario->altaNuevoVendedor(nickUS2, passUS2, fechaUS2, rutUS2);
 
   // US3 - Usuario Tres - Vendedor
   std::string nickUS3 = "diegom";
   std::string passUS3 = "zxcvbn";
   DTFecha fechaUS3 = DTFecha(28, 7, 1993);
   std::string rutUS3 = "190123456789";
-  controladorUsuario->resgitrarDatosVendedor(nickUS3, passUS3, fechaUS3, rutUS3);
+  controladorUsuario->altaNuevoVendedor(nickUS3, passUS3, fechaUS3, rutUS3);
 
   // US4 - Usuario Cuatro - Cliente
   std::string nickUS4 = "juan87";
@@ -39,7 +39,7 @@ void CargarDatos()
   DTFecha fechaUS4 = DTFecha(20, 10, 1992);
   DTDireccion adressUS4 = DTDireccion("Av. 18 de Julio", 456);
   std::string cityUS4 = "Melo";
-  controladorUsuario->resgitrarDatosCliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
+  controladorUsuario->altaNuevoCliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
 
   // US5 - Usuario Cinco - Cliente
   std::string nickUS5 = "laura";
@@ -47,14 +47,14 @@ void CargarDatos()
   DTFecha fechaUS5 = DTFecha(22, 9, 1979);
   DTDireccion adressUS5 = DTDireccion("Rondeau", 1617);
   std::string cityUS5 = "Montevideo";
-  controladorUsuario->resgitrarDatosCliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
+  controladorUsuario->altaNuevoCliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
 
   // US6 - Usuario Seis - Vendedor
   std::string nickUS6 = "maria01";
   std::string passUS6 = "5tgb6yhn";
   DTFecha fechaUS6 = DTFecha(25, 3, 1985);
   std::string rutUS6 = "321098765432";
-  controladorUsuario->resgitrarDatosVendedor(nickUS6, passUS6, fechaUS6, rutUS6);
+  controladorUsuario->altaNuevoVendedor(nickUS6, passUS6, fechaUS6, rutUS6);
 
   // US7 - Usuario Siete - Cliente
   std::string nickUS7 = "natalia";
@@ -62,7 +62,7 @@ void CargarDatos()
   DTFecha fechaUS7 = DTFecha(14, 4, 1982);
   DTDireccion adressUS7 = DTDireccion("Paysandu", 2021);
   std::string cityUS7 = "Salto";
-  controladorUsuario->resgitrarDatosCliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
+  controladorUsuario->altaNuevoCliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
 
   // US8 - Usuario Ocho - Cliente
   std::string nickUS8 = "pablo10";
@@ -70,7 +70,7 @@ void CargarDatos()
   DTFecha fechaUS8 = DTFecha(30, 11, 1995);
   DTDireccion adressUS8 = DTDireccion("Av. Rivera", 1819);
   std::string cityUS8 = "Mercedes";
-  controladorUsuario->resgitrarDatosCliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
+  controladorUsuario->altaNuevoCliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
 
   // US9 - Usuario Nueve - Cliente
   std::string nickUS9 = "roberto";
@@ -78,14 +78,14 @@ void CargarDatos()
   DTFecha fechaUS9 = DTFecha(12, 8, 1990);
   DTDireccion adressUS9 = DTDireccion("Av. Brasil", 1011);
   std::string cityUS9 = "Montevideo";
-  controladorUsuario->resgitrarDatosCliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
+  controladorUsuario->altaNuevoCliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
 
   // US10 - Usuario Diez - Vendedor
   std::string nickUS10 = "sofia25";
   std::string passUS10 = "1234asdf";
   DTFecha fechaUS10 = DTFecha(7, 12, 1983);
   std::string rutUS10 = "445678901234";
-  controladorUsuario->resgitrarDatosVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
+  controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
   /*// PR1 - Producto 1 - US2
   int idPR1 = 1;
@@ -398,9 +398,7 @@ void NuevoVendedor()
   std::string rutUS;
   std::cout << "Escriba su codigo RUT" << std::endl;
   std::cin >> rutUS;
-  Fabrica *fabrica = Fabrica::getInstance();
-  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
-  controladorUsuario->resgitrarDatosVendedor(nickUS, passUS, fechaUS, rutUS);
+  controladorUsuario->altaNuevoVendedor(nickUS, passUS, fechaUS, rutUS);
   std::cout << "Vendedor registrado con exito." << std::endl;
 }
 
@@ -432,24 +430,31 @@ void NuevoCliente()
   std::string cityUS;
   std::cout << "Escriba la ciudad en la que vive" << std::endl;
   std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes
-  Fabrica *fabrica = Fabrica::getInstance();
-  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
-  controladorUsuario->resgitrarDatosCliente(nickUS, passUS, fechaUS, adressUS, cityUS);
+  controladorUsuario->altaNuevoCliente(nickUS, passUS, fechaUS, adressUS, cityUS);
   std::cout << "Cliente registrado con exito." << std::endl;
 }
 
 void ListarUsuarios()
 {
-  Fabrica *fabrica = Fabrica::getInstance();
-  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
   controladorUsuario->listarUsuarios();
 }
 
+/* LISTAR VENDEDORES
+    for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+    {
+      std::string nick = it->second->getNickname();
+      DTFecha fecha = it->second->getFechaNacimiento();
+      int dia = fecha.getDia();
+      int mes = fecha.getMes();
+      int anio = fecha.getAnio();
+      std::string rut = it->second->getCodigoRUT();
+      std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
+      std::cout << std::endl;
+    };
+*/
+
 void AltaDeProducto()
 {
-  Fabrica *fabrica = Fabrica::getInstance();
-  IControladorUsuario *controladorUsuario = fabrica->getInterfazUsuario();
-  IControladorProducto *controladorProducto = fabrica->getInterfazProducto();
   std::string nickVendedor;
   controladorUsuario->listarVendedores();
   std::cin >> nickVendedor;

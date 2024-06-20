@@ -1,40 +1,22 @@
 #include "../../include/fabrica/Fabrica.hh"
-#include "../../include/controladores/ControladorUsuario.hh"
-#include "../../include/controladores/ControladorProducto.hh"
-
-Fabrica *Fabrica::fabrica = 0;
-
-Fabrica::Fabrica()
-{
-}
-
-Fabrica::~Fabrica()
-{
-}
 
 IControladorUsuario *Fabrica::getInterfazUsuario()
 {
-  if (this->controladorUsuario == nullptr)
-  {
-    controladorUsuario = new ControladorUsuario();
-  }
-  return controladorUsuario;
+  return ControladorUsuario::getInstancia();
 }
-
+IControladorCompra *Fabrica::getInterfazCompra()
+{
+  return ControladorCompra::getInstancia();
+}
 IControladorProducto *Fabrica::getInterfazProducto()
 {
-  if (!this->controladorProducto)
-  {
-    controladorProducto = new ControladorProducto();
-  }
-  return controladorProducto;
+  return ControladorProducto::getInstancia();
 }
-
-Fabrica *Fabrica::getInstance()
+IControladorPromocion *Fabrica::getInterfazPromocion()
 {
-  if (fabrica == nullptr)
-  {
-    fabrica = new Fabrica();
-  }
-  return fabrica;
+  return ControladorPromocion::getInstancia();
+}
+IControladorNotificacion *Fabrica::getInterfazNotificacion()
+{
+  return ControladorNotificacion::getInstancia();
 }

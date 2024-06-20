@@ -1,99 +1,145 @@
 #include "../../include/controladores/ControladorUsuario.hh"
 
-void ControladorUsuario::resgitrarDatosCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia)
+void ControladorUsuario::altaNuevoCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadResidencia)
 {
-  Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadDeResidencia);
-  clientes.insert(std::pair<std::string, Cliente *>(nickname, nuevoCliente));
+  Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadResidencia);
+  clientes.insert(nuevoCliente);
 }
-
-void ControladorUsuario::resgitrarDatosVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
+void ControladorUsuario::altaNuevoVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
 {
   Vendedor *nuevoVendedor = new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
-  vendedores.insert(std::pair<std::string, Vendedor *>(nickname, nuevoVendedor));
+  vendedores.insert(nuevoVendedor);
 }
-
-void ControladorUsuario::listarVendedores()
+void ControladorUsuario::realizarSuscripciones(std::string nickCliente, std::set<std::string> nicksVendedores)
 {
-  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  Cliente *usuario = getCliente(nickCliente);
+  for (std::set<std::string>::iterator nickVendedor = nicksVendedores.begin(); nickVendedor != nicksVendedores.end(); nickVendedor++)
   {
-    std::string nick = it->second->getNickname();
-    DTFecha fecha = it->second->getFechaNacimiento();
-    int dia = fecha.getDia();
-    int mes = fecha.getMes();
-    int anio = fecha.getAnio();
-    std::string rut = it->second->getCodigoRUT();
-    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
-    std::cout << std::endl;
-  };
+    Vendedor *suscripcion = getVendedor(*nickVendedor);
+    usuario->añadirSuscripcion(suscripcion);
+  }
 }
-
-void ControladorUsuario::listarClientes()
+void ControladorUsuario::eliminarSuscripciones(std::string nickCliente, std::set<std::string> nicksVendedores)
 {
-  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  Cliente *usuario = getCliente(nickCliente);
+  for (std::set<std::string>::iterator nickVendedor = nicksVendedores.begin(); nickVendedor != nicksVendedores.end(); nickVendedor++)
   {
-    std::string nick = it->second->getNickname();
-    DTFecha fecha = it->second->getFechaNacimiento();
-    int dia = fecha.getDia();
-    int mes = fecha.getMes();
-    int anio = fecha.getAnio();
-    DTDireccion direccion = it->second->getDireccion();
-    std::string calle = direccion.getNombreCalle();
-    int nroPuerta = direccion.getNroPuerta();
-    std::string ciudad = it->second->getCiudadDeResidencia();
-    std::cout << "Nickname: " << nick << ", Fecha de naciemiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
-    std::cout << std::endl;
-  };
+    Vendedor *suscripcion = getVendedor(*nickVendedor);
+    usuario->removerSuscripcion(suscripcion);
+  }
 }
-
-void ControladorUsuario::listarUsuarios()
+void ControladorUsuario::eliminarSuscripciones(std::string, std::set<std::string>) {}
+Cliente *ControladorUsuario::getCliente(std::string nickname)
 {
-  this->listarClientes();
-  this->listarVendedores();
+  Cliente *retorno = NULL;
+  bool encontrado = false;
+  for (std::set<Cliente *>::iterator it = clientes.begin(); (it != clientes.end()) && !encontrado; it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      retorno = *it;
+      encontrado = true;
+    }
+  }
+  return retorno;
 }
-
-std::set<DTVendedor> ControladorUsuario::listarVendedoresNoSuscritos(std::string)
+Vendedor *ControladorUsuario::getVendedor(std::string nickname)
 {
-  return std::set<DTVendedor>();
+  Vendedor *retorno = NULL;
+  bool encontrado = false;
+  for (std::set<Vendedor *>::iterator it = vendedores.begin(); (it != vendedores.end()) && !encontrado; it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      retorno = *it;
+      encontrado = true;
+    }
+  }
+  return retorno;
 }
-
-std::set<DTNotificacion> ControladorUsuario::listarNotificaciones(std::string)
+std::set<DTUsuario *> ControladorUsuario::listarUsuarios()
 {
-  return std::set<DTNotificacion>();
+  std::set<DTUsuario *> listaUsuarios;
+  for (std::set<Cliente *>::iterator itCliente = clientes.begin(); itCliente != clientes.end(); itCliente++)
+  {
+    DTUsuario *dataCliente = (*itCliente)->getDataCliente();
+    listaUsuarios.insert(dataCliente);
+  }
+  for (std::set<Vendedor *>::iterator itVendedor = vendedores.begin(); itVendedor != vendedores.end(); itVendedor++)
+  {
+    DTUsuario *dataVendedor = (*itVendedor)->getDataVendedor();
+    listaUsuarios.insert(dataVendedor);
+  }
+  return listaUsuarios;
 }
-
-std::set<DTVendedor> ControladorUsuario::listarSuscripciones(std::string)
+std::set<DTCliente *> ControladorUsuario::listarClientes()
 {
-  return std::set<DTVendedor>();
+  std::set<DTCliente *> listaClientes;
+  for (std::set<Cliente *>::iterator it = clientes.begin(); it != clientes.end(); it++)
+  {
+    DTCliente *dataCliente = (*it)->getDataCliente();
+    listaClientes.insert(dataCliente);
+  }
+  return listaClientes;
 }
-
-void ControladorUsuario::realizarSuscripciones(std::string, std::set<std::string>)
+std::set<DTVendedor *> ControladorUsuario::listarVendedores()
 {
+  std::set<DTVendedor *> listaVendedores;
+  for (std::set<Vendedor *>::iterator it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    DTVendedor *dataVendedor = (*it)->getDataVendedor();
+    listaVendedores.insert(dataVendedor);
+  }
+  return listaVendedores;
 }
-
-void ControladorUsuario::eliminarSuscripciones(std::string, std::set<std::string>)
+std::set<DTVendedor *> ControladorUsuario::listarVendedoresNoSuscritos(std::string nickname)
 {
+  std::set<DTVendedor *> listaNoSuscritos = listarVendedores();
+  Cliente *usuario = getCliente(nickname);
+  std::set<Vendedor *> suscripcionesUsuario = usuario->getSuscripciones();
+  for (std::set<Vendedor *>::iterator it = suscripcionesUsuario.begin(); it != suscripcionesUsuario.end(); it++)
+  {
+    std::string nickSuscripcion = (*it)->getNickname();
+    bool encontrado = false;
+    for (std::set<DTVendedor *>::iterator dt = listaNoSuscritos.begin(); (dt != listaNoSuscritos.end()) && !encontrado; dt++)
+    {
+      if ((*dt)->getNickname() == nickSuscripcion)
+      {
+        DTVendedor *aBorrar = *dt;
+        listaNoSuscritos.erase(aBorrar);
+        delete aBorrar;
+      }
+    }
+  }
+  return listaNoSuscritos;
 }
-
-std::set<DTComentario> ControladorUsuario::listarComentariosUsuario(std::string)
+std::set<DTProducto *> ControladorUsuario::listarProductosVendedor(std::string nickname)
 {
-  return std::set<DTComentario>();
+  Vendedor *vendedor = getVendedor(nickname);
+  std::set<DTProducto *> listaProductos = vendedor->listarProductos();
+  return listaProductos;
 }
-
-/*ControladorUsuario *ControladorUsuario::getInstancia()
+std::set<DTNotificacion *> ControladorUsuario::listarNotificaciones(std::string)
 {
-  return nullptr;
-}*/
-
-ControladorUsuario::ControladorUsuario()
-{
-  vendedores.clear();
-  clientes.clear();
+  std::set<DTNotificacion *> retorno;
+  return retorno;
 }
-
-ControladorUsuario::~ControladorUsuario()
+std::set<DTVendedor *> ControladorUsuario::listarSuscripciones(std::string)
 {
+  return std::set<DTVendedor *>();
 }
-
-Cliente* ControladorUsuario::obtenerCliente(std::string nickname){
-  return clientes[nickname];
+std::set<DTComentario *> ControladorUsuario::listarComentariosUsuario(std::string)
+{
+  return std::set<DTComentario *>();
+}
+ControladorUsuario::ControladorUsuario() {}
+ControladorUsuario::~ControladorUsuario() {}
+ControladorUsuario *ControladorUsuario::instancia = NULL;
+ControladorUsuario *ControladorUsuario::getInstancia()
+{
+  if (instancia == NULL)
+  {
+    instancia = new ControladorUsuario();
+  }
+  return instancia;
 }

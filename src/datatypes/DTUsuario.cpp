@@ -1,16 +1,18 @@
 #include "../../include/datatypes/DTUsuario.hh"
 
-DTUsuario::DTUsuario(std::string nickname, std::string password, DTFecha fechaNacimiento)
+std::string DTUsuario::getNickname()
+{
+  return nickname;
+}
+DTFecha DTUsuario::getFechaNacimiento()
+{
+  return fechaNacimiento;
+}
+DTUsuario::DTUsuario(std::string nickname, DTFecha fechaNacimiento)
 {
   this->nickname = nickname;
-  this->password = password;
   this->fechaNacimiento = fechaNacimiento;
 }
 DTUsuario::~DTUsuario()
 {
-}
-
-std::string DTUsuario::GetNickname()
-{
-  return nickname;
 }
