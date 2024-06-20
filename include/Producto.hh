@@ -1,9 +1,8 @@
 #ifndef PRODUCTO
 #define PRODUCTO
 #include <iostream>
-#include "../include/TipoProducto.hh"
-
-
+#include "./TipoProducto.hh"
+#include "./datatypes/DTProducto.hh"
 
 class Producto
 {
@@ -14,26 +13,27 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
+
 public:
-  int getId();
   void setId(int);
-  std::string getNombre();
   void setNombre(std::string);
-  std::string getDescripcion();
   void setDescrpcion(std::string);
-  float getPrecio();
   void setPrecio(float);
-  int getCantidadEnStock();
   void setCantidadEnStock(int);
-  TipoProducto getTipoProducto();
   void setTipoProducto(TipoProducto);
+  int getId();
+  std::string getNombre();
+  std::string getDescripcion();
+  float getPrecio();
+  int getCantidadEnStock();
+  TipoProducto getTipoProducto();
+  DTProducto *getDataProducto();
   Producto();
-  Producto(int, std::string, std::string,float,int,TipoProducto);
+  Producto(int, std::string, std::string, float, int, TipoProducto);
   ~Producto();
-    void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
+  void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
 
 std::ostream &operator<<(std::ostream &out, Producto &obj); // cout Producto
-
 
 #endif

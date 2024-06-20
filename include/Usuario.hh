@@ -12,12 +12,11 @@ private:
   DTFecha fechaNacimiento;
 
 public:
-  // virtual DTUsuario getDataUsuario() = 0;
-  Usuario(std::string nickname, std::string password, DTFecha fechaNacimiento);
-  ~Usuario();
   std::string getNickname();
   std::string getPassword();
   DTFecha getFechaNacimiento();
+  Usuario(std::string nickname, std::string password, DTFecha fechaNacimiento);
+  ~Usuario();
 };
 
 #endif

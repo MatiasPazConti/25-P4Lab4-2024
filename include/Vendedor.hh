@@ -11,20 +11,20 @@
 class Vendedor : public Usuario
 {
 private:
-  std::string codigoRUT;
+  int codigoRUT;
   std::set<Producto *> productos;
   std::set<IObservador *> suscriptores;
 
 public:
-  Vendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT);
-  ~Vendedor();
-  void addProducto(Producto *producto);
-  std::string getCodigoRUT();
-  DTUsuario getDataUsuario();
+  int getCodigoRUT();
+  DTUsuario *getDataUsuario();
+  DTProducto *getDataProducto(int);
   std::set<DTProducto *> listarProductos();
-  DTProducto getProducto(int);
-  void removeProducto(Producto *producto);
-  void notificarObservadores();
+  void añadirProducto(Producto *producto);
+  void removerProducto(Producto *producto);
+  // void notificarObservadores();
+  Vendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, int codigoRUT);
+  ~Vendedor();
 };
 
 #endif

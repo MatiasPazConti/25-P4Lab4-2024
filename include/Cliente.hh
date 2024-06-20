@@ -2,6 +2,7 @@
 #define CLIENTE
 
 #include "./interfaces/IObservador.hh"
+#include "./datatypes/DTCliente.hh"
 #include "./datatypes/DTDireccion.hh"
 #include "./datatypes/DTNotificacion.hh"
 #include "./Usuario.hh"
@@ -17,14 +18,13 @@ private:
   std::set<Notificacion *> notificaciones;
 
 public:
+  DTDireccion getDireccion();
+  std::string getCiudadDeResidencia();
+  DTUsuario *getDataUsuario();
+  // std::set<DTNotificacion *> listarNotificaciones();
+  // void eliminarNotificaciones();
   Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
   ~Cliente();
-  DTDireccion getDireccion();
-
-  DTUsuario getDataUsuario();
-  std::set<DTNotificacion *> listarNotificaciones();
-  void eliminarNotificaciones();
-  std::string getCiudadDeResidencia();
 };
 
 #endif
