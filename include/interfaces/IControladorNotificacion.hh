@@ -1,7 +1,7 @@
 #ifndef I_CONTROLADOR_NOTIFICACION
 #define I_CONTROLADOR_NOTIFICACION
 
-#include "../Notificacion.hh"
+#include "../datatypes/DTNotificacion.hh"
 
 class IControladorNotificacion
 {

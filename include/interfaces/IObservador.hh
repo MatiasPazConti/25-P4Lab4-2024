@@ -1,10 +1,12 @@
 #ifndef I_OBSERVADOR
 #define I_OBSERVADOR
 
+#include "../datatypes/DTNotificacion.hh"
+
 class IObservador
 {
-private:
 public:
+  virtual void notificar() = 0;
 };
 
 #endif

@@ -7,7 +7,7 @@
 class ControladorNotificacion : public IControladorNotificacion
 {
 private:
-  std::set<Notificacion *> notificaciones;
+  std::set<DTNotificacion *> notificaciones;
   static ControladorNotificacion *instancia;
   ControladorNotificacion();
 
