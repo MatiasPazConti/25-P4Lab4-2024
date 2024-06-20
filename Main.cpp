@@ -445,6 +445,20 @@ void ListarUsuarios()
   controladorUsuario->listarUsuarios();
 }
 
+/* LISTAR VENDEDORES
+    for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+    {
+      std::string nick = it->second->getNickname();
+      DTFecha fecha = it->second->getFechaNacimiento();
+      int dia = fecha.getDia();
+      int mes = fecha.getMes();
+      int anio = fecha.getAnio();
+      std::string rut = it->second->getCodigoRUT();
+      std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
+      std::cout << std::endl;
+    };
+*/
+
 void AltaDeProducto()
 {
   Fabrica *fabrica = Fabrica::getInstance();

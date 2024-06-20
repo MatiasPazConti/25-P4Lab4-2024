@@ -5,6 +5,8 @@
 #include "../Cliente.hh"
 #include "../Vendedor.hh"
 
+#include <set>
+
 typedef enum
 {
   cliente,
@@ -24,32 +26,28 @@ private:
   DTDireccion direccion;
   std::string ciudadResidencia;
   int codigoRUT;
-  // static ControladorUsuario *instancia;
+  static ControladorUsuario *instancia;
+  ControladorUsuario();
 
 public:
-  void resgitrarDatosUsuario(std::string, std::string, DTFecha, TipoUsuario); // Implementado
-  void resgitrarDatosCliente(DTDireccion, std::string);                       // Implementado
-  void resgitrarDatosVendedor(int);                                           // Implementado
+  static ControladorUsuario *getInstancia();                                  // Implementado
+  Cliente *getCliente(std::string);                                           // Implementado
+  Vendedor *getVendedor(std::string);                                         // Implementado
+  void registrarDatosUsuario(std::string, std::string, DTFecha, TipoUsuario); // Implementado
+  void registrarDatosCliente(DTDireccion, std::string);                       // Implementado
+  void registrarDatosVendedor(int);                                           // Implementado
   void altaNuevoUsuario();                                                    // Implementado
-  std::set<DTUsuario> listarUsuarios();
-  std::set<DTCliente> listarClientes();
-  std::set<DTVendedor> listarVendedores();
-  std::set<DTVendedor> listarVendedoresNoSuscritos(std::string);
-  // std::set<DTProducto> listarProductosVendedor(std::string);
-  std::set<DTNotificacion> listarNotificaciones(std::string);
-  std::set<DTVendedor> listarSuscripciones(std::string);
-  void realizarSuscripciones(std::string, std::set<std::string>);
-  void eliminarSuscripciones(std::string, std::set<std::string>);
-  std::set<DTComentario> listarComentariosUsuario(std::string);
-  // static ControladorUsuario *getInstancia();
-
-  Cliente *obtenerCliente(std::string);
-
-  // std::set<DTUsuario> listarUsuarios();
-  // std::set<DTCliente *> listarClientes();
-  // std::set<DTVendedor> listarVendedores();
-  //  void resgitrarDatosUsuario(std::string, std::string, DTFecha); no va, no exiten usuarios solos, el cliente/vendedor llama al usuario
-  //  void altaNuevoUsuario(); ya lo hace el sistema, inecesario hacerlo.
+  void realizarSuscripciones(std::string, std::set<std::string>);             // Implementado
+  void eliminarSuscripciones(std::string, std::set<std::string>);             // Implementado
+  std::set<DTUsuario *> listarUsuarios();                                     // Implementado
+  std::set<DTCliente *> listarClientes();                                     // Implementado
+  std::set<DTVendedor *> listarVendedores();                                  // Implementado
+  std::set<DTVendedor *> listarVendedoresNoSuscritos(std::string);            // Implementado
+  std::set<DTProducto *> listarProductosVendedor(std::string);                // Implementado
+  std::set<DTNotificacion *> listarNotificaciones(std::string);
+  std::set<DTVendedor *> listarSuscripciones(std::string);
+  std::set<DTComentario *> listarComentariosUsuario(std::string);
+  ~ControladorUsuario();
 };
 
 #endif

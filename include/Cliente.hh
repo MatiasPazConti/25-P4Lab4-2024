@@ -9,6 +9,10 @@
 #include "./Vendedor.hh"
 #include "./Notificacion.hh"
 
+#include <set>
+
+class Vendedor;
+
 class Cliente : public Usuario, public IObservador
 {
 private:
@@ -20,7 +24,10 @@ private:
 public:
   DTDireccion getDireccion();
   std::string getCiudadDeResidencia();
-  DTUsuario *getDataUsuario();
+  std::set<Vendedor *> getSuscripciones();
+  DTCliente *getDataCliente();
+  void añadirSuscripcion(Vendedor *);
+  void removerSuscripcion(Vendedor *);
   // std::set<DTNotificacion *> listarNotificaciones();
   // void eliminarNotificaciones();
   Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);

@@ -16,30 +16,22 @@
 class IControladorUsuario
 {
 public:
-  // virtual void resgitrarDatosUsuario(std::string, std::string, DTFecha) = 0;
-  // virtual void resgitrarDatosCliente(std::string, DTDireccion) = 0;
-  // virtual void resgitrarDatosVendedor(int) = 0;
-  // virtual void altaNuevoUsuario() = 0;
-  // virtual std::set<DTUsuario> listarUsuarios() = 0;
-  // virtual std::set<DTCliente *> listarClientes() = 0; // Te agregamos un puntero.
-  // virtual std::set<DTVendedor> listarVendedores() = 0;
-
-  virtual void resgitrarDatosCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia) = 0;
-  virtual void resgitrarDatosVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT) = 0;
-  virtual void listarUsuarios() = 0;
-  virtual void listarVendedores() = 0;
-  virtual void listarClientes() = 0;
-
-  virtual std::set<DTVendedor> listarVendedoresNoSuscritos(std::string) = 0;
-  // virtual std::set<DTProducto> listarProductosVendedor(std::string) = 0;
-  virtual std::set<DTNotificacion> listarNotificaciones(std::string) = 0;
-  virtual std::set<DTVendedor> listarSuscripciones(std::string) = 0;
+  virtual Cliente *getCliente(std::string) = 0;
+  virtual Vendedor *getVendedor(std::string) = 0;
+  virtual void registrarDatosUsuario(std::string, std::string, DTFecha, TipoUsuario) = 0;
+  virtual void registrarDatosCliente(DTDireccion, std::string) = 0;
+  virtual void registrarDatosVendedor(int) = 0;
+  virtual void altaNuevoUsuario() = 0;
   virtual void realizarSuscripciones(std::string, std::set<std::string>) = 0;
   virtual void eliminarSuscripciones(std::string, std::set<std::string>) = 0;
-  virtual std::set<DTComentario> listarComentariosUsuario(std::string) = 0;
-
-  virtual Cliente* obtenerCliente(std::string);
-
+  virtual std::set<DTUsuario *> listarUsuarios() = 0;
+  virtual std::set<DTCliente *> listarClientes() = 0;
+  virtual std::set<DTVendedor *> listarVendedores() = 0;
+  virtual std::set<DTVendedor *> listarVendedoresNoSuscritos(std::string) = 0;
+  virtual std::set<DTProducto *> listarProductosVendedor(std::string) = 0;
+  virtual std::set<DTNotificacion *> listarNotificaciones(std::string) = 0;
+  virtual std::set<DTVendedor *> listarSuscripciones(std::string) = 0;
+  virtual std::set<DTComentario *> listarComentariosUsuario(std::string) = 0;
 };
 
 #endif

@@ -8,10 +8,22 @@ std::string Cliente::getCiudadDeResidencia()
 {
   return ciudadDeResidencia;
 }
-DTUsuario *Cliente::getDataUsuario()
+std::set<Vendedor *> Cliente::getSuscripciones()
 {
-  DTUsuario *dataUsuario = new DTCliente(getNickname(), getFechaNacimiento(), direccion, ciudadDeResidencia);
-  return dataUsuario;
+  return suscripciones;
+}
+DTCliente *Cliente::getDataCliente()
+{
+  DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento(), direccion, ciudadDeResidencia);
+  return dataCliente;
+}
+void Cliente::añadirSuscripcion(Vendedor *suscripcion)
+{
+  suscripciones.insert(suscripcion);
+}
+void Cliente::removerSuscripcion(Vendedor *suscripcion)
+{
+  suscripciones.erase(suscripcion);
 }
 Cliente::Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia) : Usuario(nickname, password, fechaNacimiento)
 {

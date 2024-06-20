@@ -12,14 +12,15 @@ class ControladorProducto : public IControladorProducto
 {
 private:
   std::set<Producto *> productos;
-public:
-  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id){
-    
-  };
-  void listarProductosDisponibles(); // Usa DTProducto o Producto???
-  Producto* obtenerProductoDisponible(int);
+  static ControladorProducto *instancia;
   ControladorProducto();
-  // ControladorProducto(int, std::string, std::string, float, int, TipoProducto);
+
+public:
+  static ControladorProducto *getInstancia();
+  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id);
+  void altaNuevoProducto();
+  void listarProductosDisponibles(); // Usa DTProducto o Producto???
+  Producto *obtenerProductoDisponible(int);
   ~ControladorProducto();
 };
 
