@@ -1,30 +1,30 @@
 #ifndef CLIENTE
 #define CLIENTE
 
-#include "../interfaces/IObservador.hh"
+#include "./interfaces/IObservador.hh"
 #include "./datatypes/DTDireccion.hh"
 #include "./datatypes/DTNotificacion.hh"
 #include "./Usuario.hh"
 #include "./Vendedor.hh"
 #include "./Notificacion.hh"
 
-class Usuario;
-class Vendedor;
-
 class Cliente : public Usuario, public IObservador
 {
 private:
   DTDireccion direccion;
-  std::string ciudadResidencia;
+  std::string ciudadDeResidencia;
   std::set<Vendedor *> suscripciones;
   std::set<Notificacion *> notificaciones;
 
 public:
+  Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
+  ~Cliente();
+  DTDireccion getDireccion();
+
   DTUsuario getDataUsuario();
   std::set<DTNotificacion *> listarNotificaciones();
   void eliminarNotificaciones();
-  Cliente(std::string, std::string, DTFecha, DTDireccion, std::string);
-  ~Cliente();
+  std::string getCiudadDeResidencia();
 };
 
 #endif

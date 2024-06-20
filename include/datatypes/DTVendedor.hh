@@ -2,8 +2,9 @@
 #define DTVENDEDOR
 
 #include "./DTUsuario.hh"
+#include "./DTProducto.hh"
 
-class DTVendedor
+class DTVendedor : public DTUsuario
 {
 private:
   int codigoRUT;

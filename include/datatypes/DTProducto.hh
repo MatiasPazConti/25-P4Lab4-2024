@@ -1,7 +1,7 @@
 #ifndef DTPRODUCTO
 #define DTPRODUCTO
 #include <iostream>
-#include "../include/TipoProducto.hh"
+#include "../TipoProducto.hh"
 
 class DTProducto
 {
@@ -12,6 +12,7 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
+
 public:
   int getId();
   std::string getNombre();
@@ -20,7 +21,7 @@ public:
   int getCantidadEnStock();
   TipoProducto getTipoProducto();
   DTProducto();
-  DTProducto(int, std::string, std::string,float,int,TipoProducto);
+  DTProducto(int, std::string, std::string, float, int, TipoProducto);
   ~DTProducto();
 };
 

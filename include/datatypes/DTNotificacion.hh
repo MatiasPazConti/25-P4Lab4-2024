@@ -1,5 +1,6 @@
 #ifndef DTNOTIFICACION
 #define DTNOTIFICACION
+#include <string>
 
 class DTNotificacion
 {

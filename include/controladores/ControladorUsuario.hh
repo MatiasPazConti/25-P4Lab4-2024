@@ -24,8 +24,7 @@ private:
   DTDireccion direccion;
   std::string ciudadResidencia;
   int codigoRUT;
-  static ControladorUsuario *instancia;
-  ControladorUsuario();
+  // static ControladorUsuario *instancia;
 
 public:
   void resgitrarDatosUsuario(std::string, std::string, DTFecha, TipoUsuario); // Implementado
@@ -42,8 +41,15 @@ public:
   void realizarSuscripciones(std::string, std::set<std::string>);
   void eliminarSuscripciones(std::string, std::set<std::string>);
   std::set<DTComentario> listarComentariosUsuario(std::string);
-  static ControladorUsuario *getInstancia();
-  virtual ~ControladorUsuario();
+  // static ControladorUsuario *getInstancia();
+
+  Cliente *obtenerCliente(std::string);
+
+  // std::set<DTUsuario> listarUsuarios();
+  // std::set<DTCliente *> listarClientes();
+  // std::set<DTVendedor> listarVendedores();
+  //  void resgitrarDatosUsuario(std::string, std::string, DTFecha); no va, no exiten usuarios solos, el cliente/vendedor llama al usuario
+  //  void altaNuevoUsuario(); ya lo hace el sistema, inecesario hacerlo.
 };
 
 #endif

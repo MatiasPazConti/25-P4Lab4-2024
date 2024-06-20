@@ -1,62 +1,31 @@
 #include "../../include/controladores/ControladorProducto.hh"
 
-int ControladorProducto::getId(){
-  return id;
+Producto* ControladorProducto::obtenerProductoDisponible(int id)
+{
+  for (std::set<Producto*>::iterator it = productos.begin(); it != productos.end(); ++it) {
+        if((*it)->getId() == id){
+            return *it;
+        }   
+      } 
+      return NULL;    
 }
-void ControladorProducto::setId(int i){
-  id = i;
+
+ControladorProducto::ControladorProducto() {}
+void ControladorProducto::registrarDatosProductos(std::string nombre, int precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, int id)
+{
+  Producto* prod = new Producto(id,nombre,descripcion,precio, cantidadEnStock, tipo);
+  this->productos.insert(prod);
 }
-std::string ControladorProducto::getNombre(){
-  return nombre;
-}
-void ControladorProducto::setNombre(std::string n){
-  nombre = n;
-}
-std::string ControladorProducto::getDescripcion(){
-  return descripcion;
-}
-void ControladorProducto::setDescrpcion(std::string des){
-  descripcion = des;
-}
-float ControladorProducto::getPrecio(){
-  return precio;
-}
-void ControladorProducto::setPrecio(float pr){
-  precio = pr;
-}
-int ControladorProducto::getCantidadEnStock(){
-  return cantidadEnStock;
-}
-void ControladorProducto::setCantidadEnStock(int cant){
-  cantidadEnStock = cant;
-}
-TipoProducto ControladorProducto::getTipoProducto(){
-  return tipo;
-}
-void ControladorProducto::setTipoProducto(TipoProducto t){
-  tipo = t;
-}
-ControladorProducto::ControladorProducto(){}
-void ControladorProducto::registrarDatosProductos(std::string n,int p,int cant,std::string des,TipoProducto t,int i){
-  id = i;
-  nombre = n;
-  descripcion = des;
-  precio = p;
-  cantidadEnStock = cant;
-  tipo = t;
-}
+
 ControladorProducto::~ControladorProducto(){};
 
-void ControladorProducto::altaNuevoProducto(){
-    Producto prod = Producto(this->id,this->nombre,this->descripcion,this->precio,this->cantidadEnStock,this->tipo);
-    this->productos.insert(&prod);
-};
+void ControladorProducto::listarProductosDisponibles()
+{
+  std::cout << "Elementos del set: ";
 
-void ControladorProducto::listarProductosDisponibles(){
-    std::cout << "Elementos del set: ";
-
-    for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it) {
-        std::cout << *it;
-    }
-    std::cout << std::endl;
+  for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+  {
+    std::cout << *it;
+  }
+  std::cout << std::endl;
 };

@@ -10,6 +10,8 @@ private:
   DTFecha fechaNacimiento;
 
 public:
+  std::string getNickname();
+  DTFecha getFechaNacimiento();
   DTUsuario(std::string, DTFecha);
   ~DTUsuario();
 };

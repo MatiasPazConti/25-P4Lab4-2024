@@ -8,9 +8,9 @@ float Compra::getMontoFinal()
 {
   return montoFinal;
 }
-Cliente Compra::getCliente()
+Cliente* Compra::getCliente()
 {
-  return *cliente;
+  return cliente;
 }
 void Compra::setFechaCompra(int dia,int mes,int anio)
 {
@@ -20,9 +20,24 @@ void Compra::setMontoFinal(float monto)
 {
   montoFinal = monto;
 }
-void Compra::setCliente(Cliente c)
+void Compra::setCliente(Cliente* c)
 {
-  *cliente = c;
+  cliente = c;
+}
+DTRegistroProducto *Compra::getRegistroProducto(int id)
+{
+  for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
+  {
+    if ((*it)->getId() == id)
+    {
+      return *it;
+    }
+  }
+  return NULL;
+}
+void Compra::setRegistroProducto(DTRegistroProducto reg)
+{
+  registroProductos.insert(&reg);
 }
 Compra::Compra(){}
 Compra::Compra(DTFecha fecha, float monto, Cliente c)
@@ -32,4 +47,3 @@ Compra::Compra(DTFecha fecha, float monto, Cliente c)
   *cliente = c;
 }
 Compra::~Compra(){}
-float Compra::calcularMontoFinal(){} // PENDIENTE
