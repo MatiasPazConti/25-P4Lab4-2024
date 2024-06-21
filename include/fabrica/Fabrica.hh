@@ -2,7 +2,7 @@
 #define FABRICA
 
 #include "../controladores/ControladorUsuario.hh"
-#include "../controladores/ControladorCompra.hh"
+#include "../interfaces/IControladorCompra.hh"
 #include "../controladores/ControladorProducto.hh"
 #include "../controladores/ControladorPromocion.hh"
 #include "../controladores/ControladorNotificacion.hh"

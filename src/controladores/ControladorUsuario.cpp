@@ -28,7 +28,7 @@ void ControladorUsuario::eliminarSuscripciones(std::string nickCliente, std::set
     usuario->removerSuscripcion(suscripcion);
   }
 }
-void ControladorUsuario::eliminarSuscripciones(std::string, std::set<std::string>) {}
+
 Cliente *ControladorUsuario::getCliente(std::string nickname)
 {
   Cliente *retorno = NULL;

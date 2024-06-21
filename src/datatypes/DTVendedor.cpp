@@ -1,6 +1,6 @@
 #include "../../include/datatypes/DTVendedor.hh"
 
-int DTVendedor::getCodigoRUT()
+std::string DTVendedor::getCodigoRUT()
 {
   return codigoRUT;
 }

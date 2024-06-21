@@ -20,7 +20,7 @@ public:
   void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo, int id);
   void altaNuevoProducto();
   void listarProductosDisponibles(); // Usa DTProducto o Producto???
-  Producto *obtenerProductoDisponible(int);
+  DTProducto *obtenerProductoDisponible(int);
   ~ControladorProducto();
 };
 

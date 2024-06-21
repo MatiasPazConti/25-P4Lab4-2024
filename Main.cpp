@@ -436,22 +436,34 @@ void NuevoCliente()
 
 void ListarUsuarios()
 {
-  controladorUsuario->listarUsuarios();
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    DTFecha fecha = (*it)->getFechaNacimiento();
+    int dia = fecha.getDia();
+    int mes = fecha.getMes();
+    int anio = fecha.getAnio();
+    std::string rut = (*it)->getCodigoRUT();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
+    std::cout << std::endl;
+  }
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    DTFecha fecha = (*it)->getFechaNacimiento();
+    int dia = fecha.getDia();
+    int mes = fecha.getMes();
+    int anio = fecha.getAnio();
+    DTDireccion adress = (*it)->getDireccion();
+    int nroPuerta = adress.getNroPuerta();
+    std::string calle = adress.getNombreCalle();
+    std::string ciudad = (*it)->getCiudadDeResidencia();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
+    std::cout << std::endl;
+  }
 }
-
-/* LISTAR VENDEDORES
-    for (auto it = vendedores.begin(); it != vendedores.end(); it++)
-    {
-      std::string nick = it->second->getNickname();
-      DTFecha fecha = it->second->getFechaNacimiento();
-      int dia = fecha.getDia();
-      int mes = fecha.getMes();
-      int anio = fecha.getAnio();
-      std::string rut = it->second->getCodigoRUT();
-      std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
-      std::cout << std::endl;
-    };
-*/
 
 void AltaDeProducto()
 {

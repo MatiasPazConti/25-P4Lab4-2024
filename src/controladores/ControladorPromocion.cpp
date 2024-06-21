@@ -1,11 +1,14 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
-ControladorPromocion::~ControladorPromocion() {}
+ControladorPromocion::~ControladorPromocion()
+{
+}
 ControladorPromocion::ControladorPromocion() {}
-ControladorPromocion *ControladorPromocion::instancia = NULL;
+
+ControladorPromocion *ControladorPromocion::instancia = nullptr;
 ControladorPromocion *ControladorPromocion::getInstancia()
 {
-  if (instancia == NULL)
+  if (instancia == nullptr)
   {
     instancia = new ControladorPromocion();
   }

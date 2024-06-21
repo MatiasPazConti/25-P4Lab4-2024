@@ -1,12 +1,13 @@
 #include "../../include/controladores/ControladorProducto.hh"
 
-Producto *ControladorProducto::obtenerProductoDisponible(int id)
+DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
 {
   for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
   {
     if ((*it)->getId() == id)
     {
-      return *it;
+      DTProducto *dataProducto = (*it)->getDataProducto();
+      return dataProducto;
     }
   }
   return NULL;
@@ -16,6 +17,11 @@ void ControladorProducto::registrarDatosProductos(std::string nombre, int precio
   Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo);
   this->productos.insert(prod);
 }
+
+void ControladorProducto::altaNuevoProducto()
+{
+}
+
 void ControladorProducto::listarProductosDisponibles()
 {
   std::cout << "Elementos del set: ";

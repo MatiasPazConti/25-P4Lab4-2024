@@ -13,6 +13,7 @@ private:
 
 public:
   static ControladorPromocion *getInstancia();
+
   ~ControladorPromocion();
 };
 

@@ -32,7 +32,7 @@ void Cliente::notificar(std::string nombrePromocion, std::string nicknameVendedo
 }
 void Cliente::eliminarNotificaciones()
 {
-  for (std::set<DTNotificacion *>::iterator it = notificaciones.begin(); it != notificaciones.end; it++)
+  for (std::set<DTNotificacion *>::iterator it = notificaciones.begin(); it != notificaciones.end(); it++)
   {
     DTNotificacion *aBorrar = *it;
     notificaciones.erase(aBorrar);

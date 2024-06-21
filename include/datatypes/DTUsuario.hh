@@ -12,7 +12,7 @@ private:
 public:
   std::string getNickname();
   DTFecha getFechaNacimiento();
-  DTUsuario(std::string, DTFecha);
+  DTUsuario(std::string nickname, DTFecha fechaNacimiento);
   ~DTUsuario();
 };
 

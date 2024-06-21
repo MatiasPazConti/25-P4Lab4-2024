@@ -1,5 +1,5 @@
-Main: obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o				
-	g++ obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o		-o Main
+Main: obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o	obj/ControladorPromocion.o obj/ControladorNotificacion.o obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/DTRegistroProducto.o obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o	obj/Compra.o	obj/RegistroProducto.o				
+	g++ obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o obj/ControladorPromocion.o obj/ControladorNotificacion.o	obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/DTRegistroProducto.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o obj/Compra.o	obj/RegistroProducto.o	-o Main
 
 obj/Main.o: Main.cpp
 	g++ -c Main.cpp -o obj/Main.o
@@ -12,6 +12,15 @@ obj/ControladorUsuario.o: src/controladores/ControladorUsuario.cpp include/contr
 
 obj/ControladorProducto.o: src/controladores/ControladorProducto.cpp include/controladores/ControladorProducto.hh
 	g++ -c src/controladores/ControladorProducto.cpp -o obj/ControladorProducto.o	
+
+obj/ControladorPromocion.o: src/controladores/ControladorPromocion.cpp include/controladores/ControladorPromocion.hh
+	g++ -c src/controladores/ControladorPromocion.cpp -o obj/ControladorPromocion.o	
+
+obj/ControladorNotificacion.o: src/controladores/ControladorNotificacion.cpp include/controladores/ControladorNotificacion.hh
+	g++ -c src/controladores/ControladorNotificacion.cpp -o obj/ControladorNotificacion.o	
+
+obj/ControladorCompra.o: src/controladores/ControladorCompra.cpp include/controladores/ControladorCompra.hh
+	g++ -c src/controladores/ControladorCompra.cpp -o obj/ControladorCompra.o	
 
 obj/DTFecha.o: src/datatypes/DTFecha.cpp include/datatypes/DTFecha.hh
 	g++ -c src/datatypes/DTFecha.cpp -o obj/DTFecha.o
@@ -37,6 +46,9 @@ obj/DTNotificacion.o: src/datatypes/DTNotificacion.cpp include/datatypes/DTNotif
 obj/DTComentario.o: src/datatypes/DTComentario.cpp include/datatypes/DTComentario.hh
 	g++ -c src/datatypes/DTComentario.cpp -o obj/DTComentario.o	
 
+obj/DTRegistroProducto.o: src/datatypes/DTRegistroProducto.cpp include/datatypes/DTRegistroProducto.hh
+	g++ -c src/datatypes/DTRegistroProducto.cpp -o obj/DTRegistroProducto.o		
+
 obj/Producto.o: src/Producto.cpp include/Producto.hh
 	g++ -c src/Producto.cpp -o obj/Producto.o
 
@@ -49,6 +61,11 @@ obj/Usuario.o: src/Usuario.cpp include/Usuario.hh
 obj/Cliente.o: src/Cliente.cpp include/Cliente.hh
 	g++ -c src/Cliente.cpp -o obj/Cliente.o	
 
+obj/Compra.o: src/Compra.cpp include/Compra.hh
+	g++ -c src/Compra.cpp -o obj/Compra.o	
+
+obj/RegistroProducto.o: src/RegistroProducto.cpp include/RegistroProducto.hh
+	g++ -c src/RegistroProducto.cpp -o obj/RegistroProducto.o
 
 clean:
 	rm -f obj/*.o Main
