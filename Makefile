@@ -1,5 +1,5 @@
-Main: obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o	obj/ControladorPromocion.o obj/ControladorNotificacion.o obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/DTRegistroProducto.o obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o	obj/Compra.o	obj/RegistroProducto.o				
-	g++ obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o obj/ControladorPromocion.o obj/ControladorNotificacion.o	obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/DTRegistroProducto.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o obj/Compra.o	obj/RegistroProducto.o	-o Main
+Main: obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o	obj/ControladorPromocion.o obj/ControladorNotificacion.o obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o obj/DTRegistroProducto.o obj/DTCompra.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o	obj/Compra.o	obj/RegistroProducto.o				
+	g++ obj/Main.o obj/ControladorUsuario.o obj/ControladorProducto.o obj/ControladorPromocion.o obj/ControladorNotificacion.o	obj/ControladorCompra.o	obj/Fabrica.o obj/DTFecha.o obj/DTDireccion.o obj/DTUsuario.o obj/DTCliente.o obj/DTProducto.o	obj/DTVendedor.o	obj/DTNotificacion.o obj/DTComentario.o	obj/DTRegistroProducto.o	obj/DTCompra.o	obj/Producto.o obj/Vendedor.o	obj/Usuario.o	obj/Cliente.o obj/Compra.o	obj/RegistroProducto.o	-o Main
 
 obj/Main.o: Main.cpp
 	g++ -c Main.cpp -o obj/Main.o
@@ -47,7 +47,10 @@ obj/DTComentario.o: src/datatypes/DTComentario.cpp include/datatypes/DTComentari
 	g++ -c src/datatypes/DTComentario.cpp -o obj/DTComentario.o	
 
 obj/DTRegistroProducto.o: src/datatypes/DTRegistroProducto.cpp include/datatypes/DTRegistroProducto.hh
-	g++ -c src/datatypes/DTRegistroProducto.cpp -o obj/DTRegistroProducto.o		
+	g++ -c src/datatypes/DTRegistroProducto.cpp -o obj/DTRegistroProducto.o	
+
+obj/DTCompra.o: src/datatypes/DTCompra.cpp include/datatypes/DTCompra.hh
+	g++ -c src/datatypes/DTCompra.cpp -o obj/DTCompra.o	
 
 obj/Producto.o: src/Producto.cpp include/Producto.hh
 	g++ -c src/Producto.cpp -o obj/Producto.o

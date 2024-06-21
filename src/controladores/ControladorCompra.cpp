@@ -21,12 +21,14 @@ void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 	compraActual->setRegistroProducto(registro);
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
 };
+
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
 	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();
 	DTCompra *datacompra = new DTCompra(compraActual->getFechaCompra(), compraActual->getMontoFinal(), compraActual->getRegistroProductos(), datacliente);
 	return datacompra;
 }
+
 void ControladorCompra::registrarCompraExitosa(bool b)
 {
 	if (b)

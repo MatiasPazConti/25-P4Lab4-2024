@@ -18,6 +18,11 @@ void ControladorProducto::registrarDatosProductos(std::string nombre, int precio
   Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo);
   this->productos.insert(prod);
 }
+
+void ControladorProducto::altaNuevoProducto()
+{
+}
+
 ControladorProducto::ControladorProducto() {}
 ControladorProducto::~ControladorProducto(){};
 ControladorProducto *ControladorProducto::instancia = NULL;
