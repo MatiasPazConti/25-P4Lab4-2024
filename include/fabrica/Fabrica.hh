@@ -12,7 +12,7 @@ class Fabrica
 public:
   static IControladorUsuario *getInterfazUsuario();
   // static IControladorCompra *getInterfazCompra();
-  // static IControladorProducto *getInterfazProducto();
+  static IControladorProducto *getInterfazProducto();
   // static IControladorPromocion *getInterfazPromocion();
   // static IControladorNotificacion *getInterfazNotificacion();
 };

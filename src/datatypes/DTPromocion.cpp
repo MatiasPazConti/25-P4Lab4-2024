@@ -15,14 +15,19 @@ DTFecha DTPromocion::getFechaVencimiento()
     return fechaVencimiento;
 }
 
-std::set<DTProductoPromo> DTPromocion::getProductos()
+std::map<int, DTProductoPromo> DTPromocion::getProductos()
 {
     return productos;
 }
 
-DTPromocion::DTPromocion(){}
+DTProductoPromo DTPromocion::getProducto(int id)
+{
+    return productos[id];
+}
 
-DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, std::set<DTProductoPromo> p)
+DTPromocion::DTPromocion() {}
+
+DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, std::map<int, DTProductoPromo> p)
 {
     nombre = n;
     descripcion = d;
@@ -30,4 +35,4 @@ DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, std::set<DTPro
     productos = p;
 }
 
-DTPromocion::~DTPromocion(){}
+DTPromocion::~DTPromocion() {}

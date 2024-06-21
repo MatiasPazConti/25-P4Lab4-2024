@@ -1,61 +1,30 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
-std::string ControladorPromocion::getNombre()
+void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f)
 {
-  return nombre;
-}
-
-std::string ControladorPromocion::getDescripcion()
-{
-  return descripcion;
-}
-
-DTFecha ControladorPromocion::getFechaVencimiento()
-{
-  return fechaVencimiento;
-}
-
-void ControladorPromocion::setNombre(std::string n)
-{
-  nombre = n;
-}
-
-void ControladorPromocion::setDecripcion(std::string d)
-{
-  descripcion = d;
-}
-
-void ControladorPromocion::setFechaVencimiento(DTFecha f)
-{
-  fechaVencimiento = f;
-}
-
-void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f) // ver si ya hay promo con ese nombre
-{
-  nombre = n;
-  descripcion = d;
-  fechaVencimiento = f;
-}
-
-void ControladorPromocion::asignarVendedor(std::string nickname) // copia de asignar cliente
-{
-  std::set<DTVendedor *> vendedores = Fabrica::getInterfazUsuario()->listarVendedores();
-  for (std::set<DTVendedor *>::iterator it = vendedores.begin(); it != vendedores.end(); ++it)
+  if (promociones.count(n) == 0) // ver si fecha vencimiento > fecha actual?
   {
-    if ((*it)->GetNickname() == nickname)
-    {
-      // hago algo (necesito una promo actual o un vendedor en controladorPromocion?)
-      break;
-    }
+    nombre = n;
+    descripcion = d;
+    fechaVencimiento = f;
   }
 }
 
-void ControladorPromocion::asignarAPromo() // revisar que hace exactamente la funcion
+void ControladorPromocion::asignarVendedor(std::string nickname)
 {
+  vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickname);
+}
+
+void ControladorPromocion::agregarAPromo(int id, int cantMin, float porcentajeDescuento)
+{
+  promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
+  infoProductos.insert({id, InfoPromoProducto(id, porcentajeDescuento)});
+  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
 }
 
 void ControladorPromocion::altaNuevaPromo()
 {
-  Promocion promo = Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
-  DTPromocion dataprom = DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo);
+  DTPromocion *dataprom = new DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo); // necesario?
+  Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
+  promociones.insert({promo->getNombre(), promo});
 }

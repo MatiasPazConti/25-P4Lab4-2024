@@ -17,24 +17,16 @@ private:
   std::string nombre;
   std::string descripcion;
   DTFecha fechaVencimiento;
-  Vendedor vendedor;
-  std::set<Producto *> productos;
-  std::map<Producto, InfoPromoProducto> infoProductos;
-  std::set<DTProductoPromo> dtProductosPromo;
-  std::map<std::string, Promocion *> promos; // promociones identificadas por nombre
+  Vendedor *vendedor;                              // vendedor asigando a la promo
+  std::set<Producto *> productos;                  // productos de la promo
+  std::map<int, InfoPromoProducto> infoProductos;  // info promo productos identificado por id
+  std::map<int, DTProductoPromo> dtProductosPromo; // data producto promo identificado por id
+  std::map<std::string, Promocion *> promociones;  // promociones identificadas por nombre
 
 public:
-  std::string getNombre();
-  std::string getDescripcion();
-  DTFecha getFechaVencimiento();
-  void setNombre(std::string);
-  void setDecripcion(std::string);
-  void setFechaVencimiento(DTFecha);
-
-  void registrarDatosPromo(std::string, std::string, DTFecha);
-  void asignarVendedor(std::string); // le paso el nick?
-  void asignarAPromo();
-  // void agregarAPromo(int, int)
+  void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento);
+  void asignarVendedor(std::string nombre);
+  void agregarAPromo(int id, int cantMin, float porcentajeDescuento);
   void altaNuevaPromo();
 };
 
