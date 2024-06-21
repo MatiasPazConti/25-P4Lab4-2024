@@ -8,6 +8,8 @@
 #include "../interfaces/IControladorCompra.hh"
 #include "../datatypes/DTUsuario.hh"
 #include "../Producto.hh"
+#include "../datatypes/DTCompra.hh"
+
 
 class ControladorCompra : public IControladorCompra
 {
@@ -22,8 +24,8 @@ public:
     void crearCompra(std::string, int, int, int); // dia/mes/anio de hoy
     void asignarCliente(std::string);
     void agregarProductoACompra(int, int);
-    void obtenerDatosCompra();
-    void registrarCompraExitosa();
+    DTCompra* obtenerDatosCompra();
+    void registrarCompraExitosa(bool b);
     ~ControladorCompra();
 };
 

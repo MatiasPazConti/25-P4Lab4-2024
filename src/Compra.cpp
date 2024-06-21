@@ -47,3 +47,7 @@ Compra::Compra(DTFecha fecha, float monto, Cliente c)
   *cliente = c;
 }
 Compra::~Compra(){}
+
+std::set<DTRegistroProducto*>Compra::getRegistroProductos(){
+  return registroProductos;
+}

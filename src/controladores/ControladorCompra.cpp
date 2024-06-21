@@ -21,9 +21,23 @@ void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 	compraActual->setRegistroProducto(registro);
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
 };
-
-void ControladorCompra::obtenerDatosCompra() {}
-void ControladorCompra::registrarCompraExitosa() {}
+DTCompra *ControladorCompra::obtenerDatosCompra()
+{
+	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();
+	DTCompra *datacompra = new DTCompra(compraActual->getFechaCompra(), compraActual->getMontoFinal(), compraActual->getRegistroProductos(), datacliente);
+	return datacompra;
+}
+void ControladorCompra::registrarCompraExitosa(bool b)
+{
+	if (b)
+	{
+		comprasExitosas.insert(compraActual);
+	}
+	else
+	{
+		compraActual->~Compra();
+	}
+}
 ControladorCompra::ControladorCompra() {}
 ControladorCompra::~ControladorCompra() {}
 ControladorCompra *ControladorCompra::instancia = NULL;
