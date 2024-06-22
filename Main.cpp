@@ -597,7 +597,7 @@ void ListarUsuarios() // Implementado //
   }
 }
 
-void AltaDeProducto() // falta pasar el nombre del vendedor para asignarlo en el sistema
+void AltaDeProducto() // Implementado //
 {
   std::string nickVendedor;
   ListarNickVendedores();
@@ -634,7 +634,7 @@ void AltaDeProducto() // falta pasar el nombre del vendedor para asignarlo en el
   }
 }
 
-void ConsultarUnProducto() // falta agregar "getVendedor" para saber quien vende el producto
+void ConsultarUnProducto() // Implementado //
 {
   std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
   for (auto it = productos.begin(); it != productos.end(); it++)
