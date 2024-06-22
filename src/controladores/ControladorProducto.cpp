@@ -46,8 +46,6 @@ std::set<DTProducto *> ControladorProducto::obtenerProductosDisponibles()
     {
       DTProducto *agregar = (*it)->getDataProducto();
       dataProducto.insert(agregar);
-
-      return dataProducto;
     }
   }
   return dataProducto;

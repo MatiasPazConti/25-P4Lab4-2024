@@ -389,6 +389,18 @@ void ListarNickVendedores() // funcion auxiliar
   }
 }
 
+void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
+{
+  std::set<DTProducto *> productos = controladorUsuario->listarProductosVendedor(nickname);
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    int idProducto = (*it)->getId();
+    std::string nombreProducto = (*it)->getNombre();
+    std::cout << "Codigo: " << idProducto << ", Nombre: " << nombreProducto;
+    std::cout << std::endl;
+  }
+}
+
 bool ExisteVendedor(std::string nickname) // funcion auxiliar
 {
   std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
@@ -615,7 +627,7 @@ void ConsultarUnProducto() // falta agregar "getVendedor" para saber quien vende
   {
     int idProductos = (*it)->getId();
     std::string nickProductos = (*it)->getNombre();
-    std::cout << "ID: " << idProductos << ", Nickname: " << nickProductos;
+    std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
     std::cout << std::endl;
   }
   int idProducto;
@@ -644,6 +656,48 @@ void ConsultarUnProducto() // falta agregar "getVendedor" para saber quien vende
   // DTVendedor vendedorProducto = producto->getVendedor();
   std::cout << "Precio: " << precioProducto << ", Stock: " << stockProducto << ", Descripcion: " << descripcionProducto << ", Categoria: " << tipoDelPrudctoString << ", Vendedor: ";
   std::cout << std::endl;
+}
+
+void CrearPromocion() // incompleto
+{
+  std::string nombrePromo;
+  std::cout << "Escriba el nombre de la promocion" << std::endl;
+  std::getline(std::cin >> std::ws, nombrePromo);
+  std::string descripcionPromo;
+  std::cout << "Escriba la descripcion de la promocion" << std::endl;
+  std::getline(std::cin >> std::ws, descripcionPromo);
+  int diaPromo;
+  std::cout << "Escriba el dia de vencimiento de la promocion" << std::endl;
+  std::cin >> diaPromo;
+  while (diaPromo >= 32)
+  {
+    std::cout << "Ingrese un numero de dia valido" << std::endl;
+    std::cin >> diaPromo;
+  }
+  int mesPromo;
+  std::cout << "Escriba el mes de vencimiento de la promocion" << std::endl;
+  std::cin >> mesPromo;
+  while (mesPromo >= 13)
+  {
+    std::cout << "Ingrese un numero de mes valido" << std::endl;
+    std::cin >> mesPromo;
+  }
+  int anioPromo;
+  std::cout << "Escriba el anio de vencimiento de la promocion" << std::endl;
+  std::cin >> anioPromo;
+  DTFecha fechaPromo = DTFecha(diaPromo, mesPromo, anioPromo);
+
+  controladorUsuario->listarVendedores();
+  std::string vendedorPromo;
+  std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
+  std::cin >> vendedorPromo;
+  while (!ExisteVendedor(vendedorPromo))
+  {
+    std::cout << "El vendedor ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un vendedor valido" << std::endl;
+    std::cin >> vendedorPromo;
+  }
+  ListarProductosDeVendedor(vendedorPromo);
 }
 
 int main()
