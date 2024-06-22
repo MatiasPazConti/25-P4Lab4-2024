@@ -375,66 +375,173 @@ void CargarDatos()
          */
 
   // std::cout << US1->GetNickname() << std::endl;
+  std::cout << "Los datos iniciales fueron cargados." << std::endl;
 }
 
-void NuevoVendedor()
+void ListarNickVendedores() // funcion auxiliar
+{
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    std::cout << "Nickname: " << nick;
+    std::cout << std::endl;
+  }
+}
+
+bool ExisteVendedor(std::string nickname) // funcion auxiliar
+{
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool ExisteUsuario(std::string nickname) // funcion auxiliar
+{
+  std::set<DTUsuario *> usuarios = controladorUsuario->listarUsuarios();
+  for (auto it = usuarios.begin(); it != usuarios.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+void NuevoVendedor() // Implementado //
 {
   std::string nickUS;
   std::cout << "Escriba su nickname" << std::endl;
   std::cin >> nickUS;
-  std::string passUS;
-  std::cout << "Escriba su password" << std::endl;
-  std::cin >> passUS;
-  int diaUS;
-  std::cout << "Escriba su dia de naciemiento" << std::endl;
-  std::cin >> diaUS;
-  int mesUS;
-  std::cout << "Escriba su mes de naciemiento" << std::endl;
-  std::cin >> mesUS;
-  int anioUS;
-  std::cout << "Escriba su anio de naciemiento" << std::endl;
-  std::cin >> anioUS;
-  DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
-  std::string rutUS;
-  std::cout << "Escriba su codigo RUT" << std::endl;
-  std::cin >> rutUS;
-  controladorUsuario->altaNuevoVendedor(nickUS, passUS, fechaUS, rutUS);
-  std::cout << "Vendedor registrado con exito." << std::endl;
+  while (nickUS.length() <= 5)
+  {
+    std::cout << "El nickname debe tener al menos 6 caracteres" << std::endl;
+    std::cin >> nickUS;
+  }
+  if (!ExisteUsuario(nickUS))
+  {
+    std::string passUS;
+    std::cout << "Escriba su password" << std::endl;
+    std::cin >> passUS;
+    while (passUS.length() <= 5)
+    {
+      std::cout << "Su password debe tener al menos 6 caracteres" << std::endl;
+      std::cin >> passUS;
+    }
+    int diaUS;
+    std::cout << "Escriba su dia de naciemiento" << std::endl;
+    std::cin >> diaUS;
+    while (diaUS >= 32)
+    {
+      std::cout << "Ingrese un numero de dia valido" << std::endl;
+      std::cin >> diaUS;
+    }
+    int mesUS;
+    std::cout << "Escriba su mes de naciemiento" << std::endl;
+    std::cin >> mesUS;
+    while (mesUS >= 13)
+    {
+      std::cout << "Ingrese un numero de mes valido" << std::endl;
+      std::cin >> mesUS;
+    }
+    int anioUS;
+    std::cout << "Escriba su anio de naciemiento" << std::endl;
+    std::cin >> anioUS;
+    while (anioUS >= 2025)
+    {
+      std::cout << "Ingrese un numero de anio valido" << std::endl;
+      std::cin >> anioUS;
+    }
+    DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
+    std::string rutUS;
+    std::cout << "Escriba su codigo RUT" << std::endl;
+    std::cin >> rutUS;
+    while (rutUS.length() != 12)
+    {
+      std::cout << "El codigo RUT debe contener 12 caracteres" << std::endl;
+      std::cin >> rutUS;
+    }
+    controladorUsuario->altaNuevoVendedor(nickUS, passUS, fechaUS, rutUS);
+    std::cout << "Vendedor registrado con exito." << std::endl;
+  }
+  else
+  {
+    std::cout << "El nickname seleccionado no esta disponible." << std::endl;
+  }
 }
 
-void NuevoCliente()
+void NuevoCliente() // Implementado //
 {
   std::string nickUS;
   std::cout << "Escriba su nickname" << std::endl;
   std::cin >> nickUS;
-  std::string passUS;
-  std::cout << "Escriba su password" << std::endl;
-  std::cin >> passUS;
-  int diaUS;
-  std::cout << "Escriba su dia de naciemiento" << std::endl;
-  std::cin >> diaUS;
-  int mesUS;
-  std::cout << "Escriba su mes de naciemiento" << std::endl;
-  std::cin >> mesUS;
-  int anioUS;
-  std::cout << "Escriba su anio de naciemiento" << std::endl;
-  std::cin >> anioUS;
-  DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
-  std::string calleUS;
-  std::cout << "Escriba la calle de su domicilio" << std::endl;
-  std::getline(std::cin >> std::ws, calleUS);
-  int nroPuertaUS;
-  std::cout << "Escriba su numero de puerta" << std::endl;
-  std::cin >> nroPuertaUS;
-  DTDireccion adressUS = DTDireccion(calleUS, nroPuertaUS);
-  std::string cityUS;
-  std::cout << "Escriba la ciudad en la que vive" << std::endl;
-  std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes
-  controladorUsuario->altaNuevoCliente(nickUS, passUS, fechaUS, adressUS, cityUS);
-  std::cout << "Cliente registrado con exito." << std::endl;
+  while (nickUS.length() <= 5)
+  {
+    std::cout << "El nickname debe tener al menos 6 caracteres" << std::endl;
+    std::cin >> nickUS;
+  }
+  if (!ExisteUsuario(nickUS))
+  {
+    std::string passUS;
+    std::cout << "Escriba su password" << std::endl;
+    std::cin >> passUS;
+    while (passUS.length() <= 5)
+    {
+      std::cout << "Su password debe tener al menos 6 caracteres" << std::endl;
+      std::cin >> passUS;
+    }
+    int diaUS;
+    std::cout << "Escriba su dia de naciemiento" << std::endl;
+    std::cin >> diaUS;
+    while (diaUS >= 32)
+    {
+      std::cout << "Ingrese un numero de dia valido" << std::endl;
+      std::cin >> diaUS;
+    }
+    int mesUS;
+    std::cout << "Escriba su mes de naciemiento" << std::endl;
+    std::cin >> mesUS;
+    while (mesUS >= 13)
+    {
+      std::cout << "Ingrese un numero de mes valido" << std::endl;
+      std::cin >> mesUS;
+    }
+    int anioUS;
+    std::cout << "Escriba su anio de naciemiento" << std::endl;
+    std::cin >> anioUS;
+    while (anioUS >= 2025)
+    {
+      std::cout << "Ingrese un numero de anio valido" << std::endl;
+      std::cin >> anioUS;
+    }
+    DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
+    std::string calleUS;
+    std::cout << "Escriba la calle de su domicilio" << std::endl;
+    std::getline(std::cin >> std::ws, calleUS);
+    int nroPuertaUS;
+    std::cout << "Escriba su numero de puerta" << std::endl;
+    std::cin >> nroPuertaUS;
+    DTDireccion adressUS = DTDireccion(calleUS, nroPuertaUS);
+    std::string cityUS;
+    std::cout << "Escriba la ciudad en la que vive" << std::endl;
+    std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes
+    controladorUsuario->altaNuevoCliente(nickUS, passUS, fechaUS, adressUS, cityUS);
+    std::cout << "Cliente registrado con exito." << std::endl;
+  }
+  else
+  {
+    std::cout << "El nickname seleccionado no esta disponible." << std::endl;
+  }
 }
 
-void ListarUsuarios()
+void ListarUsuarios() // Implementado //
 {
   std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
   for (auto it = vendedores.begin(); it != vendedores.end(); it++)
@@ -465,31 +572,78 @@ void ListarUsuarios()
   }
 }
 
-void AltaDeProducto()
+void AltaDeProducto() // falta pasar el nombre del vendedor para asignarlo en el sistema
 {
   std::string nickVendedor;
-  controladorUsuario->listarVendedores();
+  ListarNickVendedores();
+  std::cout << "Escriba el nombre del vendedor" << std::endl;
   std::cin >> nickVendedor;
-  std::string nombreProducto;
-  std::cout << "Escriba el nombre del producto" << std::endl;
-  std::getline(std::cin >> std::ws, nombreProducto);
-  int precioProducto;
-  std::cout << "Escriba el precio del producto" << std::endl;
-  std::cin >> precioProducto;
-  int stockProducto;
-  std::cout << "Escriba el stock del producto" << std::endl;
-  std::cin >> stockProducto;
-  std::string descripcionProducto;
-  std::cout << "Escriba la descripcion del producto" << std::endl;
-  std::getline(std::cin >> std::ws, descripcionProducto);
-  int intCategoriaProducto;
-  std::cout << "Seleccione la categoria del producto" << std::endl
-            << "1-Electrodomestico" << std::endl
-            << "2-Ropa" << std::endl
-            << "3-Otros" << std::endl;
-  std::cin >> intCategoriaProducto;
-  TipoProducto categoriaProducto = (TipoProducto)intCategoriaProducto;
-  controladorProducto->registrarDatosProductos(nombreProducto, precioProducto, stockProducto, descripcionProducto, categoriaProducto, 8);
+  if (ExisteVendedor(nickVendedor))
+  {
+    std::string nombreProducto;
+    std::cout << "Escriba el nombre del producto" << std::endl;
+    std::getline(std::cin >> std::ws, nombreProducto);
+    float precioProducto;
+    std::cout << "Escriba el precio del producto" << std::endl;
+    std::cin >> precioProducto;
+    int stockProducto;
+    std::cout << "Escriba el stock del producto" << std::endl;
+    std::cin >> stockProducto;
+    std::string descripcionProducto;
+    std::cout << "Escriba la descripcion del producto" << std::endl;
+    std::getline(std::cin >> std::ws, descripcionProducto);
+    int intCategoriaProducto;
+    std::cout << "Seleccione la categoria del producto" << std::endl
+              << "1-Electrodomestico" << std::endl
+              << "2-Ropa" << std::endl
+              << "3-Otros" << std::endl;
+    std::cin >> intCategoriaProducto;
+    TipoProducto categoriaProducto = (TipoProducto)intCategoriaProducto;
+    controladorProducto->registrarDatosProductos(nombreProducto, precioProducto, stockProducto, descripcionProducto, categoriaProducto);
+    std::cout << "El producto fue registrado con exito" << std::endl;
+  }
+  else
+  {
+    std::cout << "El vendedor ingresado no existe" << std::endl;
+  }
+}
+
+void ConsultarUnProducto() // falta agregar "getVendedor" para saber quien vende el producto
+{
+  std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    int idProductos = (*it)->getId();
+    std::string nickProductos = (*it)->getNombre();
+    std::cout << "ID: " << idProductos << ", Nickname: " << nickProductos;
+    std::cout << std::endl;
+  }
+  int idProducto;
+  std::cout << "Escriba el ID del producto que desea ver." << std::endl;
+  std::cin >> idProducto;
+  DTProducto *producto = controladorProducto->obtenerProductoDisponible(idProducto);
+
+  int precioProducto = producto->getPrecio();
+  int stockProducto = producto->getCantidadEnStock();
+  std::string descripcionProducto = producto->getDescripcion();
+  TipoProducto tipoDelProducto = producto->getTipoProducto();
+  std::string tipoDelPrudctoString;
+  switch (tipoDelProducto)
+  {
+  case TipoProducto::Electrodomesticos:
+    tipoDelPrudctoString = "Electrodomesticos";
+    break;
+  case TipoProducto::Ropa:
+    tipoDelPrudctoString = "Ropa";
+    break;
+
+  default:
+    tipoDelPrudctoString = "Otros";
+    break;
+  }
+  // DTVendedor vendedorProducto = producto->getVendedor();
+  std::cout << "Precio: " << precioProducto << ", Stock: " << stockProducto << ", Descripcion: " << descripcionProducto << ", Categoria: " << tipoDelPrudctoString << ", Vendedor: ";
+  std::cout << std::endl;
 }
 
 int main()
@@ -549,7 +703,7 @@ int main()
       break;
 
     case 5: // Consultar un producto
-
+      ConsultarUnProducto();
       break;
 
     case 6: // Crear una nueva promocion
