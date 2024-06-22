@@ -16,9 +16,8 @@ public:
   std::string getNombre();
   int getCantidad();
   float getPrecio();
-  bool getEnviadoCorrectamente();
   DTRegistroProducto();
-  DTRegistroProducto(int,std::string,int,float,bool);
+  DTRegistroProducto(int, std::string, int, float); // id,nombre,cantidad,precio,enviadocorrectamente
   ~DTRegistroProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

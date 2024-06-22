@@ -1,14 +1,15 @@
 #ifndef DTPRODUCTO_PROMO
 #define DTPRODUCTO_PROMO
-#include<iostream>
+#include <iostream>
 
-class DTProductoPromo 
+class DTProductoPromo
 {
-private:    
+private:
     int id;
     std::string nombre;
     int cantidadMinima;
     float porcentajeDescuento;
+
 public:
     int getId();
     std::string getNombre();

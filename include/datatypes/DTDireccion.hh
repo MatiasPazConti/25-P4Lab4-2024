@@ -1,5 +1,6 @@
 #ifndef DTDIRECCION
 #define DTDIRECCION
+#include <string>
 
 class DTDireccion
 {
@@ -10,7 +11,8 @@ private:
 public:
   std::string getNombreCalle();
   int getNroPuerta();
-  DTDireccion(std::string, int);
+  DTDireccion();
+  DTDireccion(std::string nombreCalle, int nroPuerta);
   ~DTDireccion();
 };
 

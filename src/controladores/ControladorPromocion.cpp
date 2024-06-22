@@ -1,8 +1,8 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
-void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f)
+void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f) // ver si fecha vencimiento > fecha actual?
 {
-  if (promociones.count(n) == 0) // ver si fecha vencimiento > fecha actual?
+  if (promociones.count(n) == 0)
   {
     nombre = n;
     descripcion = d;
@@ -17,14 +17,29 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
 
 void ControladorPromocion::agregarAPromo(int id, int cantMin, float porcentajeDescuento)
 {
-  promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id, porcentajeDescuento)});
-  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
+  productos.insert(Fabrica::getInterfazProducto()->obtenerProductoDisponible(id)); // como obtengo objeto producto a partir de id
+  infoProductos.insert({id, InfoPromoProducto(cantMin, porcentajeDescuento)});
+  // dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
 }
 
 void ControladorPromocion::altaNuevaPromo()
 {
-  DTPromocion *dataprom = new DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo); // necesario?
+  // DTPromocion *dataprom = new DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo); necesario?
   Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
+}
+
+ControladorPromocion::~ControladorPromocion()
+{
+}
+ControladorPromocion::ControladorPromocion() {}
+
+ControladorPromocion *ControladorPromocion::instancia = nullptr;
+ControladorPromocion *ControladorPromocion::getInstancia()
+{
+  if (instancia == nullptr)
+  {
+    instancia = new ControladorPromocion();
+  }
+  return instancia;
 }

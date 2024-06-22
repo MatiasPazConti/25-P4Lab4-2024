@@ -38,7 +38,6 @@ public:
     void setProductos(std::set<Producto *>);
     void setInfoProductos(std::map<int, InfoPromoProducto>);
 
-    DTProductoPromo *getDataProductoPromo();
     DTPromocion *getDataPromocion();
 
     Promocion();
