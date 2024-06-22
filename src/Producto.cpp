@@ -50,11 +50,17 @@ void Producto::setTipoProducto(TipoProducto t)
 }
 DTProducto *Producto::getDataProducto()
 {
-  DTProducto *dataProducto = new DTProducto(id, nombre, descripcion, precio, cantidadEnStock, tipo);
+  DTProducto *dataProducto = new DTProducto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
   return dataProducto;
 }
+DTVendedor* Producto::getVendedor(){
+  return vendedor;
+}
+void Producto::setVendedor(DTVendedor* v){
+    vendedor = v;
+}
 Producto::Producto() {}
-Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoProducto t)
+Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoProducto t , DTVendedor* v)
 {
   id = i;
   nombre = n;
@@ -62,6 +68,7 @@ Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoP
   precio = p;
   cantidadEnStock = cant;
   tipo = t;
+  vendedor = v;
 }
 Producto::~Producto(){};
 

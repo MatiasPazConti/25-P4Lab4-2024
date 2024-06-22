@@ -4,6 +4,7 @@
 #include "./TipoProducto.hh"
 #include "./datatypes/DTProducto.hh"
 
+
 class Producto
 {
 private:
@@ -13,6 +14,7 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
+  DTVendedor* vendedor;
 
 public:
   void setId(int);
@@ -26,10 +28,12 @@ public:
   std::string getDescripcion();
   float getPrecio();
   int getCantidadEnStock();
+  DTVendedor* getVendedor();
+  void setVendedor(DTVendedor*);
   TipoProducto getTipoProducto();
   DTProducto *getDataProducto();
   Producto();
-  Producto(int, std::string, std::string, float, int, TipoProducto);
+  Producto(int, std::string, std::string, float, int, TipoProducto,DTVendedor*);
   ~Producto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
