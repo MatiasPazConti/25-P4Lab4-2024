@@ -660,6 +660,7 @@ void ConsultarUnProducto() // falta agregar "getVendedor" para saber quien vende
 
 void CrearPromocion() // incompleto
 {
+  // ingreso de datos de la promo
   std::string nombrePromo;
   std::cout << "Escriba el nombre de la promocion" << std::endl;
   std::getline(std::cin >> std::ws, nombrePromo);
@@ -686,7 +687,7 @@ void CrearPromocion() // incompleto
   std::cout << "Escriba el anio de vencimiento de la promocion" << std::endl;
   std::cin >> anioPromo;
   DTFecha fechaPromo = DTFecha(diaPromo, mesPromo, anioPromo);
-
+  // seleccion de vendedor
   controladorUsuario->listarVendedores();
   std::string vendedorPromo;
   std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
@@ -697,7 +698,12 @@ void CrearPromocion() // incompleto
     std::cout << "Porfavor ingrese un vendedor valido" << std::endl;
     std::cin >> vendedorPromo;
   }
+  // seleccion de productos del vendedor mencionado.
   ListarProductosDeVendedor(vendedorPromo);
+  // while quiera agregar productos los agrego en un set ¿producto?¿string? si no estan en otra promo vigentes.
+  // cuando no quiera agregar mas guardo el set
+  // recorro el set preguntando la cantidad minima que desea de c/u
+  // terminado esto, se da el alta sin confirmar.
 }
 
 int main()

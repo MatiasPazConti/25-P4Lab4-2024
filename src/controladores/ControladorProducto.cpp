@@ -42,11 +42,8 @@ std::set<DTProducto *> ControladorProducto::obtenerProductosDisponibles()
   std::set<DTProducto *> dataProducto;
   for (auto it = productos.begin(); it != productos.end(); ++it)
   {
-    if ((*it)->getCantidadEnStock() >= 1)
-    {
-      DTProducto *agregar = (*it)->getDataProducto();
-      dataProducto.insert(agregar);
-    }
+    DTProducto *agregar = (*it)->getDataProducto();
+    dataProducto.insert(agregar);
   }
   return dataProducto;
 }
