@@ -18,7 +18,7 @@ private:
 
 public:
   static ControladorProducto *getInstancia();
-  void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo);
+  void registrarDatosProductos(std::string, int, int, std::string, TipoProducto, DTVendedor*);
   void altaNuevoProducto();
   DTProducto *obtenerProductoDisponible(int);
   std::set<DTProducto *> obtenerProductosDisponibles(); // falta hacerla en el cpp // agregado PD chequearlo.

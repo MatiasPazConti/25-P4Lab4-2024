@@ -12,10 +12,10 @@ DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
   }
   return NULL;
 }
-void ControladorProducto::registrarDatosProductos(std::string nombre, int precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo)
+void ControladorProducto::registrarDatosProductos(std::string nombre, int precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor* vendedor)
 {
   int id = lastID + 1;
-  Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo);
+  Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
   this->productos.insert(prod);
   lastID = id;
 }
@@ -42,11 +42,8 @@ std::set<DTProducto *> ControladorProducto::obtenerProductosDisponibles()
   std::set<DTProducto *> dataProducto;
   for (auto it = productos.begin(); it != productos.end(); ++it)
   {
-    if ((*it)->getCantidadEnStock() >= 1)
-    {
-      DTProducto *agregar = (*it)->getDataProducto();
-      dataProducto.insert(agregar);
-    }
+    DTProducto *agregar = (*it)->getDataProducto();
+    dataProducto.insert(agregar);
   }
   return dataProducto;
 }
