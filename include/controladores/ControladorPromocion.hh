@@ -6,7 +6,7 @@
 #include <map>
 
 #include "../interfaces/IControladorPromocion.hh"
-// #include "../fabrica/Fabrica.hh"
+#include "../fabrica/Fabrica.hh"
 #include "../Promocion.hh"
 #include "../datatypes/DTPromocion.hh"
 #include "../datatypes/DTVendedor.hh"
@@ -28,6 +28,7 @@ private:
 
 public:
   static ControladorPromocion *getInstancia();
+  ~ControladorPromocion();
   void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento);
   void asignarVendedor(std::string nombre);
   void agregarAPromo(int id, int cantMin, float porcentajeDescuento);

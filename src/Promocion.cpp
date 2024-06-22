@@ -89,8 +89,8 @@ DTPromocion *Promocion::getDataPromocion() // revisar
     std::map<int, DTProductoPromo> dataProductosPromo;
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
-        int cantMin = infoProductos[(*it)->getId()]->getCantidadMinima();
-        float porcentajeDesc = infoProductos[(*it)->getId()]->getPorcentajeDescuento();
+        int cantMin = infoProductos[(*it)->getId()].getCantidadMinima();
+        float porcentajeDesc = infoProductos[(*it)->getId()].getPorcentajeDescuento();
         dataProductosPromo.insert({(*it)->getId(), DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin, porcentajeDesc)});
     }
     DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, dataProductosPromo);
