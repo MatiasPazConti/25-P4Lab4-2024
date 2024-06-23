@@ -30,11 +30,11 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
   vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickname);
 }
 
-void ControladorPromocion::agregarAPromo(int id, int cantMin, float porcentajeDescuento)
+void ControladorPromocion::agregarAPromo(int id, int cantMin)
 {
   // promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id)});
-  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
+  infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
+  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, 0)});
 }
 
 void ControladorPromocion::altaNuevaPromo()

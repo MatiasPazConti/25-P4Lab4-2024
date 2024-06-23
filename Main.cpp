@@ -10,6 +10,109 @@ IControladorProducto *controladorProducto = Fabrica::getInterfazProducto();
 IControladorPromocion *controladorPromocion = Fabrica::getInterfazPromocion();
 IControladorCompra *controladorCompra = Fabrica::getInterfazCompra();
 
+// Funciones Auxiliares;
+void ListarNickVendedores(std::set<DTVendedor *> vendedores) // funcion auxiliar
+{
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    std::cout << "Nickname: " << nick;
+    std::cout << std::endl;
+  }
+}
+
+void ListarNickClientes() // funcion auxiliar
+{
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    std::cout << "Nickname: " << nick;
+    std::cout << std::endl;
+  }
+}
+
+void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
+{
+  std::set<DTProducto *> productos = controladorUsuario->listarProductosVendedor(nickname);
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    int idProducto = (*it)->getId();
+    std::string nombreProducto = (*it)->getNombre();
+    std::cout << "Codigo: " << idProducto << ", Nombre: " << nombreProducto;
+    std::cout << std::endl;
+  }
+}
+
+bool ExisteVendedor(std::string nickname, std::set<DTVendedor *> vendedores) // funcion auxiliar
+{
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool ExisteCliente(std::string nickname, std::set<DTCliente *> clientes) // funcion auxiliar
+{
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+DTVendedor *datoVendedor(std::string nickname) // funcion auxiliar
+{
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return (*it);
+    }
+  }
+  return nullptr;
+}
+
+DTCliente *datoCliente(std::string nickname) // funcion auxiliar
+{
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return (*it);
+    }
+  }
+  return nullptr;
+}
+
+bool ExisteUsuario(std::string nickname) // funcion auxiliar
+{
+  std::set<DTUsuario *> usuarios = controladorUsuario->listarUsuarios();
+  for (auto it = usuarios.begin(); it != usuarios.end(); it++)
+  {
+    if ((*it)->getNickname() == nickname)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool EstaEnPromo(int idProducto) // funcion auxiliar // falta implementar
+{
+  return false;
+}
+
+// Carga de datos iniciales:
 void CargarDatos()
 {
   // US1 - Usuario Uno - Vendedor
@@ -378,68 +481,7 @@ void CargarDatos()
   std::cout << "Los datos iniciales fueron cargados." << std::endl;
 }
 
-void ListarNickVendedores() // funcion auxiliar
-{
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
-  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
-  {
-    std::string nick = (*it)->getNickname();
-    std::cout << "Nickname: " << nick;
-    std::cout << std::endl;
-  }
-}
-
-void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
-{
-  std::set<DTProducto *> productos = controladorUsuario->listarProductosVendedor(nickname);
-  for (auto it = productos.begin(); it != productos.end(); it++)
-  {
-    int idProducto = (*it)->getId();
-    std::string nombreProducto = (*it)->getNombre();
-    std::cout << "Codigo: " << idProducto << ", Nombre: " << nombreProducto;
-    std::cout << std::endl;
-  }
-}
-
-bool ExisteVendedor(std::string nickname) // funcion auxiliar
-{
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
-  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
-  {
-    if ((*it)->getNickname() == nickname)
-    {
-      return true;
-    }
-  }
-  return false;
-}
-
-DTVendedor *datoVendedor(std::string nickname) // funcion auxiliar
-{
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
-  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
-  {
-    if ((*it)->getNickname() == nickname)
-    {
-      return (*it);
-    }
-  }
-  return nullptr;
-}
-
-bool ExisteUsuario(std::string nickname) // funcion auxiliar
-{
-  std::set<DTUsuario *> usuarios = controladorUsuario->listarUsuarios();
-  for (auto it = usuarios.begin(); it != usuarios.end(); it++)
-  {
-    if ((*it)->getNickname() == nickname)
-    {
-      return true;
-    }
-  }
-  return false;
-}
-
+// Casos de Uso:
 void NuevoVendedor() // Implementado //
 {
   std::string nickUS;
@@ -600,10 +642,11 @@ void ListarUsuarios() // Implementado //
 void AltaDeProducto() // Implementado //
 {
   std::string nickVendedor;
-  ListarNickVendedores();
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  ListarNickVendedores(vendedores);
   std::cout << "Escriba el nombre del vendedor" << std::endl;
   std::cin >> nickVendedor;
-  if (ExisteVendedor(nickVendedor))
+  if (ExisteVendedor(nickVendedor, vendedores))
   {
     std::string nombreProducto;
     std::cout << "Escriba el nombre del producto" << std::endl;
@@ -673,7 +716,7 @@ void ConsultarUnProducto() // Implementado //
   std::cout << std::endl;
 }
 
-void CrearPromocion() // incompleto
+void CrearPromocion() // incompleto // agregar "EstaEnPromo"
 {
   // ingreso de datos de la promo
   std::string nombrePromo;
@@ -702,23 +745,231 @@ void CrearPromocion() // incompleto
   std::cout << "Escriba el anio de vencimiento de la promocion" << std::endl;
   std::cin >> anioPromo;
   DTFecha fechaPromo = DTFecha(diaPromo, mesPromo, anioPromo);
+  // porsentaje de descuento a la promocion
+  int descuentoPromo;
+  std::cout << "Escriba el porsentaje de descuento de la promocion" << std::endl;
+  std::cin >> descuentoPromo;
+  while (descuentoPromo >= 101)
+  {
+    std::cout << "El descuento no puede ser mayor al 100%" << std::endl;
+    std::cin >> descuentoPromo;
+  }
+  controladorPromocion->registrarDatosPromo(nombrePromo, descripcionPromo, fechaPromo, descuentoPromo);
   // seleccion de vendedor
   controladorUsuario->listarVendedores();
   std::string vendedorPromo;
   std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
   std::cin >> vendedorPromo;
-  while (!ExisteVendedor(vendedorPromo))
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  while (!ExisteVendedor(vendedorPromo, vendedores))
   {
     std::cout << "El vendedor ingresado no existe" << std::endl;
     std::cout << "Porfavor ingrese un vendedor valido" << std::endl;
     std::cin >> vendedorPromo;
   }
+  controladorPromocion->asignarVendedor(vendedorPromo);
   // seleccion de productos del vendedor mencionado.
-  ListarProductosDeVendedor(vendedorPromo);
-  // while quiera agregar productos los agrego en un set ¿producto?¿string? si no estan en otra promo vigentes.
-  // cuando no quiera agregar mas guardo el set
-  // recorro el set preguntando la cantidad minima que desea de c/u
-  // terminado esto, se da el alta sin confirmar.
+  int opcion = 1;
+  while (opcion != 2)
+  {
+    if (opcion == 1)
+    {
+      ListarProductosDeVendedor(vendedorPromo);
+      int IdAgregarPromo;
+      std::cout << "Escriba el codigo de producto que desea asignar a la promocion" << std::endl;
+      std::cin >> IdAgregarPromo;
+      while (!EstaEnPromo(IdAgregarPromo))
+      {
+        std::cout << "El producto seleccionado ya se encuentra en una promocion" << std::endl;
+        std::cout << "Porfavor ingrese un producto valido" << std::endl;
+        std::cin >> IdAgregarPromo;
+      };
+      int stockAgregarPromo;
+      std::cout << "Escriba la cantidad minima del producto" << std::endl;
+      std::cin >> stockAgregarPromo;
+      controladorPromocion->agregarAPromo(IdAgregarPromo, stockAgregarPromo);
+    }
+    std::cout << "1-Agregar otro producto a la promocion" << std::endl
+              << "2-Dar de alta la promocion" << std::endl;
+    std::cin >> opcion;
+  }
+  // se realiza el alta de la promocion
+  controladorPromocion->altaNuevaPromo();
+}
+
+void ConsultarPromocion()
+{
+}
+
+void RealizarCompra()
+{
+}
+
+void DejarComentario()
+{
+}
+
+void EliminarComentario()
+{
+}
+
+void EnviarProducto()
+{
+}
+
+void ExpedienteUsuario() // incompleto // falta obtener lista de promos de un vendedor
+{
+  ListarUsuarios();
+  std::string nickUsuario;
+  std::cout << "Escriba su nickname" << std::endl;
+  std::cin >> nickUsuario;
+  while (!ExisteUsuario(nickUsuario))
+  {
+    std::cout << "El usuario ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un usuario valido" << std::endl;
+    std::cin >> nickUsuario;
+  }
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  if (ExisteCliente(nickUsuario, clientes))
+  {
+    DTCliente *esCliente = datoCliente(nickUsuario);
+    std::string nick = esCliente->getNickname();
+    DTFecha fecha = esCliente->getFechaNacimiento();
+    int dia = fecha.getDia();
+    int mes = fecha.getMes();
+    int anio = fecha.getAnio();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio;
+    std::cout << std::endl;
+    // ListarComprasRealizadas(nickCliente);
+  }
+  else
+  {
+    DTVendedor *esVendedor = datoVendedor(nickUsuario);
+    std::string nickVendedor = esVendedor->getNickname();
+    DTFecha fechaVendedor = esVendedor->getFechaNacimiento();
+    int dia = fechaVendedor.getDia();
+    int mes = fechaVendedor.getMes();
+    int anio = fechaVendedor.getAnio();
+    std::cout << "Nickname: " << nickVendedor << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio;
+    std::cout << std::endl;
+    ListarProductosDeVendedor(nickVendedor);
+    // ListarPromosVigentesVendedor(nickVendedor);
+  }
+}
+
+void SuscribirseNotificacion() // Implementado
+{
+  ListarNickClientes();
+  std::string nickCliente;
+  std::cout << "Escriba su nickname" << std::endl;
+  std::cin >> nickCliente;
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  while (!ExisteCliente(nickCliente, clientes))
+  {
+    std::cout << "El cliente ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un cliente valido" << std::endl;
+    std::cin >> nickCliente;
+  }
+  int opcion = 1;
+  std::set<std::string> nickVendedores;
+  while (opcion != 2)
+  {
+    if (opcion == 1)
+    {
+      std::set<DTVendedor *> vendedoresNoSuscripto = controladorUsuario->listarVendedoresNoSuscritos(nickCliente);
+      ListarNickVendedores(vendedoresNoSuscripto);
+      std::string vendedor;
+      std::cout << "Ingrese el nickname del vendedor al que desea suscribirse" << std::endl;
+      std::cin >> vendedor;
+
+      while (!ExisteVendedor(vendedor, vendedoresNoSuscripto))
+      {
+        std::cout << "Porfavor ingrese un vendedor valido" << std::endl;
+        std::cin >> vendedor;
+      };
+      nickVendedores.insert(vendedor);
+      controladorUsuario->realizarSuscripciones(nickCliente, nickVendedores);
+      nickVendedores.erase(vendedor);
+    }
+    std::cout << "1-Agregar otra suscripcion" << std::endl
+              << "2-Salir de realizar suscripciones" << std::endl;
+    std::cin >> opcion;
+  }
+}
+
+void ConsultaNotificacion() // incompleto // falta obtener string de nombre de los "productosEnPromo", "eliminarNotificaciones"
+{
+  ListarNickClientes();
+  std::string nickCliente;
+  std::cout << "Escriba su nickname" << std::endl;
+  std::cin >> nickCliente;
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  while (!ExisteCliente(nickCliente, clientes))
+  {
+    std::cout << "El cliente ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un cliente valido" << std::endl;
+    std::cin >> nickCliente;
+  }
+  std::set<DTNotificacion *> notificaciones = controladorUsuario->listarNotificaciones(nickCliente);
+  std::set<std::string> nickVendedores;
+  for (auto it = notificaciones.begin(); it != notificaciones.end(); it++)
+  {
+    std::string nickVendedor = (*it)->getNicknameVendedor();
+    std::string nombrePromocion = (*it)->getNombrePromocion();
+    // std::set<string> productosEnPromo = (*it)->getProductosEnPromo();
+    std::cout << "Vendedor: " << nickVendedor << ", Promocion: " << nombrePromocion;
+    // for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
+    //{
+    //   std::cout << ", Producto: " << (*it2);
+    // };
+    std::cout << std::endl;
+    nickVendedores.insert(nickVendedor);
+  };
+  // controladorUsuario->eliminarNotificaciones(nickCliente, nickVendedores);
+}
+
+void EliminarSuscripcion() // incompleto // falta: "ListarVendedoresSuscripto"
+{
+  ListarNickClientes();
+  std::string nickCliente;
+  std::cout << "Escriba su nickname" << std::endl;
+  std::cin >> nickCliente;
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  while (!ExisteCliente(nickCliente, clientes))
+  {
+    std::cout << "El cliente ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un cliente valido" << std::endl;
+    std::cin >> nickCliente;
+  }
+  /*std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->ListarVendedoresSuscripto(nickCliente);
+  ListarNickVendedores(vendedoresSuscripto);
+  std::string vendedor;
+  std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
+  std::cin >> vendedor;
+  int opcion = 1;
+  std::set<std::string> nickVendedores;
+  while (opcion != 2)
+  {
+    if (opcion == 1)
+    {
+      std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->ListarVendedoresSuscripto(nickCliente);
+      ListarNickVendedores(vendedoresSuscripto);
+      std::string vendedor;
+      std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
+      std::cin >> vendedor;
+      while (!ExisteVendedor(vendedor, vendedoresSuscripto))
+      {
+        std::cout << "Porfavor ingrese un vendedor valido" << std::endl;
+        std::cin >> vendedor;
+      };
+      nickVendedores.insert(vendedor);
+      controladorUsuario->eliminarSuscripciones(nickCliente,nickVendedores);
+      nickVendedores.erase(vendedor);
+    }
+    std::cout << "1-Eliminar otra suscripcion" << std::endl
+              << "2-Salir de eliminar suscripciones" << std::endl;
+    std::cin >> opcion;
+  }*/
 }
 
 int main()
@@ -728,20 +979,20 @@ int main()
     int input = 0;
     std::cout << "Menu de Opciones" << std::endl
               << "1-Cargar datos iniciales" << std::endl
-              << "2-Registrar nuevo usuario" << std::endl
-              << "3-Listado de usuarios exitentes" << std::endl
-              << "4-Alta de producto" << std::endl
-              << "5-Consultar un producto" << std::endl
-              << "6-Crear una nueva promocion" << std::endl
+              << "2-Registrar nuevo usuario" << std::endl       // Implementado
+              << "3-Listado de usuarios exitentes" << std::endl // Implementado
+              << "4-Alta de producto" << std::endl              // Implementado
+              << "5-Consultar un producto" << std::endl         // Implementado
+              << "6-Crear una nueva promocion" << std::endl     // incompleto
               << "7-Consultar una promocion" << std::endl
               << "8-Realizar una compra" << std::endl
               << "9-Dejar un comentario" << std::endl
               << "10-Eliminar un comentario" << std::endl
               << "11-Enviar un producto" << std::endl
               << "12-Expediente de usuario" << std::endl
-              << "13-Consulta de notificaciones" << std::endl
-              << "14-Suscribirse a notificacion" << std::endl
-              << "15-Eliminar suscripcion" << std::endl
+              << "13-Suscribirse a notificacion" << std::endl // Implementado
+              << "14-Consulta de notificaciones" << std::endl // incompleto
+              << "15-Eliminar suscripcion" << std::endl       // incompleto
               << "16-Salir" << std::endl;
     std::cin >> input;
     switch (input)
@@ -782,43 +1033,43 @@ int main()
       break;
 
     case 6: // Crear una nueva promocion
-
+      CrearPromocion();
       break;
 
     case 7: // Consultar una promocion
-
+      ConsultarPromocion();
       break;
 
     case 8: // Realizar una compra
-
+      RealizarCompra();
       break;
 
     case 9: // Dejar un comentario
-
+      DejarComentario();
       break;
 
     case 10: // Eliminar un comentario
-
+      EliminarComentario();
       break;
 
     case 11: // Enviar un producto
-
+      EnviarProducto();
       break;
 
     case 12: // Expediente de usuario
-
+      ExpedienteUsuario();
       break;
 
-    case 13: // Consulta de notificaciones
-
+    case 13: // Suscribirse a notificacion
+      SuscribirseNotificacion();
       break;
 
-    case 14: // Suscribirse a notificacion
-
+    case 14: // Consulta de notificaciones
+      ConsultaNotificacion();
       break;
 
     case 15: // Eliminar suscripcion
-
+      EliminarSuscripcion();
       break;
 
     case 16: // Salir

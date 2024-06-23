@@ -12,7 +12,7 @@ DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
   }
   return NULL;
 }
-void ControladorProducto::registrarDatosProductos(std::string nombre, int precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor* vendedor)
+void ControladorProducto::registrarDatosProductos(std::string nombre, int precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor *vendedor)
 {
   int id = lastID + 1;
   Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
