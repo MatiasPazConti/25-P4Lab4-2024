@@ -799,7 +799,52 @@ void CrearPromocion() // incompleto // agregar "EstaEnPromo"
 
 void ConsultarPromocion()
 {
-}
+  std::cout << "PROMOCIONES VIGENTES EN EL SISTEMA" << std::endl;
+  std::set<DTPromocion *> promociones = controladorPromocion->obtenerPromocionesVigentes();
+  for (auto it = promociones.begin(); it != promociones.end(); it++)
+  {
+    std::string nombrePromo = (*it)->getNombre();
+    std::string descripcionPromo = (*it)->getDescripcion();
+    DTFecha fechaVPromo = (*it)->getFechaVencimiento();
+    float descuentoPromo = (*it)->getPorcentajeDescuento();
+    std::cout << "Nombre: " << nombrePromo << std::endl
+              << "Descripcion: " << descripcionPromo << std::endl
+              << "Fecha de vencimiento: " << fechaVPromo.getDia() << "/" << fechaVPromo.getMes() << "/" << fechaVPromo.getAnio() << std::endl
+              << "Descuento: " << descuentoPromo << "%" << std::endl
+              << "Productos: " << std::endl;
+    // imprimo todos los productos de cada promo
+    std::map<int, DTProductoPromo *> productos = (*it)->getProductos();
+    for (auto it = productos.begin(); it != productos.end(); it++)
+    {
+      int idProductos = (*it).first;
+      std::string nickProductos = ((*it).second)->getNombre();
+      std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
+      std::cout << std::endl;
+    }
+  }
+  std::cout << "1-Ver en detalle los productos de una promocion" << std::endl
+            << "2-Salir";
+  int opcionElegida;
+  std::cin >> opcionElegida;
+  if (opcionElegida == 1)
+  {
+    std::cout << "Ingrese el nombre de la promocion: ";
+    std::string nombrePromoElegida;
+    std::cin >> nombrePromoElegida;
+    DTPromocion *promoElegida = controladorPromocion->getPromocion(nombrePromoElegida);
+    std::cout << "Informacion del vendedor de la promocion: " << std::endl;
+    DTVendedor *vendedorElegido = (promoElegida->getVendedor());
+    std::cout << "Nombre: " << vendedorElegido->getNickname() << std::endl
+              << "Fecha de nacimiento" << vendedorElegido->getFechaNacimiento().getDia() << vendedorElegido->getFechaNacimiento().getMes() << vendedorElegido->getFechaNacimiento().getAnio() << std::endl
+              << "Codigo Rut: " << vendedorElegido->getCodigoRUT() << std::endl;
+    std::cout << "Informacion de los productos de la promocion: " << std::endl;
+    ListarProductosDeVendedor(vendedorElegido->getNickname());
+  }
+  else if (opcionElegida == 2)
+  {
+    //////
+  }
+};
 
 void RealizarCompra()
 {

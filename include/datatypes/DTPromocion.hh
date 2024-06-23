@@ -3,7 +3,7 @@
 
 #include "./DTFecha.hh"
 #include "./DTProductoPromo.hh"
-
+#include "./DTVendedor.hh"
 #include <iostream>
 #include <map>
 #include <set>
@@ -15,17 +15,19 @@ private:
     std::string descripcion;
     DTFecha fechaVencimiento;
     float porcentajeDescuento;
-    std::map<int, DTProductoPromo> productos;
+    DTVendedor *vendedor;
+    std::map<int, DTProductoPromo *> productos;
 
 public:
     std::string getNombre();
     std::string getDescripcion();
     DTFecha getFechaVencimiento();
     float getPorcentajeDescuento();
-    std::map<int, DTProductoPromo> getProductos();
-    DTProductoPromo getProducto(int id);
+    DTVendedor *getVendedor();
+    std::map<int, DTProductoPromo *> getProductos();
+    DTProductoPromo *getProducto(int id);
     DTPromocion();
-    DTPromocion(std::string, std::string, DTFecha, float, std::map<int, DTProductoPromo>);
+    DTPromocion(std::string, std::string, DTFecha, float, DTVendedor *, std::map<int, DTProductoPromo *>);
     ~DTPromocion();
 };
 

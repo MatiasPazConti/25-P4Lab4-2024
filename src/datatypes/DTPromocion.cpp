@@ -20,24 +20,30 @@ float DTPromocion::getPorcentajeDescuento()
     return porcentajeDescuento;
 }
 
-std::map<int, DTProductoPromo> DTPromocion::getProductos()
+DTVendedor *DTPromocion::getVendedor()
+{
+    return vendedor;
+}
+
+std::map<int, DTProductoPromo *> DTPromocion::getProductos()
 {
     return productos;
 }
 
-DTProductoPromo DTPromocion::getProducto(int id)
+DTProductoPromo *DTPromocion::getProducto(int id)
 {
     return productos[id];
 }
 
 DTPromocion::DTPromocion() {}
 
-DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, float pd, std::map<int, DTProductoPromo> p)
+DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, float pd, DTVendedor *v, std::map<int, DTProductoPromo *> p)
 {
     nombre = n;
     descripcion = d;
     fechaVencimiento = f;
     porcentajeDescuento = pd;
+    vendedor = v;
     productos = p;
 }
 

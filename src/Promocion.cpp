@@ -40,7 +40,7 @@ Producto *Promocion::getProducto(int id)
     return NULL;
 }
 
-std::map<int, InfoPromoProducto> Promocion::getInfoProductos()
+std::map<int, InfoPromoProducto *> Promocion::getInfoProductos()
 {
     return infoProductos;
 }
@@ -51,7 +51,7 @@ InfoPromoProducto *Promocion::getInfoProducto(int id)
     {
         if ((*it)->getId() == id)
         {
-            return &infoProductos.at(id);
+            return infoProductos.at(id);
         }
     }
     return NULL;
@@ -90,20 +90,21 @@ void Promocion::setProductos(std::set<Producto *> p)
     productos = p;
 }
 
-void Promocion::setInfoProductos(std::map<int, InfoPromoProducto> pi)
+void Promocion::setInfoProductos(std::map<int, InfoPromoProducto *> pi)
 {
     infoProductos = pi;
 }
 
 DTPromocion *Promocion::getDataPromocion()
 {
-    std::map<int, DTProductoPromo> dataProductosPromo;
+    std::map<int, DTProductoPromo *> dataProductosPromo;
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
-        int cantMin = (infoProductos[(*it)->getId()]).getCantidadMinima();
-        dataProductosPromo.insert({(*it)->getId(), DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin)});
-    }
-    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, porcentajeDescuento, dataProductosPromo);
+        int cantMin = (infoProductos[(*it)->getId()])->getCantidadMinima();
+        DTProductoPromo *prodPromo = new DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin);
+        dataProductosPromo.insert({(*it)->getId(), prodPromo});
+    };
+    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, porcentajeDescuento, vendedor->getDataVendedor(), dataProductosPromo);
     return dataPromocion;
 }
 
@@ -128,7 +129,7 @@ Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor
     vendedor = v;
 }
 
-Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v, std::set<Producto *> p, std::map<int, InfoPromoProducto> pi)
+Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v, std::set<Producto *> p, std::map<int, InfoPromoProducto *> pi)
 {
     nombre = n;
     descripcion = d;

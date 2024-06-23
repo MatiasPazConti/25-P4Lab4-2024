@@ -1,8 +1,20 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
-std::map<std::string, Promocion *> ControladorPromocion::obtenerPromocionesVigentes()
+std::set<DTPromocion *> ControladorPromocion::obtenerPromocionesVigentes()
 {
-  return promociones;
+  std::set<DTPromocion *> promosVigentes;
+  for (auto it = promociones.begin(); it != promociones.end(); ++it)
+  {
+    DTPromocion *dtpromo = ((*it).second)->getDataPromocion();
+    promosVigentes.insert(dtpromo);
+  };
+  return promosVigentes;
+}
+
+DTPromocion *ControladorPromocion::getPromocion(std::string nombre)
+{
+  DTPromocion *promo = promociones[nombre]->getDataPromocion();
+  return promo;
 }
 
 void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f, float porcentaje)
@@ -24,7 +36,8 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
 void ControladorPromocion::agregarAPromo(int id, int cantMin) // ver si prod ya esta en una promo?
 {
   productos.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
+  InfoPromoProducto *promoProd = new InfoPromoProducto(id, cantMin);
+  infoProductos.insert({id, promoProd});
 }
 
 void ControladorPromocion::altaNuevaPromo()
