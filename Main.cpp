@@ -107,8 +107,13 @@ bool ExisteUsuario(std::string nickname) // funcion auxiliar
   return false;
 }
 
-bool EstaEnPromo(int idProducto) // funcion auxiliar // falta implementar
+bool EstaEnPromo(int idProducto) // funcion auxiliar
 {
+  DTProducto *producto = controladorProducto->obtenerProductoDisponible(idProducto);
+  if (producto->getPromocion() != NULL)
+  {
+    return true;
+  }
   return false;
 }
 
@@ -639,7 +644,7 @@ void ListarUsuarios() // Implementado //
   }
 }
 
-void AltaDeProducto() // Implementado //
+void AltaDeProducto() // Implementado // falta asignarle el producto al vendedor
 {
   std::string nickVendedor;
   std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
@@ -716,7 +721,7 @@ void ConsultarUnProducto() // Implementado //
   std::cout << std::endl;
 }
 
-void CrearPromocion() // incompleto // agregar "EstaEnPromo"
+void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
 {
   // ingreso de datos de la promo
   std::string nombrePromo;
