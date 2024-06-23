@@ -1,22 +1,25 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
-ControladorPromocion::ControladorPromocion() {}
-
-ControladorPromocion::~ControladorPromocion() {}
-
-ControladorPromocion *ControladorPromocion::instancia = nullptr;
-ControladorPromocion *ControladorPromocion::getInstancia()
+std::set<DTPromocion *> ControladorPromocion::obtenerPromocionesVigentes()
 {
-  if (instancia == nullptr)
+  std::set<DTPromocion *> promosVigentes;
+  for (auto it = promociones.begin(); it != promociones.end(); ++it)
   {
-    instancia = new ControladorPromocion();
-  }
-  return instancia;
+    DTPromocion *dtpromo = ((*it).second)->getDataPromocion();
+    promosVigentes.insert(dtpromo);
+  };
+  return promosVigentes;
+}
+
+DTPromocion *ControladorPromocion::getPromocion(std::string nombre)
+{
+  DTPromocion *promo = promociones[nombre]->getDataPromocion();
+  return promo;
 }
 
 void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f, float porcentaje)
 {
-  if (promociones.count(n) == 0) // ver si fecha vencimiento > fecha actual?
+  if (promociones.count(n) == 0)
   {
     nombre = n;
     descripcion = d;
@@ -30,16 +33,30 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
   vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickname);
 }
 
-void ControladorPromocion::agregarAPromo(int id, int cantMin)
+void ControladorPromocion::agregarAPromo(int id, int cantMin) // ver si prod ya esta en una promo?
 {
-  // promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
-  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, 0)});
+  productos.insert(Fabrica::getInterfazProducto()->getProducto(id));
+  InfoPromoProducto *promoProd = new InfoPromoProducto(id, cantMin);
+  infoProductos.insert({id, promoProd});
 }
 
 void ControladorPromocion::altaNuevaPromo()
 {
-  DTPromocion *dataprom = new DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo); // necesario?
-  Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
+  Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, porcentajeDescuento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
+}
+
+ControladorPromocion::~ControladorPromocion()
+{
+}
+ControladorPromocion::ControladorPromocion() {}
+
+ControladorPromocion *ControladorPromocion::instancia = nullptr;
+ControladorPromocion *ControladorPromocion::getInstancia()
+{
+  if (instancia == nullptr)
+  {
+    instancia = new ControladorPromocion();
+  }
+  return instancia;
 }

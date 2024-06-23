@@ -12,6 +12,17 @@ DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
   }
   return NULL;
 }
+Producto *ControladorProducto::getProducto(int id)
+{
+  for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+  {
+    if ((*it)->getId() == id)
+    {
+      return (*it);
+    }
+  }
+  return NULL;
+}
 void ControladorProducto::registrarDatosProductos(std::string nombre, float precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor *vendedor)
 {
   int id = lastID + 1;
