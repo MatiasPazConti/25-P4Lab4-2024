@@ -1,6 +1,6 @@
 #include "../../include/datatypes/DTCompra.hh"
 
-DTFecha DTCompra::getFechaDeCompra()
+DTFecha *DTCompra::getFechaDeCompra()
 {
   return fechaDeCompra;
 }
@@ -15,19 +15,19 @@ DTRegistroProducto *DTCompra::getRegistroProducto(int id)
   }
   return NULL;
 }
-float DTCompra::getMontoFinal(){
-    return montoFinal;
-}
-void DTCompra::setCliente(DTCliente* c)
+std::set<DTRegistroProducto *> DTCompra::getRegistroProductos()
 {
-  cliente = c;
+  return registroProductos;
 }
-DTCliente DTCompra::getCliente()
+float DTCompra::getMontoFinal()
 {
-  return *cliente;
+  return montoFinal;
 }
-DTCompra::DTCompra(){}
-DTCompra::DTCompra(DTFecha f, float m,std::set<DTRegistroProducto*> reg, DTCliente* c)
+DTCliente *DTCompra::getCliente()
+{
+  return cliente;
+}
+DTCompra::DTCompra(DTFecha *f, float m, std::set<DTRegistroProducto *> reg, DTCliente *c)
 {
   fechaDeCompra = f;
   montoFinal = m;
@@ -38,18 +38,15 @@ DTCompra::~DTCompra() {}
 // Sobrecarga de operador '<<'
 void DTCompra::setPrint(std::ostream &out)
 {
-  out << fechaDeCompra.toString() << ", " << montoFinal << std::endl; 
-  out << "Productos en compra" << std::endl; 
-  for(std::set<DTRegistroProducto*>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it){
+  out << fechaDeCompra->toString() << ", " << montoFinal << std::endl;
+  out << "Productos en compra" << std::endl;
+  for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
+  {
     out << (*it) << std::endl;
   }
 }
-
 std::ostream &operator<<(std::ostream &out, DTCompra &obj)
 {
   obj.setPrint(out);
   return out;
-}
-std::set<DTRegistroProducto*>DTCompra::getRegistroProductos(){
-  return registroProductos;
 }

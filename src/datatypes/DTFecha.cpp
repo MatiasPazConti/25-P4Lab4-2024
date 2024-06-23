@@ -12,24 +12,11 @@ int DTFecha::getAnio()
 {
   return anio;
 }
-
-DTFecha::DTFecha() {}
-
-DTFecha::DTFecha(int d, int m, int a)
-{
-  dia = d;
-  mes = m;
-  anio = a;
-}
-
-DTFecha::~DTFecha() {}
-
 std::string DTFecha::toString()
 {
   std::string retorno = std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(anio);
   return retorno;
 }
-
 int DTFecha::compararFecha(DTFecha fecha)
 {
   if (anio > fecha.getAnio())
@@ -61,3 +48,15 @@ int DTFecha::compararFecha(DTFecha fecha)
     return 0;
   }
 };
+DTFecha *DTFecha::copiarFecha()
+{
+  DTFecha *copia = new DTFecha(dia, mes, anio);
+  return copia;
+}
+DTFecha::DTFecha(int d, int m, int a)
+{
+  dia = d;
+  mes = m;
+  anio = a;
+}
+DTFecha::~DTFecha() {}
