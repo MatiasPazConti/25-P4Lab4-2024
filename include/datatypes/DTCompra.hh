@@ -20,7 +20,6 @@ public:
   std::set<DTRegistroProducto*> getRegistroProductos();
   float getMontoFinal();
   DTCliente getCliente();
-  void setCliente(DTCliente*);
   DTCompra();
   DTCompra(DTFecha, float, std::set<DTRegistroProducto*>,DTCliente*);
   ~DTCompra();

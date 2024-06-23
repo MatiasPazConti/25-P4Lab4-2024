@@ -17,7 +17,6 @@ private:
   TipoProducto tipo;
   DTVendedor *vendedor;
   Promocion *promo;
-
 public:
   int getId();
   std::string getNombre();

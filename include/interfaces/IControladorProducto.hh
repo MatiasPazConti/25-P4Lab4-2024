@@ -8,6 +8,7 @@
 #include "../datatypes/DTNotificacion.hh"
 #include "../datatypes/DTProducto.hh"
 #include "../datatypes/DTComentario.hh"
+#include "../Producto.hh"
 
 #include <iostream>
 #include <set>
@@ -19,6 +20,7 @@ public:
   virtual void altaNuevoProducto() = 0;
   virtual DTProducto *obtenerProductoDisponible(int) = 0;
   virtual std::set<DTProducto *> obtenerProductosDisponibles() = 0;
+  virtual Producto* getProducto(int) = 0;
 };
 
 #endif

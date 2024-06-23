@@ -10,7 +10,7 @@
 class Compra
 {
 private:
-  DTFecha fechaCompra;
+  DTFecha *fechaCompra;
   float montoFinal;
   Cliente *cliente;
   std::set<DTRegistroProducto *> registroProductos;
@@ -26,7 +26,7 @@ public:
   std::set<DTRegistroProducto *> getRegistroProductos();
   void setRegistroProducto(DTRegistroProducto*);
   Compra();
-  Compra(DTFecha, float, Cliente);
+  Compra(DTFecha*, float, Cliente*);
   ~Compra();
 };
 

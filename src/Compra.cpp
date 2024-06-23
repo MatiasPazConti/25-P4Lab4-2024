@@ -2,7 +2,7 @@
 
 DTFecha Compra::getFechaCompra()
 {
-  return fechaCompra;
+  return *fechaCompra;
 }
 float Compra::getMontoFinal()
 {
@@ -14,7 +14,7 @@ Cliente* Compra::getCliente()
 }
 void Compra::setFechaCompra(int dia,int mes,int anio)
 {
-  fechaCompra = DTFecha(dia,mes,anio);
+  fechaCompra = new DTFecha(dia,mes,anio);
 }
 void Compra::setMontoFinal(float monto)
 {
@@ -26,7 +26,6 @@ void Compra::setCliente(Cliente* c)
 }
 DTRegistroProducto *Compra::getRegistroProducto(int id) 
 {
-  if(!registroProductos.empty()){ 
     for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
     {
       if ((*it)->getId() == id)
@@ -34,21 +33,18 @@ DTRegistroProducto *Compra::getRegistroProducto(int id)
         return *it;
       }
     }
-  }
   return NULL;
 }
 void Compra::setRegistroProducto(DTRegistroProducto* reg)
 {
-  std::cout << "Error 40"<< std::endl;
   registroProductos.insert(reg);
-  std::cout << "Error 41"<< std::endl;
 }
 Compra::Compra(){}
-Compra::Compra(DTFecha fecha, float monto, Cliente c)
+Compra::Compra(DTFecha* fecha, float monto, Cliente* c)
 {
   fechaCompra = fecha;
   montoFinal = monto;
-  *cliente = c;
+  cliente = c;
 }
 Compra::~Compra(){}
 

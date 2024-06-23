@@ -18,10 +18,6 @@ DTRegistroProducto *DTCompra::getRegistroProducto(int id)
 float DTCompra::getMontoFinal(){
     return montoFinal;
 }
-void DTCompra::setCliente(DTCliente* c)
-{
-  cliente = c;
-}
 DTCliente DTCompra::getCliente()
 {
   return *cliente;
@@ -38,10 +34,10 @@ DTCompra::~DTCompra() {}
 // Sobrecarga de operador '<<'
 void DTCompra::setPrint(std::ostream &out)
 {
-  out << fechaDeCompra.toString() << ", " << montoFinal << std::endl; 
-  out << "Productos en compra" << std::endl; 
+  out << fechaDeCompra.toString() << ", " <<"$"<<montoFinal << std::endl; 
+  out << "Productos en compra:" << std::endl; 
   for(std::set<DTRegistroProducto*>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it){
-    out << (*it) << std::endl;
+    out << (*it)->getNombre() << ", " <<(*it)->getCantidad() << ", " <<"$"<<(*it)->getPrecio()  << std::endl;
   }
 }
 

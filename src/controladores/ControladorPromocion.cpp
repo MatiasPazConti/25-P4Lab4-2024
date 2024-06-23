@@ -32,7 +32,7 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
 
 void ControladorPromocion::agregarAPromo(int id, int cantMin)
 {
-  // promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
+  //promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
   infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
   dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, 0)});
 }
@@ -42,4 +42,7 @@ void ControladorPromocion::altaNuevaPromo()
   DTPromocion *dataprom = new DTPromocion(nombre, descripcion, fechaVencimiento, dtProductosPromo); // necesario?
   Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
+  for (auto it = productos.begin(); it != productos.end(); ++it){
+    (*it)->setPromocion(promo);
+  }
 }

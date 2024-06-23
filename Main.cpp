@@ -866,12 +866,12 @@ void RealizarCompra()
       int IdAgregarCompra;
       std::cout << "Escriba el codigo de producto que desea asignar a la compra" << std::endl;
       std::cin >> IdAgregarCompra;
-     // while (controladorCompra->estaEnCompra(IdAgregarCompra))
-     // {
-     //   std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
-     //   std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
-     //   std::cin >> IdAgregarCompra;
-     // };
+     while (controladorCompra->estaEnCompra(IdAgregarCompra))
+      {
+        std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
+        std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
+        std::cin >> IdAgregarCompra;
+      };
       int cantidadAgregarCompra;
       std::cout << "Escriba la cantidad del producto" << std::endl;
       std::cin >> cantidadAgregarCompra;
@@ -881,10 +881,13 @@ void RealizarCompra()
     std::cout << "2-No agregar mas productos" << std::endl;
     std::cin >> opcion;
   }
+  // Calculo de descuentos
+  std::cout << "Calcular descuentos:" << std::endl;
+  controladorCompra->calcularDescuentos();
   // Mostrar detalles compra
   DTCompra* dataCompra = controladorCompra->obtenerDatosCompra();
   std::cout << "Datos compra:" << std::endl;
-  std::cout << dataCompra << std::endl;
+  std::cout << (*dataCompra) << std::endl;
   //Confirmacion de compra
   int confirmacion;
   std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;
@@ -894,7 +897,7 @@ void RealizarCompra()
       std::cout << "Compra registrada con exito" << std::endl;
   }else{
     controladorCompra->registrarCompraExitosa(false);
-    std::cout << "Compra registrada cancelada" << std::endl;
+    std::cout << "Compra cancelada" << std::endl;
   }
 }
 

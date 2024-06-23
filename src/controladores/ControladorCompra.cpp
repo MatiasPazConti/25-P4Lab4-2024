@@ -3,11 +3,11 @@
 
 void ControladorCompra::crearCompra(std::string nickname, int dia, int mes, int anio)
 {
-	Compra compra = Compra();
-	compra.setFechaCompra(dia, mes, anio);
-	Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
-	compra.setCliente(cliente);
-	this->compraActual = &compra;
+    DTFecha *fechaCompra = new DTFecha(dia, mes, anio);
+    Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
+	float precioInicial= 0;
+    Compra *nuevaCompra = new Compra(fechaCompra, precioInicial, cliente);
+    this->compraActual = nuevaCompra;
 };
 
 void ControladorCompra::asignarCliente(std::string)
@@ -16,18 +16,18 @@ void ControladorCompra::asignarCliente(std::string)
 
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
-	DTProducto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
+	Producto *producto = Fabrica::getInterfazProducto()->getProducto(id);
 	DTRegistroProducto* registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->setRegistroProducto(registro);
-	std::cout << "Error4"<< std::endl; 
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
-	std::cout << "Error5"<< std::endl; 
 };
 
 void ControladorCompra::calcularDescuentos(){
+	std::cout <<"Error1"<< std::endl;
 	std::set<DTRegistroProducto*> productos = compraActual->getRegistroProductos();
 	for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
 		if ((*it)->getPromo() != NULL){
+			std::cout <<"Error2"<< std::endl;
 			std::map<int, InfoPromoProducto> productosPromo = (*it)->getPromo()->getInfoProductos();
 			std::set<DTRegistroProducto*> auxiliar;
 			for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
@@ -35,10 +35,13 @@ void ControladorCompra::calcularDescuentos(){
 					auxiliar.insert(*it);
 				}
 			}
+		std::cout <<"Error3"<< std::endl;
 		if(auxiliar.size() == productosPromo.size()){
+			  std::cout <<"Descuento aplicado"<< std::endl;
 			compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal()*(*it)->getPromo()->getPorcentajeDescuento());
 			break;
 		}
+		  std::cout <<"No hay descuentos disponibles"<< std::endl;
 		}
     };
 

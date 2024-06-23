@@ -47,3 +47,13 @@ std::set<DTProducto *> ControladorProducto::obtenerProductosDisponibles()
   }
   return dataProducto;
 }
+
+Producto* ControladorProducto::getProducto(int id){
+   for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+  {
+    if ((*it)->getId() == id)
+    {
+      return (*it);
+    }
+  }return NULL;
+}

@@ -23,6 +23,7 @@ public:
   DTProducto *obtenerProductoDisponible(int);
   std::set<DTProducto *> obtenerProductosDisponibles(); // falta hacerla en el cpp // agregado PD chequearlo.
   ~ControladorProducto();
+  Producto* getProducto(int);
 };
 
 #endif

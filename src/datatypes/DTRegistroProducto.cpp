@@ -18,7 +18,6 @@ float DTRegistroProducto::getPrecio(){
 Promocion* DTRegistroProducto::getPromo(){
     return promo;
 }
-DTRegistroProducto::DTRegistroProducto(){}
 
 DTRegistroProducto::DTRegistroProducto(int i, std::string n, int cant,float p, Promocion* pro)
 {
