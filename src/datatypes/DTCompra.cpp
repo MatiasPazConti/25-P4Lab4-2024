@@ -34,7 +34,18 @@ DTCompra::DTCompra(DTFecha *f, float m, std::set<DTRegistroProducto *> reg, DTCl
   registroProductos = reg;
   cliente = c;
 }
-DTCompra::~DTCompra() {}
+DTCompra::~DTCompra()
+{
+  delete fechaDeCompra;
+  while (!registroProductos.empty())
+  {
+    std::set<DTRegistroProducto *>::iterator inicio = registroProductos.begin();
+    DTRegistroProducto *aBorrar = *inicio;
+    registroProductos.erase(inicio);
+    delete aBorrar;
+    delete cliente;
+  }
+}
 // Sobrecarga de operador '<<'
 void DTCompra::setPrint(std::ostream &out)
 {
