@@ -32,6 +32,9 @@ public:
   std::set<DTVendedor *> listarSuscripciones(std::string);
   std::set<DTComentario *> listarComentariosUsuario(std::string);
   ~ControladorUsuario();
+
+  std::set<DTVendedor *> listarVendedoresSuscritos(std::string);
+  // void RegistroNuevoProducto(std::string nickVendedor, Producto *producto);
 };
 
 #endif

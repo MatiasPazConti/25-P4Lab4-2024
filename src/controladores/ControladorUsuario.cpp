@@ -113,6 +113,7 @@ std::set<DTVendedor *> ControladorUsuario::listarVendedoresNoSuscritos(std::stri
   }
   return listaNoSuscritos;
 }
+
 std::set<DTProducto *> ControladorUsuario::listarProductosVendedor(std::string nickname)
 {
   Vendedor *vendedor = getVendedor(nickname);
@@ -143,3 +144,22 @@ ControladorUsuario *ControladorUsuario::getInstancia()
   }
   return instancia;
 }
+
+std::set<DTVendedor *> ControladorUsuario::listarVendedoresSuscritos(std::string nickname)
+{
+  std::set<DTVendedor *> listaSuscritos;
+  Cliente *usuario = getCliente(nickname);
+  std::set<Vendedor *> suscripcionesUsuario = usuario->getSuscripciones();
+  for (std::set<Vendedor *>::iterator it = suscripcionesUsuario.begin(); it != suscripcionesUsuario.end(); it++)
+  {
+    DTVendedor *aInsertar = (*it)->getDataVendedor();
+    listaSuscritos.insert(aInsertar);
+  };
+  return listaSuscritos;
+}
+
+/*void ControladorUsuario::RegistroNuevoProducto(std::string nickVendedor, Producto *producto)
+{
+  Vendedor *vendedor = getVendedor(nickVendedor);
+  vendedor->añadirProducto(producto);
+}*/
