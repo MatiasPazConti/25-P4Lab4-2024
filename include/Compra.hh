@@ -24,7 +24,7 @@ public:
   void setCliente(Cliente *);
   DTRegistroProducto *getRegistroProducto(int);
   std::set<DTRegistroProducto *> getRegistroProductos();
-  void setRegistroProducto(DTRegistroProducto);
+  void setRegistroProducto(DTRegistroProducto*);
   Compra();
   Compra(DTFecha, float, Cliente);
   ~Compra();

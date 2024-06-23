@@ -12,7 +12,6 @@ private:
   Promocion* promo;
   int cantidad;
   float precio;
-  bool enviadoCorrectamente;
 
 public:
   int getId();
@@ -21,7 +20,7 @@ public:
   float getPrecio();
   Promocion* getPromo();
   DTRegistroProducto();
-  DTRegistroProducto(int, std::string, int, float, Promocion*); // id,nombre,cantidad,precio,enviadocorrectamente
+  DTRegistroProducto(int, std::string, int, float, Promocion*); // id,nombre,cantidad,precio
   ~DTRegistroProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

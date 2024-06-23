@@ -27,6 +27,6 @@ public:
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
 
-std::ostream &operator<<(std::ostream &out, DTCompra &obj); // cout DTInfoEstudian
+std::ostream &operator<<(std::ostream &out, DTCompra &obj); // cout 
 
 #endif

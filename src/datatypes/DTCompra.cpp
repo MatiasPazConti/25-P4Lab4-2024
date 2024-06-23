@@ -38,7 +38,11 @@ DTCompra::~DTCompra() {}
 // Sobrecarga de operador '<<'
 void DTCompra::setPrint(std::ostream &out)
 {
-  out << fechaDeCompra.toString() << ", " << montoFinal; // Se imprime todo??
+  out << fechaDeCompra.toString() << ", " << montoFinal << std::endl; 
+  out << "Productos en compra" << std::endl; 
+  for(std::set<DTRegistroProducto*>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it){
+    out << (*it) << std::endl;
+  }
 }
 
 std::ostream &operator<<(std::ostream &out, DTCompra &obj)

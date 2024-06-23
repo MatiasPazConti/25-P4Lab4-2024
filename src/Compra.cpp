@@ -24,20 +24,24 @@ void Compra::setCliente(Cliente* c)
 {
   cliente = c;
 }
-DTRegistroProducto *Compra::getRegistroProducto(int id)
+DTRegistroProducto *Compra::getRegistroProducto(int id) 
 {
-  for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
-  {
-    if ((*it)->getId() == id)
+  if(!registroProductos.empty()){ 
+    for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
     {
-      return *it;
+      if ((*it)->getId() == id)
+      {
+        return *it;
+      }
     }
   }
   return NULL;
 }
-void Compra::setRegistroProducto(DTRegistroProducto reg)
+void Compra::setRegistroProducto(DTRegistroProducto* reg)
 {
-  registroProductos.insert(&reg);
+  std::cout << "Error 40"<< std::endl;
+  registroProductos.insert(reg);
+  std::cout << "Error 41"<< std::endl;
 }
 Compra::Compra(){}
 Compra::Compra(DTFecha fecha, float monto, Cliente c)

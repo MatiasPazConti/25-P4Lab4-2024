@@ -195,16 +195,19 @@ void CargarDatos()
   std::string rutUS10 = "445678901234";
   controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
-  /*// PR1 - Producto 1 - US2
+  // PR1 - Producto 1 - US2
+  /*
   int idPR1 = 1;
   std::string nombrePR1 = "Camiseta Azul";
   std::string descripcionPR1 = "Camiseta de poliester, color azul";
   float precioPR1 = 1400;
   int stockPR1 = 50;
   TipoProducto tipoPR1 = TipoProducto::Ropa;
+  controladorProducto->altaNuevoProducto()
   Producto *PR1 = new Producto(idPR1, nombrePR1, descripcionPR1, precioPR1, stockPR1, tipoPR1);
   US2->addProducto(PR1);
 
+  
   // PR2 - Producto 2 - US1
   int idPR2 = 2;
   std::string nombrePR2 = "Televisor LED";
@@ -808,6 +811,75 @@ void ConsultarPromocion()
 
 void RealizarCompra()
 {
+  // seleccion de cliente
+  ListarNickClientes();
+  std::string clienteCompra;
+  std::cout << "Escriba el nickname del cliente de la compra" << std::endl;
+  std::cin >> clienteCompra;
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  while (!ExisteCliente(clienteCompra, clientes))
+  {
+    std::cout << "El cliente ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un cliente valido" << std::endl;
+    std::cin >> clienteCompra;
+  }
+  std::cout << "Ingrese fecha de hoy (dia/mes/anio)" << std::endl;
+  int dia;
+  int mes;
+  int anio;
+  std::cin >> dia;
+  std::cin >> mes;
+  std::cin >> anio;
+  controladorCompra->crearCompra(clienteCompra,dia,mes,anio);
+  //Imprimir productos
+  std::set<DTProducto*> productosDisp = controladorProducto->obtenerProductosDisponibles();
+  std::cout << "Productos disponibles:" << std::endl;
+  for (auto it = productosDisp.begin(); it != productosDisp.end(); it++)
+  {
+    int idProductos = (*it)->getId();
+    std::string nickProductos = (*it)->getNombre();
+    std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
+    std::cout << std::endl;
+  }
+  //Seleccion de productos
+  int opcion = 1;
+  while (opcion != 2)
+  {
+    if (opcion == 1)
+    {
+      int IdAgregarCompra;
+      std::cout << "Escriba el codigo de producto que desea asignar a la compra" << std::endl;
+      std::cin >> IdAgregarCompra;
+     // while (controladorCompra->estaEnCompra(IdAgregarCompra))
+     // {
+     //   std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
+     //   std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
+     //   std::cin >> IdAgregarCompra;
+     // };
+      int cantidadAgregarCompra;
+      std::cout << "Escriba la cantidad del producto" << std::endl;
+      std::cin >> cantidadAgregarCompra;
+      controladorCompra->agregarProductoACompra(IdAgregarCompra,cantidadAgregarCompra);
+    }
+    std::cout << "1-Agregar otro producto a la compra" << std::endl;
+    std::cout << "2-No agregar mas productos" << std::endl;
+    std::cin >> opcion;
+  }
+  // Mostrar detalles compra
+  DTCompra* dataCompra = controladorCompra->obtenerDatosCompra();
+  std::cout << "Datos compra:" << std::endl;
+  std::cout << dataCompra << std::endl;
+  //Confirmacion de compra
+  int confirmacion;
+  std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;
+  std::cin >> confirmacion;
+  if(confirmacion == 1){
+    controladorCompra->registrarCompraExitosa(true);
+      std::cout << "Compra registrada con exito" << std::endl;
+  }else{
+    controladorCompra->registrarCompraExitosa(false);
+    std::cout << "Compra registrada cancelada" << std::endl;
+  }
 }
 
 void DejarComentario()
