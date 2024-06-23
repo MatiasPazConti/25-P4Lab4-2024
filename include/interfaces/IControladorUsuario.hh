@@ -30,6 +30,9 @@ public:
   virtual std::set<DTNotificacion *> listarNotificaciones(std::string) = 0;
   virtual std::set<DTVendedor *> listarSuscripciones(std::string) = 0;
   virtual std::set<DTComentario *> listarComentariosUsuario(std::string) = 0;
+
+  virtual std::set<DTVendedor *> listarVendedoresSuscritos(std::string) = 0;
+  // virtual void RegistroNuevoProducto(std::string nickVendedor, Producto *producto) = 0;
 };
 
 #endif

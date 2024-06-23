@@ -17,9 +17,11 @@ void ControladorCompra::asignarCliente(std::string)
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
 	DTProducto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
-	DTRegistroProducto registro = DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
+	DTRegistroProducto* registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->setRegistroProducto(registro);
+	std::cout << "Error4"<< std::endl; 
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
+	std::cout << "Error5"<< std::endl; 
 };
 
 void ControladorCompra::calcularDescuentos(){
@@ -70,3 +72,10 @@ ControladorCompra *ControladorCompra::getInstancia()
 	}
 	return instancia;
 }
+
+bool ControladorCompra::estaEnCompra(int id){
+	if(compraActual->getRegistroProducto(id) == NULL){
+		return false;
+	}
+	return true;
+};

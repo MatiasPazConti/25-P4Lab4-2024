@@ -107,12 +107,17 @@ bool ExisteUsuario(std::string nickname) // funcion auxiliar
   return false;
 }
 
-bool EstaEnPromo(int idProducto) // funcion auxiliar // falta implementar
+bool EstaEnPromo(int idProducto) // funcion auxiliar
 {
+  DTProducto *producto = controladorProducto->obtenerProductoDisponible(idProducto);
+  if (producto->getPromocion() != NULL)
+  {
+    return true;
+  }
   return false;
 }
 
-// Carga de datos iniciales:
+// Carga de datos iniciales: // Usuarios, Productos, Promos // Falta: Compras Comentarios
 void CargarDatos()
 {
   // US1 - Usuario Uno - Vendedor
@@ -190,15 +195,15 @@ void CargarDatos()
   std::string rutUS10 = "445678901234";
   controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
-  /*// PR1 - Producto 1 - US2
+  // PR1 - Producto 1 - US2
   int idPR1 = 1;
   std::string nombrePR1 = "Camiseta Azul";
   std::string descripcionPR1 = "Camiseta de poliester, color azul";
   float precioPR1 = 1400;
   int stockPR1 = 50;
   TipoProducto tipoPR1 = TipoProducto::Ropa;
-  Producto *PR1 = new Producto(idPR1, nombrePR1, descripcionPR1, precioPR1, stockPR1, tipoPR1);
-  US2->addProducto(PR1);
+  DTVendedor *punteroVendedorPR1 = datoVendedor(nickUS2);
+  controladorProducto->registrarDatosProductos(nombrePR1, precioPR1, stockPR1, descripcionPR1, tipoPR1, punteroVendedorPR1);
 
   // PR2 - Producto 2 - US1
   int idPR2 = 2;
@@ -207,8 +212,8 @@ void CargarDatos()
   float precioPR2 = 40500;
   int stockPR2 = 30;
   TipoProducto tipoPR2 = TipoProducto::Electrodomesticos;
-  Producto *PR2 = new Producto(idPR2, nombrePR2, descripcionPR2, precioPR2, stockPR2, tipoPR2);
-  US1->addProducto(PR2);
+  DTVendedor *punteroVendedorPR2 = datoVendedor(nickUS1);
+  controladorProducto->registrarDatosProductos(nombrePR2, precioPR2, stockPR2, descripcionPR2, tipoPR2, punteroVendedorPR1);
 
   // PR3 - Producto 3 - US2
   int idPR3 = 3;
@@ -217,8 +222,8 @@ void CargarDatos()
   float precioPR3 = 699.99;
   int stockPR3 = 20;
   TipoProducto tipoPR3 = TipoProducto::Ropa;
-  Producto *PR3 = new Producto(idPR3, nombrePR3, descripcionPR3, precioPR3, stockPR3, tipoPR3);
-  US2->addProducto(PR3);
+  DTVendedor *punteroVendedorPR3 = datoVendedor(nickUS2);
+  controladorProducto->registrarDatosProductos(nombrePR3, precioPR3, stockPR3, descripcionPR3, tipoPR3, punteroVendedorPR3);
 
   // PR4 - Producto 4 - US1
   int idPR4 = 4;
@@ -227,8 +232,8 @@ void CargarDatos()
   float precioPR4 = 1199.99;
   int stockPR4 = 15;
   TipoProducto tipoPR4 = TipoProducto::Electrodomesticos;
-  Producto *PR4 = new Producto(idPR4, nombrePR4, descripcionPR4, precioPR4, stockPR4, tipoPR4);
-  US1->addProducto(PR4);
+  DTVendedor *punteroVendedorPR4 = datoVendedor(nickUS1);
+  controladorProducto->registrarDatosProductos(nombrePR4, precioPR4, stockPR4, descripcionPR4, tipoPR4, punteroVendedorPR4);
 
   // PR5 - Producto 5 - US3
   int idPR5 = 5;
@@ -237,8 +242,8 @@ void CargarDatos()
   float precioPR5 = 599.99;
   int stockPR5 = 40;
   TipoProducto tipoPR5 = TipoProducto::Otros;
-  Producto *PR5 = new Producto(idPR5, nombrePR5, descripcionPR5, precioPR5, stockPR5, tipoPR5);
-  US3->addProducto(PR5);
+  DTVendedor *punteroVendedorPR5 = datoVendedor(nickUS3);
+  controladorProducto->registrarDatosProductos(nombrePR5, precioPR5, stockPR5, descripcionPR5, tipoPR5, punteroVendedorPR5);
 
   // PR6 - Producto 6 - US2
   int idPR6 = 6;
@@ -247,8 +252,8 @@ void CargarDatos()
   float precioPR6 = 60;
   int stockPR6 = 25;
   TipoProducto tipoPR6 = TipoProducto::Ropa;
-  Producto *PR6 = new Producto(idPR6, nombrePR6, descripcionPR6, precioPR6, stockPR6, tipoPR6);
-  US2->addProducto(PR6);
+  DTVendedor *punteroVendedorPR6 = datoVendedor(nickUS2);
+  controladorProducto->registrarDatosProductos(nombrePR6, precioPR6, stockPR6, descripcionPR6, tipoPR6, punteroVendedorPR6);
 
   // PR7 - Producto 7 - US3
   int idPR7 = 7;
@@ -257,8 +262,8 @@ void CargarDatos()
   float precioPR7 = 199.99;
   int stockPR7 = 35;
   TipoProducto tipoPR7 = TipoProducto::Otros;
-  Producto *PR7 = new Producto(idPR7, nombrePR7, descripcionPR7, precioPR7, stockPR7, tipoPR7);
-  US3->addProducto(PR7);
+  DTVendedor *punteroVendedorPR7 = datoVendedor(nickUS3);
+  controladorProducto->registrarDatosProductos(nombrePR7, precioPR7, stockPR7, descripcionPR7, tipoPR7, punteroVendedorPR7);
 
   // PR8 - Producto 8 - US1
   int idPR8 = 8;
@@ -267,8 +272,8 @@ void CargarDatos()
   float precioPR8 = 15499;
   int stockPR8 = 10;
   TipoProducto tipoPR8 = TipoProducto::Electrodomesticos;
-  Producto *PR8 = new Producto(idPR8, nombrePR8, descripcionPR8, precioPR8, stockPR8, tipoPR8);
-  US1->addProducto(PR8);
+  DTVendedor *punteroVendedorPR8 = datoVendedor(nickUS1);
+  controladorProducto->registrarDatosProductos(nombrePR8, precioPR8, stockPR8, descripcionPR8, tipoPR8, punteroVendedorPR8);
 
   // PR9 - Producto 9 - US1
   int idPR9 = 9;
@@ -277,8 +282,8 @@ void CargarDatos()
   float precioPR9 = 23000;
   int stockPR9 = 50;
   TipoProducto tipoPR9 = TipoProducto::Electrodomesticos;
-  Producto *PR9 = new Producto(idPR9, nombrePR9, descripcionPR9, precioPR9, stockPR9, tipoPR9);
-  US1->addProducto(PR9);
+  DTVendedor *punteroVendedorPR9 = datoVendedor(nickUS1);
+  controladorProducto->registrarDatosProductos(nombrePR9, precioPR9, stockPR9, descripcionPR9, tipoPR9, punteroVendedorPR9);
 
   // PR10 - Producto 10 - US2
   int idPR10 = 10;
@@ -287,8 +292,8 @@ void CargarDatos()
   float precioPR10 = 5500;
   int stockPR10 = 20;
   TipoProducto tipoPR10 = TipoProducto::Ropa;
-  Producto *PR10 = new Producto(idPR10, nombrePR10, descripcionPR10, precioPR10, stockPR10, tipoPR10);
-  US2->addProducto(PR10);
+  DTVendedor *punteroVendedorPR10 = datoVendedor(nickUS2);
+  controladorProducto->registrarDatosProductos(nombrePR10, precioPR10, stockPR10, descripcionPR10, tipoPR10, punteroVendedorPR10);
 
   // PR11 - Producto 11 - US2
   int idPR11 = 11;
@@ -297,8 +302,8 @@ void CargarDatos()
   float precioPR11 = 9000;
   int stockPR11 = 30;
   TipoProducto tipoPR11 = TipoProducto::Otros;
-  Producto *PR11 = new Producto(idPR11, nombrePR11, descripcionPR11, precioPR11, stockPR11, tipoPR11);
-  US2->addProducto(PR11);
+  DTVendedor *punteroVendedorPR11 = datoVendedor(nickUS2);
+  controladorProducto->registrarDatosProductos(nombrePR11, precioPR11, stockPR11, descripcionPR11, tipoPR11, punteroVendedorPR11);
 
   // PR12 - Producto 12 - US3
   int idPR12 = 12;
@@ -307,8 +312,8 @@ void CargarDatos()
   float precioPR12 = 2534;
   int stockPR12 = 25;
   TipoProducto tipoPR12 = TipoProducto::Electrodomesticos;
-  Producto *PR12 = new Producto(idPR12, nombrePR12, descripcionPR12, precioPR12, stockPR12, tipoPR12);
-  US3->addProducto(PR12);
+  DTVendedor *punteroVendedorPR12 = datoVendedor(nickUS3);
+  controladorProducto->registrarDatosProductos(nombrePR12, precioPR12, stockPR12, descripcionPR12, tipoPR12, punteroVendedorPR12);
 
   // PR13 - Producto 13 - US10
   int idPR13 = 13;
@@ -317,8 +322,8 @@ void CargarDatos()
   float precioPR13 = 200;
   int stockPR13 = 50;
   TipoProducto tipoPR13 = TipoProducto::Ropa;
-  Producto *PR13 = new Producto(idPR13, nombrePR13, descripcionPR13, precioPR13, stockPR13, tipoPR13);
-  US10->addProducto(PR13);
+  DTVendedor *punteroVendedorPR13 = datoVendedor(nickUS10);
+  controladorProducto->registrarDatosProductos(nombrePR13, precioPR13, stockPR13, descripcionPR13, tipoPR13, punteroVendedorPR13);
 
   // PR14 - Producto 14 - US3
   int idPR14 = 14;
@@ -327,8 +332,8 @@ void CargarDatos()
   float precioPR14 = 15000;
   int stockPR14 = 15;
   TipoProducto tipoPR14 = TipoProducto::Electrodomesticos;
-  Producto *PR14 = new Producto(idPR14, nombrePR14, descripcionPR14, precioPR14, stockPR14, tipoPR14);
-  US3->addProducto(PR14);
+  DTVendedor *punteroVendedorPR14 = datoVendedor(nickUS3);
+  controladorProducto->registrarDatosProductos(nombrePR14, precioPR14, stockPR14, descripcionPR14, tipoPR14, punteroVendedorPR14);
 
   // PR15 - Producto 15 - US10
   int idPR15 = 15;
@@ -337,145 +342,164 @@ void CargarDatos()
   float precioPR15 = 150.50;
   int stockPR15 = 20;
   TipoProducto tipoPR15 = TipoProducto::Otros;
-  Producto *PR15 = new Producto(idPR15, nombrePR15, descripcionPR15, precioPR15, stockPR15, tipoPR15);
-  US10->addProducto(PR15);*/
+  DTVendedor *punteroVendedorPR15 = datoVendedor(nickUS10);
+  controladorProducto->registrarDatosProductos(nombrePR15, precioPR15, stockPR15, descripcionPR15, tipoPR15, punteroVendedorPR15);
 
   /////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
-  /////////// DTPromocion ¿? /////////////////////////////////////////////////////////////////
+  /////////// Promocion /////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
-  /*
-         // PM1 - Promocion 1
-         std::string nombrePM1 = "Casa nueva";
-         std::string descrpcionPM1 = "Para que puedas ahorrar en la casa nueva";
-         float porsentajeDescuentoPM1 = 30;
-         DTFecha vencimientoPM1 = DTFecha(21, 10, 2024);
-         // Productos relacionados Promocion 1
-         // PP1: producto: PR2, Min: 1
-         // PP2: producto: PR4, Min: 1
-         // PP3: producto: PR8, Min: 1
 
-         // PM2 - Promocion 2
-         std::string nombrePM2 = "Fiesta";
-         std::string descrpcionPM2 = "Para que no te quedes sin ropa para las fiestas";
-         float porsentajeDescuentoPM2 = 20;
-         DTFecha vencimientoPM2 = DTFecha(26, 10, 2024);
-         // Productos relacionados Promocion 2
-         // PP4: producto: PR3, Min: 2
-         // PP5: producto: PR6, Min: 3
+  // PM1 - Promocion 1
+  std::string nombrePM1 = "Casa nueva";
+  std::string descrpcionPM1 = "Para que puedas ahorrar en la casa nueva";
+  float porsentajeDescuentoPM1 = 30;
+  DTFecha vencimientoPM1 = DTFecha(21, 10, 2024);
+  controladorPromocion->registrarDatosPromo(nombrePM1, descrpcionPM1, vencimientoPM1, porsentajeDescuentoPM1);
+  controladorPromocion->asignarVendedor(nickUS1);
+  // Productos relacionados Promocion 1
+  // PP1: producto: PR2, Min: 1
+  controladorPromocion->agregarAPromo(idPR2, 1);
+  // PP2: producto: PR4, Min: 1
+  controladorPromocion->agregarAPromo(idPR4, 1);
+  // PP3: producto: PR8, Min: 1
+  controladorPromocion->agregarAPromo(idPR4, 1);
+  controladorPromocion->altaNuevaPromo();
 
-         // PM3 - Promocion 3
-         std::string nombrePM3 = "Domotica";
-         std::string descrpcionPM3 = "Para modernizar tu casa";
-         float porsentajeDescuentoPM3 = 10;
-         DTFecha vencimientoPM3 = DTFecha(26, 10, 2024);
-         // Productos relacionados Promocion 3
-         // PP6: producto: PR5, Min: 2
+  // PM2 - Promocion 2
+  std::string nombrePM2 = "Fiesta";
+  std::string descrpcionPM2 = "Para que no te quedes sin ropa para las fiestas";
+  float porsentajeDescuentoPM2 = 20;
+  DTFecha vencimientoPM2 = DTFecha(26, 10, 2024);
+  controladorPromocion->registrarDatosPromo(nombrePM2, descrpcionPM2, vencimientoPM2, porsentajeDescuentoPM2);
+  controladorPromocion->asignarVendedor(nickUS2);
+  // Productos relacionados Promocion 2
+  // PP4: producto: PR3, Min: 2
+  controladorPromocion->agregarAPromo(idPR3, 2);
+  // PP5: producto: PR6, Min: 3
+  controladorPromocion->agregarAPromo(idPR6, 3);
+  controladorPromocion->altaNuevaPromo();
 
-         // PM4 - Promocion 4
-         std::string nombrePM3 = "Liquidacion";
-         std::string descrpcionPM3 = "Hasta agotar stock";
-         float porsentajeDescuentoPM3 = 10;
-         DTFecha vencimientoPM3 = DTFecha(26, 03, 2024);
-         // Productos relacionados Promocion 3
-         // PP7: producto: PR14, Min: 1
+  // PM3 - Promocion 3
+  std::string nombrePM3 = "Domotica";
+  std::string descrpcionPM3 = "Para modernizar tu casa";
+  float porsentajeDescuentoPM3 = 10;
+  DTFecha vencimientoPM3 = DTFecha(26, 10, 2024);
+  controladorPromocion->registrarDatosPromo(nombrePM3, descrpcionPM3, vencimientoPM3, porsentajeDescuentoPM3);
+  controladorPromocion->asignarVendedor(nickUS3);
+  // Productos relacionados Promocion 3
+  // PP6: producto: PR5, Min: 2
+  controladorPromocion->agregarAPromo(idPR5, 2);
+  controladorPromocion->altaNuevaPromo();
 
-         ////////////////////////////////////////////////////////////////////////////
-         ////////  DTCompra(DTFecha, float) decha,montofinal ----------  Cliente? producto???
-         ////////    DTRegistroProducto(int,std::string,int,float,bool); //id,nombre,cantidad,precio,enviadocorrectamente
-         ////////////////////////////////////////////////////////////////////////////
+  // PM4 - Promocion 4
+  std::string nombrePM4 = "Liquidacion";
+  std::string descrpcionPM4 = "Hasta agotar stock";
+  float porsentajeDescuentoPM4 = 10;
+  DTFecha vencimientoPM4 = DTFecha(26, 03, 2024);
+  controladorPromocion->registrarDatosPromo(nombrePM4, descrpcionPM4, vencimientoPM4, porsentajeDescuentoPM4);
+  controladorPromocion->asignarVendedor(nickUS3);
+  // Productos relacionados Promocion 3
+  // PP7: producto: PR14, Min: 1
+  controladorPromocion->agregarAPromo(idPR14, 1);
+  controladorPromocion->altaNuevaPromo();
 
-         // CO1 - Compra 1
-         DTCliente clienteCO1 = US4;
-         DTFecha fechaCO1 = DTFecha(01, 05, 2024);
-         float montoCO1 = 57581.993;
-         DTPromocion promoCO1 = PM1;
-         // Productos relacionados Compra 1
-         // CP1 - Producto: PR2 - Cantidad: 2 - Enviado: Si
-         DTRegistroPrducto *primerRegistroCO1 = new DTRegistroPrducto(idPR2, nombrePR2, 2, precioPR2, true);
-         // CP2 - Producto: PR4 - Cantidad: 1 - Enviado: No
-         DTRegistroPrducto *segundoRegistroCO1 = new DTRegistroPrducto(idPR4, nombrePR4, 1, precioPR4, false);
-         // CP3 - Producto: PR8 - Cantidad: 1 - Enviado: No
-         DTRegistroPrducto *tercerRegistroCO1 = new DTRegistroPrducto(idPR8, nombrePR8, 1, precioPR8, false);
+  ////////////////////////////////////////////////////////////////////////////
+  ////////  DTCompra(DTFecha, float) decha,montofinal ----------  Cliente? producto???
+  ////////    DTRegistroProducto(int,std::string,int,float,bool); //id,nombre,cantidad,precio,enviadocorrectamente
+  ////////////////////////////////////////////////////////////////////////////
 
-         // CO2 - Compra 2
-         DTCliente clienteCO2 = US4;
-         DTFecha fechaCO2 = DTFecha(01, 05, 2024);
-         float montoCO2 = 599.99;
-         DTPromocion promoCO2 = NULL;
-         // Productos relacionados Compra 2
-         // CP4 - Producto: PR5 - Cantidad: 1 - Enviado: Si
-         DTRegistroPrducto *primerRegistroCO2 = new DTRegistroPrducto(idPR5, nombrePR5, 1, precioPR5, true);
+  /* CO1 - Compra 1
+  DTCliente clienteCO1 = US4;
+  DTFecha fechaCO1 = DTFecha(01, 05, 2024);
+  float montoCO1 = 57581.993;
+  DTPromocion promoCO1 = PM1;
+  // Productos relacionados Compra 1
+  // CP1 - Producto: PR2 - Cantidad: 2 - Enviado: Si
+  DTRegistroPrducto *primerRegistroCO1 = new DTRegistroPrducto(idPR2, nombrePR2, 2, precioPR2, true);
+  // CP2 - Producto: PR4 - Cantidad: 1 - Enviado: No
+  DTRegistroPrducto *segundoRegistroCO1 = new DTRegistroPrducto(idPR4, nombrePR4, 1, precioPR4, false);
+  // CP3 - Producto: PR8 - Cantidad: 1 - Enviado: No
+  DTRegistroPrducto *tercerRegistroCO1 = new DTRegistroPrducto(idPR8, nombrePR8, 1, precioPR8, false);
 
-         // CO2 - Compra 3
-         DTCliente clienteCO3 = US5;
-         DTFecha fechaCO3 = DTFecha(15, 05, 2024);
-         float montoCO3 = 150000;
-         DTPromocion promoCO3 = NULL;
-         // Productos relacionados Compra 3
-         // CP5 - Producto: PR14 - Cantidad: 10 - Enviado: Si
-         DTRegistroPrducto *primerRegistroCO3 = new DTRegistroPrducto(idPR14, nombrePR14, 10, precioPR14, true);
+  // CO2 - Compra 2
+  DTCliente clienteCO2 = US4;
+  DTFecha fechaCO2 = DTFecha(01, 05, 2024);
+  float montoCO2 = 599.99;
+  DTPromocion promoCO2 = NULL;
+  // Productos relacionados Compra 2
+  // CP4 - Producto: PR5 - Cantidad: 1 - Enviado: Si
+  DTRegistroPrducto *primerRegistroCO2 = new DTRegistroPrducto(idPR5, nombrePR5, 1, precioPR5, true);
 
-         // CO4 - Compra 4
-         DTCliente clienteCO4 = US7;
-         DTFecha fechaCO4 = DTFecha(25, 04, 2024);
-         float montoCO4 = 11734;
-         DTPromocion promoCO4 = NULL;
-         // Productos relacionados Compra 4
-         // CP6 - Producto: PR11 - Cantidad: 1 - Enviado: Si
-         DTRegistroPrducto *primerRegistroCO4 = new DTRegistroPrducto(idPR11, nombrePR11, 1, precioPR11, true);
-         // CP7 - Producto: PR12 - Cantidad: 1 - Enviado: Si
-         DTRegistroPrducto *segundoRegistroCO4 = new DTRegistroPrducto(idPR12, nombrePR12, 1, precioPR12, true);
-         // CP8 - Producto: PR13 - Cantidad: 1 - Enviado: Si
-         DTRegistroPrducto *tercerRegistroCO4 = new DTRegistroPrducto(idPR13, nombrePR13, 1, precioPR13, true);
+  // CO2 - Compra 3
+  DTCliente clienteCO3 = US5;
+  DTFecha fechaCO3 = DTFecha(15, 05, 2024);
+  float montoCO3 = 150000;
+  DTPromocion promoCO3 = NULL;
+  // Productos relacionados Compra 3
+  // CP5 - Producto: PR14 - Cantidad: 10 - Enviado: Si
+  DTRegistroPrducto *primerRegistroCO3 = new DTRegistroPrducto(idPR14, nombrePR14, 10, precioPR14, true);
 
-         // CO5 - Compra 5
-         DTCliente clienteCO5 = US4;
-         DTFecha fechaCO5 = DTFecha(20, 05, 2024);
-         float montoCO5 = 1263.984;
-         DTPromocion promoCO5 = PM2;
-         // Productos relacionados Compra 5
-         // CP8 - Producto: PR3 - Cantidad: 2 - Enviado: No
-         DTRegistroPrducto *primerRegistroCO5 = new DTRegistroPrducto(idPR3, nombrePR3, 2, precioPR3, false);
-         // CP8 - Producto: PR6 - Cantidad: 3 - Enviado: Si
-         DTRegistroPrducto *segundoRegistroCO5 = new DTRegistroPrducto(idPR6, nombrePR6, 3, precioPR6, true);
+  // CO4 - Compra 4
+  DTCliente clienteCO4 = US7;
+  DTFecha fechaCO4 = DTFecha(25, 04, 2024);
+  float montoCO4 = 11734;
+  DTPromocion promoCO4 = NULL;
+  // Productos relacionados Compra 4
+  // CP6 - Producto: PR11 - Cantidad: 1 - Enviado: Si
+  DTRegistroPrducto *primerRegistroCO4 = new DTRegistroPrducto(idPR11, nombrePR11, 1, precioPR11, true);
+  // CP7 - Producto: PR12 - Cantidad: 1 - Enviado: Si
+  DTRegistroPrducto *segundoRegistroCO4 = new DTRegistroPrducto(idPR12, nombrePR12, 1, precioPR12, true);
+  // CP8 - Producto: PR13 - Cantidad: 1 - Enviado: Si
+  DTRegistroPrducto *tercerRegistroCO4 = new DTRegistroPrducto(idPR13, nombrePR13, 1, precioPR13, true);
 
-         // CO6 - Compra 6
-         DTCliente clienteCO6 = US5;
-         DTFecha fechaCO6 = DTFecha(12, 05, 2024);
-         float montoCO6 = 2800;
-         DTPromocion promoCO6 = NULL;
-         // Productos relacionados Compra 6
-         // CP9 - Producto: PR1 - Cantidad: 2 - Enviado: No
-         DTRegistroPrducto *primerRegistroCO6 = new DTRegistroPrducto(idPR1, nombrePR1, 2, precioPR1, false);
+  // CO5 - Compra 5
+  DTCliente clienteCO5 = US4;
+  DTFecha fechaCO5 = DTFecha(20, 05, 2024);
+  float montoCO5 = 1263.984;
+  DTPromocion promoCO5 = PM2;
+  // Productos relacionados Compra 5
+  // CP8 - Producto: PR3 - Cantidad: 2 - Enviado: No
+  DTRegistroPrducto *primerRegistroCO5 = new DTRegistroPrducto(idPR3, nombrePR3, 2, precioPR3, false);
+  // CP8 - Producto: PR6 - Cantidad: 3 - Enviado: Si
+  DTRegistroPrducto *segundoRegistroCO5 = new DTRegistroPrducto(idPR6, nombrePR6, 3, precioPR6, true);
 
-         // CO7 - Compra 7
-         DTCliente clienteCO7 = US7;
-         DTFecha fechaCO7 = DTFecha(12, 05, 2024);
-         float montoCO7 = 4200;
-         DTPromocion promoCO7 = NULL;
-         // Productos relacionados Compra 7
-         // CP10 - Producto: PR1 - Cantidad: 3 - Enviado: Si
-         DTRegistroPrducto *primerRegistroCO7 = new DTRegistroPrducto(idPR1, nombrePR1, 3, precioPR1, true);
+  // CO6 - Compra 6
+  DTCliente clienteCO6 = US5;
+  DTFecha fechaCO6 = DTFecha(12, 05, 2024);
+  float montoCO6 = 2800;
+  DTPromocion promoCO6 = NULL;
+  // Productos relacionados Compra 6
+  // CP9 - Producto: PR1 - Cantidad: 2 - Enviado: No
+  DTRegistroPrducto *primerRegistroCO6 = new DTRegistroPrducto(idPR1, nombrePR1, 2, precioPR1, false);
 
-         // CO8 - Compra 8
-         DTCliente clienteCO8 = US8;
-         DTFecha fechaCO8 = DTFecha(14, 05, 2024);
-         float montoCO8 = 5600;
-         DTPromocion promoCO8 = NULL;
-         // Productos relacionados Compra 8
-         // CP11 - Producto: PR1 - Cantidad: 4 - Enviado: No
-         DTRegistroPrducto *primerRegistroCO8 = new DTRegistroPrducto(idPR1, nombrePR1, 4, precioPR1, false);
+  // CO7 - Compra 7
+  DTCliente clienteCO7 = US7;
+  DTFecha fechaCO7 = DTFecha(12, 05, 2024);
+  float montoCO7 = 4200;
+  DTPromocion promoCO7 = NULL;
+  // Productos relacionados Compra 7
+  // CP10 - Producto: PR1 - Cantidad: 3 - Enviado: Si
+  DTRegistroPrducto *primerRegistroCO7 = new DTRegistroPrducto(idPR1, nombrePR1, 3, precioPR1, true);
 
-         // CO9 - Compra 9
-         DTCliente clienteCO9 = US9;
-         DTFecha fechaCO9 = DTFecha(15, 05, 2024);
-         float montoCO9 = 7000;
-         DTPromocion promoCO8 = NULL;
-         // Productos relacionados Compra 9
-         // CP12 - Producto: PR1 - Cantidad: 5 - Enviado: No
-         DTRegistroPrducto *primerRegistroCO9 = new DTRegistroPrducto(idPR1, nombrePR1, 5, precioPR1, false);
-         */
+  // CO8 - Compra 8
+  DTCliente clienteCO8 = US8;
+  DTFecha fechaCO8 = DTFecha(14, 05, 2024);
+  float montoCO8 = 5600;
+  DTPromocion promoCO8 = NULL;
+  // Productos relacionados Compra 8
+  // CP11 - Producto: PR1 - Cantidad: 4 - Enviado: No
+  DTRegistroPrducto *primerRegistroCO8 = new DTRegistroPrducto(idPR1, nombrePR1, 4, precioPR1, false);
+
+  // CO9 - Compra 9
+  DTCliente clienteCO9 = US9;
+  DTFecha fechaCO9 = DTFecha(15, 05, 2024);
+  float montoCO9 = 7000;
+  DTPromocion promoCO8 = NULL;
+  // Productos relacionados Compra 9
+  // CP12 - Producto: PR1 - Cantidad: 5 - Enviado: No
+  DTRegistroPrducto *primerRegistroCO9 = new DTRegistroPrducto(idPR1, nombrePR1, 5, precioPR1, false);
+  */
 
   // std::cout << US1->GetNickname() << std::endl;
   std::cout << "Los datos iniciales fueron cargados." << std::endl;
@@ -639,7 +663,7 @@ void ListarUsuarios() // Implementado //
   }
 }
 
-void AltaDeProducto() // Implementado //
+void AltaDeProducto() // Implementado // falta asignarle el producto al vendedor
 {
   std::string nickVendedor;
   std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
@@ -716,7 +740,7 @@ void ConsultarUnProducto() // Implementado //
   std::cout << std::endl;
 }
 
-void CrearPromocion() // incompleto // agregar "EstaEnPromo"
+void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
 {
   // ingreso de datos de la promo
   std::string nombrePromo;
@@ -848,6 +872,75 @@ void ConsultarPromocion()
 
 void RealizarCompra()
 {
+  // seleccion de cliente
+  ListarNickClientes();
+  std::string clienteCompra;
+  std::cout << "Escriba el nickname del cliente de la compra" << std::endl;
+  std::cin >> clienteCompra;
+  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
+  while (!ExisteCliente(clienteCompra, clientes))
+  {
+    std::cout << "El cliente ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un cliente valido" << std::endl;
+    std::cin >> clienteCompra;
+  }
+  std::cout << "Ingrese fecha de hoy (dia/mes/anio)" << std::endl;
+  int dia;
+  int mes;
+  int anio;
+  std::cin >> dia;
+  std::cin >> mes;
+  std::cin >> anio;
+  controladorCompra->crearCompra(clienteCompra,dia,mes,anio);
+  //Imprimir productos
+  std::set<DTProducto*> productosDisp = controladorProducto->obtenerProductosDisponibles();
+  std::cout << "Productos disponibles:" << std::endl;
+  for (auto it = productosDisp.begin(); it != productosDisp.end(); it++)
+  {
+    int idProductos = (*it)->getId();
+    std::string nickProductos = (*it)->getNombre();
+    std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
+    std::cout << std::endl;
+  }
+  //Seleccion de productos
+  int opcion = 1;
+  while (opcion != 2)
+  {
+    if (opcion == 1)
+    {
+      int IdAgregarCompra;
+      std::cout << "Escriba el codigo de producto que desea asignar a la compra" << std::endl;
+      std::cin >> IdAgregarCompra;
+     // while (controladorCompra->estaEnCompra(IdAgregarCompra))
+     // {
+     //   std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
+     //   std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
+     //   std::cin >> IdAgregarCompra;
+     // };
+      int cantidadAgregarCompra;
+      std::cout << "Escriba la cantidad del producto" << std::endl;
+      std::cin >> cantidadAgregarCompra;
+      controladorCompra->agregarProductoACompra(IdAgregarCompra,cantidadAgregarCompra);
+    }
+    std::cout << "1-Agregar otro producto a la compra" << std::endl;
+    std::cout << "2-No agregar mas productos" << std::endl;
+    std::cin >> opcion;
+  }
+  // Mostrar detalles compra
+  DTCompra* dataCompra = controladorCompra->obtenerDatosCompra();
+  std::cout << "Datos compra:" << std::endl;
+  std::cout << dataCompra << std::endl;
+  //Confirmacion de compra
+  int confirmacion;
+  std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;
+  std::cin >> confirmacion;
+  if(confirmacion == 1){
+    controladorCompra->registrarCompraExitosa(true);
+      std::cout << "Compra registrada con exito" << std::endl;
+  }else{
+    controladorCompra->registrarCompraExitosa(false);
+    std::cout << "Compra registrada cancelada" << std::endl;
+  }
 }
 
 void DejarComentario()
@@ -973,7 +1066,7 @@ void ConsultaNotificacion() // incompleto // falta obtener string de nombre de l
   // controladorUsuario->eliminarNotificaciones(nickCliente, nickVendedores);
 }
 
-void EliminarSuscripcion() // incompleto // falta: "ListarVendedoresSuscripto"
+void EliminarSuscripcion() // Implementado
 {
   ListarNickClientes();
   std::string nickCliente;
@@ -986,7 +1079,7 @@ void EliminarSuscripcion() // incompleto // falta: "ListarVendedoresSuscripto"
     std::cout << "Porfavor ingrese un cliente valido" << std::endl;
     std::cin >> nickCliente;
   }
-  /*std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->ListarVendedoresSuscripto(nickCliente);
+  std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->listarVendedoresSuscritos(nickCliente);
   ListarNickVendedores(vendedoresSuscripto);
   std::string vendedor;
   std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
@@ -997,7 +1090,7 @@ void EliminarSuscripcion() // incompleto // falta: "ListarVendedoresSuscripto"
   {
     if (opcion == 1)
     {
-      std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->ListarVendedoresSuscripto(nickCliente);
+      std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->listarVendedoresSuscritos(nickCliente);
       ListarNickVendedores(vendedoresSuscripto);
       std::string vendedor;
       std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
@@ -1008,13 +1101,13 @@ void EliminarSuscripcion() // incompleto // falta: "ListarVendedoresSuscripto"
         std::cin >> vendedor;
       };
       nickVendedores.insert(vendedor);
-      controladorUsuario->eliminarSuscripciones(nickCliente,nickVendedores);
+      controladorUsuario->eliminarSuscripciones(nickCliente, nickVendedores);
       nickVendedores.erase(vendedor);
     }
     std::cout << "1-Eliminar otra suscripcion" << std::endl
               << "2-Salir de eliminar suscripciones" << std::endl;
     std::cin >> opcion;
-  }*/
+  }
 }
 
 int main()
@@ -1024,20 +1117,20 @@ int main()
     int input = 0;
     std::cout << "Menu de Opciones" << std::endl
               << "1-Cargar datos iniciales" << std::endl
-              << "2-Registrar nuevo usuario" << std::endl       // Implementado
-              << "3-Listado de usuarios exitentes" << std::endl // Implementado
-              << "4-Alta de producto" << std::endl              // Implementado
-              << "5-Consultar un producto" << std::endl         // Implementado
-              << "6-Crear una nueva promocion" << std::endl     // incompleto
+              << "2-Registrar nuevo usuario" << std::endl
+              << "3-Listado de usuarios exitentes" << std::endl
+              << "4-Alta de producto" << std::endl
+              << "5-Consultar un producto" << std::endl
+              << "6-Crear una nueva promocion" << std::endl
               << "7-Consultar una promocion" << std::endl
               << "8-Realizar una compra" << std::endl
               << "9-Dejar un comentario" << std::endl
               << "10-Eliminar un comentario" << std::endl
               << "11-Enviar un producto" << std::endl
               << "12-Expediente de usuario" << std::endl
-              << "13-Suscribirse a notificacion" << std::endl // Implementado
-              << "14-Consulta de notificaciones" << std::endl // incompleto
-              << "15-Eliminar suscripcion" << std::endl       // incompleto
+              << "13-Suscribirse a notificacion" << std::endl
+              << "14-Consulta de notificaciones" << std::endl
+              << "15-Eliminar suscripcion" << std::endl
               << "16-Salir" << std::endl;
     std::cin >> input;
     switch (input)

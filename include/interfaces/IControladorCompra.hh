@@ -20,6 +20,8 @@ public:
   virtual void agregarProductoACompra(int, int) = 0;
   virtual DTCompra *obtenerDatosCompra() = 0;
   virtual void registrarCompraExitosa(bool) = 0;
+  virtual bool estaEnCompra(int) = 0;
+
 };
 
 #endif

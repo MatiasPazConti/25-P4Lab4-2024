@@ -48,3 +48,15 @@ Promocion *DTProducto::getPromocion()
 {
   return promo;
 }
+
+// Sobrecarga de operador '<<'
+void DTProducto::setPrint(std::ostream &out)
+{
+  out << id << ", " << nombre;
+}
+
+std::ostream &operator<<(std::ostream &out, DTProducto &obj)
+{
+  obj.setPrint(out);
+  return out;
+}

@@ -26,6 +26,7 @@ public:
     void registrarCompraExitosa(bool b);
     void calcularDescuentos();
     ~ControladorCompra();
+    bool estaEnCompra(int);
 };
 
 #endif

@@ -30,6 +30,8 @@ public:
   DTProducto();
   DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *);
   ~DTProducto();
+  void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
+std::ostream &operator<<(std::ostream &out, DTProducto &obj); // cout Producto
 
 #endif
