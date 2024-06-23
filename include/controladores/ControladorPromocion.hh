@@ -32,6 +32,7 @@ private:
 public:
   static ControladorPromocion *getInstancia();
   ~ControladorPromocion();
+  std::map<std::string, Promocion *> obtenerPromocionesVigentes();
   void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento, float porcentaje);
   void asignarVendedor(std::string nombre);
   void agregarAPromo(int id, int cantMin);

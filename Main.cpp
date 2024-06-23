@@ -721,6 +721,11 @@ void CrearPromocion() // incompleto
   // terminado esto, se da el alta sin confirmar.
 }
 
+/*void ConsultarPromocion()
+{
+  std::set<Promocion *> promociones = controladorPromocion->
+}*/
+
 int main()
 {
   while (true)

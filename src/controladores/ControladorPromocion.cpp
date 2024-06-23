@@ -1,5 +1,10 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 
+std::map<std::string, Promocion *> ControladorPromocion::obtenerPromocionesVigentes()
+{
+  return promociones;
+}
+
 void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f, float porcentaje)
 {
   if (promociones.count(n) == 0)
