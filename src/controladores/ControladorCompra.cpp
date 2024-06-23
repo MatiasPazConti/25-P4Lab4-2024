@@ -68,7 +68,17 @@ void ControladorCompra::calcularDescuentos()
 	};
 }
 ControladorCompra::ControladorCompra() {}
-ControladorCompra::~ControladorCompra() {}
+ControladorCompra::~ControladorCompra()
+{
+	delete compraActual;
+	while (!comprasExitosas.empty())
+	{
+		std::set<Compra *>::iterator inicio = comprasExitosas.begin();
+		Compra *aBorrar = *inicio;
+		comprasExitosas.erase(inicio);
+		delete aBorrar;
+	}
+}
 ControladorCompra *ControladorCompra::instancia = NULL;
 ControladorCompra *ControladorCompra::getInstancia()
 {
