@@ -1,6 +1,6 @@
 #include "../include/InfoPromoProducto.hh"
 
-int InfoPromoProducto::getCantidadMinima() 
+int InfoPromoProducto::getCantidadMinima()
 {
     return cantidadMinima;
 }
@@ -9,7 +9,7 @@ void InfoPromoProducto::setCantidadMinima(int nuevaCantidadMinima)
 {
     cantidadMinima = nuevaCantidadMinima;
 }
-int InfoPromoProducto::getId() 
+int InfoPromoProducto::getId()
 {
     return id;
 }
@@ -18,11 +18,11 @@ void InfoPromoProducto::setId(int i)
 {
     id = i;
 }
-InfoPromoProducto::InfoPromoProducto(){}
+InfoPromoProducto::InfoPromoProducto() {}
 
-InfoPromoProducto::InfoPromoProducto(int c, int i)
+InfoPromoProducto::InfoPromoProducto(int id, int cant)
 {
-    cantidadMinima = c;
-    id = i;
+    this->id = id;
+    this->cantidadMinima = cant;
 }
-InfoPromoProducto::~InfoPromoProducto(){}
+InfoPromoProducto::~InfoPromoProducto() {}

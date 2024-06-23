@@ -21,10 +21,10 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
   vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickname);
 }
 
-void ControladorPromocion::agregarAPromo(int id, int cantMin)
+void ControladorPromocion::agregarAPromo(int id, int cantMin) // ver si prod ya esta en una promo?
 {
   productos.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(cantMin)});
+  infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
 }
 
 void ControladorPromocion::altaNuevaPromo()

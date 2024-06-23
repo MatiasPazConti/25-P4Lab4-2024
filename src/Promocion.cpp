@@ -57,6 +57,11 @@ InfoPromoProducto *Promocion::getInfoProducto(int id)
     return NULL;
 }
 
+float Promocion::getPorcentajeDescuento()
+{
+    return porcentajeDescuento;
+}
+
 void Promocion::setNombre(std::string n)
 {
     nombre = n;
@@ -96,7 +101,6 @@ DTPromocion *Promocion::getDataPromocion()
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
         int cantMin = (infoProductos[(*it)->getId()]).getCantidadMinima();
-        // float porcentajeDesc = (infoProductos[(*it)->getId()]).getPorcentajeDescuento();
         dataProductosPromo.insert({(*it)->getId(), DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin)});
     }
     DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, porcentajeDescuento, dataProductosPromo);

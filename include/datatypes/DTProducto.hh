@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include "../TipoProducto.hh"
-#include "DTVendedor.hh"
-#include "../Promocion.hh"
 
 class Promocion;
 class DTVendedor;
@@ -17,8 +15,8 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
-  DTVendedor* vendedor;
-  Promocion* promo;
+  DTVendedor *vendedor;
+  Promocion *promo;
 
 public:
   int getId();
@@ -27,10 +25,10 @@ public:
   float getPrecio();
   int getCantidadEnStock();
   TipoProducto getTipoProducto();
-  DTVendedor* getVendedor();
-  Promocion* getPromocion();
+  DTVendedor *getVendedor();
+  Promocion *getPromocion();
   DTProducto();
-  DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor*, Promocion*);
+  DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *);
   ~DTProducto();
 };
 

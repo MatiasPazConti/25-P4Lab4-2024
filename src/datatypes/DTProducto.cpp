@@ -1,28 +1,38 @@
 #include "../../include/datatypes/DTProducto.hh"
+#include "../../include/Promocion.hh"
+#include "../../include/datatypes/DTVendedor.hh"
 
-int DTProducto::getId(){
+int DTProducto::getId()
+{
   return id;
 }
-std::string DTProducto::getNombre(){
+std::string DTProducto::getNombre()
+{
   return nombre;
 }
-std::string DTProducto::getDescripcion(){
+std::string DTProducto::getDescripcion()
+{
   return descripcion;
 }
-float DTProducto::getPrecio(){
+float DTProducto::getPrecio()
+{
   return precio;
 }
-int DTProducto::getCantidadEnStock(){
+int DTProducto::getCantidadEnStock()
+{
   return cantidadEnStock;
 }
-TipoProducto DTProducto::getTipoProducto(){
+TipoProducto DTProducto::getTipoProducto()
+{
   return tipo;
 }
-DTVendedor* DTProducto::getVendedor(){
+DTVendedor *DTProducto::getVendedor()
+{
   return vendedor;
 }
-DTProducto::DTProducto(){}
-DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,TipoProducto t,DTVendedor* vend, Promocion* prom){
+DTProducto::DTProducto() {}
+DTProducto::DTProducto(int i, std::string n, std::string d, float p, int cant, TipoProducto t, DTVendedor *vend)
+{
   id = i;
   nombre = n;
   descripcion = d;
@@ -30,9 +40,11 @@ DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,Tip
   cantidadEnStock = cant;
   tipo = t;
   vendedor = vend;
-  promo = prom;
+  promo = NULL;
 }
 DTProducto::~DTProducto(){};
-Promocion* Producto::getPromocion(){
+
+Promocion *DTProducto::getPromocion()
+{
   return promo;
 }

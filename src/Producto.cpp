@@ -53,14 +53,17 @@ DTProducto *Producto::getDataProducto()
   DTProducto *dataProducto = new DTProducto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
   return dataProducto;
 }
-DTVendedor* Producto::getVendedor(){
+DTVendedor *Producto::getVendedor()
+{
   return vendedor;
 }
-void Producto::setVendedor(DTVendedor* v){
-    vendedor = v;
+
+void Producto::setVendedor(DTVendedor *v)
+{
+  vendedor = v;
 }
 Producto::Producto() {}
-Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoProducto t , DTVendedor* v)
+Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoProducto t, DTVendedor *v)
 {
   id = i;
   nombre = n;
@@ -84,9 +87,11 @@ std::ostream &operator<<(std::ostream &out, Producto &obj)
   obj.setPrint(out);
   return out;
 }
-Promocion* Producto::getPromocion(){
+Promocion *Producto::getPromocion()
+{
   return promo;
 }
-void Producto::setPromocion(Promocion* p){
+void Producto::setPromocion(Promocion *p)
+{
   promo = p;
 }
