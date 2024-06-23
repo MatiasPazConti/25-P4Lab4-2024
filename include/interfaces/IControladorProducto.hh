@@ -18,6 +18,7 @@ public:
   virtual void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo) = 0;
   virtual void altaNuevoProducto() = 0;
   virtual DTProducto *obtenerProductoDisponible(int) = 0;
+  virtual Producto *getProducto(int) = 0;
   virtual std::set<DTProducto *> obtenerProductosDisponibles() = 0;
 };
 

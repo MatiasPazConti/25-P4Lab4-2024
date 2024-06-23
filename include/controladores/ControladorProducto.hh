@@ -21,6 +21,7 @@ public:
   void registrarDatosProductos(std::string nombre, int precio, int cant, std::string des, TipoProducto tipo);
   void altaNuevoProducto();
   DTProducto *obtenerProductoDisponible(int);
+  Producto *getProducto(int);                           // usada en agregarAPromo en ControladorPromocion
   std::set<DTProducto *> obtenerProductosDisponibles(); // falta hacerla en el cpp // agregado PD chequearlo.
   ~ControladorProducto();
 };

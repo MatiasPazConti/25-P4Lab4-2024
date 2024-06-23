@@ -17,7 +17,7 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
 
 void ControladorPromocion::agregarAPromo(int id, int cantMin, float porcentajeDescuento)
 {
-  productos.insert(Fabrica::getInterfazProducto()->obtenerProductoDisponible(id)); // como obtengo objeto producto a partir de id
+  productos.insert(Fabrica::getInterfazProducto()->getProducto(id));
   infoProductos.insert({id, InfoPromoProducto(cantMin, porcentajeDescuento)});
   // dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
 }
