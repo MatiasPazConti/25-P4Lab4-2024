@@ -18,13 +18,21 @@ int DTProducto::getCantidadEnStock(){
 TipoProducto DTProducto::getTipoProducto(){
   return tipo;
 }
+DTVendedor* DTProducto::getVendedor(){
+  return vendedor;
+}
 DTProducto::DTProducto(){}
-DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,TipoProducto t){
+DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,TipoProducto t,DTVendedor* vend, Promocion* prom){
   id = i;
   nombre = n;
   descripcion = d;
   precio = p;
   cantidadEnStock = cant;
   tipo = t;
+  vendedor = vend;
+  promo = prom;
 }
 DTProducto::~DTProducto(){};
+Promocion* Producto::getPromocion(){
+  return promo;
+}

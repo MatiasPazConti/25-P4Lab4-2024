@@ -5,26 +5,24 @@ int InfoPromoProducto::getCantidadMinima()
     return cantidadMinima;
 }
 
-float InfoPromoProducto::getPorcentajeDescuento()
-{
-    return porcentajeDescuento;
-}
-
 void InfoPromoProducto::setCantidadMinima(int nuevaCantidadMinima)
 {
     cantidadMinima = nuevaCantidadMinima;
 }
-
-void InfoPromoProducto::setPorcentajeDescuento(float nuevoPorcentajeDescuento)
+int InfoPromoProducto::getId() 
 {
-    porcentajeDescuento = nuevoPorcentajeDescuento;
+    return id;
 }
 
+void InfoPromoProducto::setId(int i)
+{
+    id = i;
+}
 InfoPromoProducto::InfoPromoProducto(){}
 
-InfoPromoProducto::InfoPromoProducto(int c, float d)
+InfoPromoProducto::InfoPromoProducto(int c, int i)
 {
     cantidadMinima = c;
-    porcentajeDescuento = d;
+    id = i;
 }
 InfoPromoProducto::~InfoPromoProducto(){}

@@ -17,11 +17,30 @@ void ControladorCompra::asignarCliente(std::string)
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
 	DTProducto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
-	DTRegistroProducto registro = DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio());
+	DTRegistroProducto registro = DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->setRegistroProducto(registro);
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
 };
 
+void ControladorCompra::calcularDescuentos(){
+	std::set<DTRegistroProducto*> productos = compraActual->getRegistroProductos();
+	for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
+		if ((*it)->getPromo() != NULL){
+			std::map<int, InfoPromoProducto> productosPromo = (*it)->getPromo()->getInfoProductos();
+			std::set<DTRegistroProducto*> auxiliar;
+			for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
+				if(productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad()){
+					auxiliar.insert(*it);
+				}
+			}
+		if(auxiliar.size() == productosPromo.size()){
+			compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal()*(*it)->getPromo()->getPorcentajeDescuento());
+			break;
+		}
+		}
+    };
+
+}
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
 	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();

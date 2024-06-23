@@ -14,16 +14,18 @@ private:
     std::string nombre;
     std::string descripcion;
     DTFecha fechaVencimiento;
+    float porcentajeDescuento;
     std::map<int, DTProductoPromo> productos;
 
 public:
     std::string getNombre();
     std::string getDescripcion();
     DTFecha getFechaVencimiento();
+    float getPorcentajeDescuento();
     std::map<int, DTProductoPromo> getProductos();
     DTProductoPromo getProducto(int id);
     DTPromocion();
-    DTPromocion(std::string, std::string, DTFecha, std::map<int, DTProductoPromo>);
+    DTPromocion(std::string, std::string, DTFecha, float, std::map<int, DTProductoPromo>);
     ~DTPromocion();
 };
 

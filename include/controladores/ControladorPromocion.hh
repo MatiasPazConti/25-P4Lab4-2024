@@ -15,21 +15,26 @@
 class ControladorPromocion : public IControladorPromocion
 {
 private:
+  static ControladorPromocion *instancia;
+  ControladorPromocion();
   std::string nombre;
   std::string descripcion;
   DTFecha fechaVencimiento;
+  float porcentajeDescuento;
   Vendedor *vendedor;                             // vendedor asigando a la promo
   std::set<Producto *> productos;                 // productos de la promo
   std::map<int, InfoPromoProducto> infoProductos; // info promo productos identificado por id
-  // std::map<int, DTProductoPromo> dtProductosPromo; // data producto promo identificado por id
+  // std::map<int, DTProductoPromo> dtProductosPromo;  data producto promo identificado por id
   std::map<std::string, Promocion *> promociones; // promociones identificadas por nombre
   static ControladorPromocion *instancia;
   ControladorPromocion();
 
 public:
-  void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento);
+  static ControladorPromocion *getInstancia();
+  ~ControladorPromocion();
+  void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento, float porcentaje);
   void asignarVendedor(std::string nombre);
-  void agregarAPromo(int id, int cantMin, float porcentajeDescuento);
+  void agregarAPromo(int id, int cantMin);
   void altaNuevaPromo();
   static ControladorPromocion *getInstancia();
   ~ControladorPromocion();

@@ -15,19 +15,18 @@ int DTProductoPromo::getCantidadMinima()
     return cantidadMinima;
 }
 
-float DTProductoPromo::getPorcentajeDescuento()
+/*float DTProductoPromo::getPorcentajeDescuento()
 {
     return porcentajeDescuento;
-}
+}*/
 
-DTProductoPromo::DTProductoPromo(){}
+DTProductoPromo::DTProductoPromo() {}
 
-DTProductoPromo::DTProductoPromo(int i, std::string n, int c, float d)
+DTProductoPromo::DTProductoPromo(int i, std::string n, int c /*, float d*/)
 {
     id = i;
     nombre = n;
     cantidadMinima = c;
-    porcentajeDescuento = d;
-
+    // porcentajeDescuento = d;
 }
-DTProductoPromo::~DTProductoPromo(){}
+DTProductoPromo::~DTProductoPromo() {}

@@ -15,15 +15,18 @@ int DTRegistroProducto::getCantidad()
 float DTRegistroProducto::getPrecio(){
     return precio;
 }
-
+Promocion* DTRegistroProducto::getPromo(){
+    return promo;
+}
 DTRegistroProducto::DTRegistroProducto(){}
 
-DTRegistroProducto::DTRegistroProducto(int i, std::string n, int cant,float p)
+DTRegistroProducto::DTRegistroProducto(int i, std::string n, int cant,float p, Promocion* pro)
 {
   id = i;
   nombre = n;
   cantidad = cant;
   precio = p;
+  promo = pro;
 }
 DTRegistroProducto::~DTRegistroProducto() {}
 // Sobrecarga de operador '<<'

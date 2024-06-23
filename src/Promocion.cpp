@@ -14,7 +14,10 @@ DTFecha Promocion::getFechaDeVencimiento()
 {
     return fechaDeVencimiento;
 }
-
+float Promocion::getPorcentajeDescuento()
+{
+    return porcentajeDescuento;
+}
 Vendedor *Promocion::getVendedor()
 {
     return vendedor;
@@ -68,7 +71,10 @@ void Promocion::setFechaDeVencimiento(DTFecha f)
 {
     fechaDeVencimiento = f;
 }
-
+void Promocion::setPorcentajeDescuento(float pd)
+{
+    porcentajeDescuento = pd;
+}
 void Promocion::setVendedor(Vendedor *v)
 {
     vendedor = v;
@@ -90,10 +96,10 @@ DTPromocion *Promocion::getDataPromocion()
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
         int cantMin = (infoProductos[(*it)->getId()]).getCantidadMinima();
-        float porcentajeDesc = (infoProductos[(*it)->getId()]).getPorcentajeDescuento();
-        dataProductosPromo.insert({(*it)->getId(), DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin, porcentajeDesc)});
+        // float porcentajeDesc = (infoProductos[(*it)->getId()]).getPorcentajeDescuento();
+        dataProductosPromo.insert({(*it)->getId(), DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin)});
     }
-    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, dataProductosPromo);
+    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, porcentajeDescuento, dataProductosPromo);
     return dataPromocion;
 }
 
@@ -101,26 +107,29 @@ Promocion::Promocion()
 {
 }
 
-Promocion::Promocion(std::string n, std::string d, DTFecha f)
+Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd)
 {
     nombre = n;
     descripcion = d;
     fechaDeVencimiento = f;
+    porcentajeDescuento = pd;
 }
 
-Promocion::Promocion(std::string n, std::string d, DTFecha f, Vendedor *v)
+Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v)
 {
     nombre = n;
     descripcion = d;
     fechaDeVencimiento = f;
+    porcentajeDescuento = pd;
     vendedor = v;
 }
 
-Promocion::Promocion(std::string n, std::string d, DTFecha f, Vendedor *v, std::set<Producto *> p, std::map<int, InfoPromoProducto> pi)
+Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v, std::set<Producto *> p, std::map<int, InfoPromoProducto> pi)
 {
     nombre = n;
     descripcion = d;
     fechaDeVencimiento = f;
+    porcentajeDescuento = pd;
     vendedor = v;
     productos = p;
     infoProductos = pi;

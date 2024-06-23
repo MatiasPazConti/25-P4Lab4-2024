@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "files.associations": {
@@ -52,6 +53,8 @@
     }
 }
 =======
+=======
+>>>>>>> 620b82452399c599a3d94ba53f3b6a425cc6714b
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.associations": {
@@ -122,5 +125,9 @@
     "string_view": "cpp",
     "numbers": "cpp"
   }
+<<<<<<< HEAD
 }
 >>>>>>> 8aa952cdd555992516b32c6c9f3322bc6743e79b
+=======
+}
+>>>>>>> 620b82452399c599a3d94ba53f3b6a425cc6714b
