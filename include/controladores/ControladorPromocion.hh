@@ -20,6 +20,7 @@ private:
   std::string nombre;
   std::string descripcion;
   DTFecha fechaVencimiento;
+  float porcentajeDescuento;
   Vendedor *vendedor;                              // vendedor asigando a la promo
   std::set<Producto *> productos;                  // productos de la promo
   std::map<int, InfoPromoProducto> infoProductos;  // info promo productos identificado por id
@@ -29,7 +30,7 @@ private:
 public:
   static ControladorPromocion *getInstancia();
   ~ControladorPromocion();
-  void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento);
+  void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha fechaVencimiento, float porcentaje);
   void asignarVendedor(std::string nombre);
   void agregarAPromo(int id, int cantMin, float porcentajeDescuento);
   void altaNuevaPromo();

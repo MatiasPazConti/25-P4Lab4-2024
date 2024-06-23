@@ -24,6 +24,7 @@ public:
     void agregarProductoACompra(int, int);
     DTCompra *obtenerDatosCompra();
     void registrarCompraExitosa(bool b);
+    void calcularDescuentos();
     ~ControladorCompra();
 };
 

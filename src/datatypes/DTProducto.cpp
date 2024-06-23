@@ -22,7 +22,7 @@ DTVendedor* DTProducto::getVendedor(){
   return vendedor;
 }
 DTProducto::DTProducto(){}
-DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,TipoProducto t,DTVendedor* vend){
+DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,TipoProducto t,DTVendedor* vend, Promocion* prom){
   id = i;
   nombre = n;
   descripcion = d;
@@ -30,5 +30,9 @@ DTProducto::DTProducto(int i, std::string n, std::string d,float p, int cant,Tip
   cantidadEnStock = cant;
   tipo = t;
   vendedor = vend;
+  promo = prom;
 }
 DTProducto::~DTProducto(){};
+Promocion* Producto::getPromocion(){
+  return promo;
+}

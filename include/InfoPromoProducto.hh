@@ -7,14 +7,11 @@ class InfoPromoProducto
 {
 private:
     int cantidadMinima;
-    float porcentajeDescuento;
 public:
     int getCantidadMinima();
-    float getPorcentajeDescuento();
     void setCantidadMinima(int);
-    void setPorcentajeDescuento(float);
     InfoPromoProducto();
-    InfoPromoProducto(int, float);
+    InfoPromoProducto(int);
     ~InfoPromoProducto();
 };
 

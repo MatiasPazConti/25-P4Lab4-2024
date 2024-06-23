@@ -17,6 +17,7 @@ private:
     std::string nombre;
     std::string descripcion;
     DTFecha fechaDeVencimiento;
+    float porcentajeDescuento;
     Vendedor *vendedor;
     std::set<Producto *> productos;
     std::map<int, InfoPromoProducto> infoProductos;
@@ -30,6 +31,7 @@ public:
     Producto *getProducto(int);
     std::map<int, InfoPromoProducto> getInfoProductos();
     InfoPromoProducto *getInfoProducto(int);
+    float getPorcentajeDescuento();
 
     void setNombre(std::string);
     void setDescripcion(std::string);

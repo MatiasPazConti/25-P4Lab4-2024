@@ -14,13 +14,14 @@ ControladorPromocion *ControladorPromocion::getInstancia()
   return instancia;
 }
 
-void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f)
+void ControladorPromocion::registrarDatosPromo(std::string n, std::string d, DTFecha f, float porcentaje)
 {
   if (promociones.count(n) == 0) // ver si fecha vencimiento > fecha actual?
   {
     nombre = n;
     descripcion = d;
     fechaVencimiento = f;
+    porcentajeDescuento = porcentaje;
   }
 }
 
@@ -32,7 +33,7 @@ void ControladorPromocion::asignarVendedor(std::string nickname)
 void ControladorPromocion::agregarAPromo(int id, int cantMin, float porcentajeDescuento)
 {
   // promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id, porcentajeDescuento)});
+  infoProductos.insert({id, InfoPromoProducto(id)});
   dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, porcentajeDescuento)});
 }
 
