@@ -46,12 +46,13 @@ void ControladorCompra::registrarCompraExitosa(bool b)
 }
 void ControladorCompra::calcularDescuentos()
 {
+	/*
 	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
 	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 	{
-		if ((*it)->getPromo() != NULL)
+		if ((*it)->getInfoPromo() != NULL)
 		{
-			std::map<int, InfoPromoProducto> productosPromo = (*it)->getPromo()->getInfoProductos();
+			std::map<int, InfoPromoProducto *> productosPromo = (*it)->getInfoPromo()->getProductos();
 			std::set<DTRegistroProducto *> auxiliar;
 			for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 			{
@@ -67,6 +68,7 @@ void ControladorCompra::calcularDescuentos()
 			}
 		}
 	};
+	*/
 }
 ControladorCompra::ControladorCompra() {}
 ControladorCompra::~ControladorCompra()

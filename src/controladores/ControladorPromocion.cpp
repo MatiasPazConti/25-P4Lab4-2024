@@ -21,7 +21,8 @@ void ControladorPromocion::agregarAPromo(int id, int cantMin)
   productos.insert(productoPromo);
   InfoPromoProducto *infoProductoPromo = new InfoPromoProducto(id, cantMin);
   infoProductos.insert({id, infoProductoPromo});
-  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, 0)});
+  DTProductoPromo *dataProductoPromo = new DTProductoPromo(id, nombre, cantMin, 0);
+  dtProductosPromo.insert({id, dataProductoPromo});
 }
 void ControladorPromocion::altaNuevaPromo()
 {

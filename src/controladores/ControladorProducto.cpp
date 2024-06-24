@@ -3,13 +3,17 @@
 
 Producto *ControladorProducto::getProducto(int id)
 {
+  Producto *producto = NULL;
   bool encontrado = false;
   for (std::set<Producto *>::iterator it = productos.begin(); (it != productos.end()) && !encontrado; it++)
   {
     if ((*it)->getId() == id)
     {
+      producto = *it;
+      encontrado = true;
     }
   }
+  return producto;
 }
 DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
 {

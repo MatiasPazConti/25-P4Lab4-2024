@@ -339,7 +339,7 @@ void CargarDatos()
   std::string nombrePM1 = "Casa nueva";
   std::string descrpcionPM1 = "Para que puedas ahorrar en la casa nueva";
   float porsentajeDescuentoPM1 = 30;
-  DTFecha vencimientoPM1 = DTFecha(21, 10, 2024);
+  DTFecha *vencimientoPM1 = new DTFecha(21, 10, 2024);
   controladorPromocion->registrarDatosPromo(nombrePM1, descrpcionPM1, vencimientoPM1, porsentajeDescuentoPM1);
   controladorPromocion->asignarVendedor(nickUS1);
   // Productos relacionados Promocion 1
@@ -355,7 +355,7 @@ void CargarDatos()
   std::string nombrePM2 = "Fiesta";
   std::string descrpcionPM2 = "Para que no te quedes sin ropa para las fiestas";
   float porsentajeDescuentoPM2 = 20;
-  DTFecha vencimientoPM2 = DTFecha(26, 10, 2024);
+  DTFecha *vencimientoPM2 = new DTFecha(26, 10, 2024);
   controladorPromocion->registrarDatosPromo(nombrePM2, descrpcionPM2, vencimientoPM2, porsentajeDescuentoPM2);
   controladorPromocion->asignarVendedor(nickUS2);
   // Productos relacionados Promocion 2
@@ -369,7 +369,7 @@ void CargarDatos()
   std::string nombrePM3 = "Domotica";
   std::string descrpcionPM3 = "Para modernizar tu casa";
   float porsentajeDescuentoPM3 = 10;
-  DTFecha vencimientoPM3 = DTFecha(26, 10, 2024);
+  DTFecha *vencimientoPM3 = new DTFecha(26, 10, 2024);
   controladorPromocion->registrarDatosPromo(nombrePM3, descrpcionPM3, vencimientoPM3, porsentajeDescuentoPM3);
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
@@ -381,7 +381,7 @@ void CargarDatos()
   std::string nombrePM4 = "Liquidacion";
   std::string descrpcionPM4 = "Hasta agotar stock";
   float porsentajeDescuentoPM4 = 10;
-  DTFecha vencimientoPM4 = DTFecha(26, 03, 2024);
+  DTFecha *vencimientoPM4 = new DTFecha(26, 03, 2024);
   controladorPromocion->registrarDatosPromo(nombrePM4, descrpcionPM4, vencimientoPM4, porsentajeDescuentoPM4);
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
@@ -752,7 +752,7 @@ void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
   int anioPromo;
   std::cout << "Escriba el anio de vencimiento de la promocion" << std::endl;
   std::cin >> anioPromo;
-  DTFecha fechaPromo = DTFecha(diaPromo, mesPromo, anioPromo);
+  DTFecha *fechaPromo = new DTFecha(diaPromo, mesPromo, anioPromo);
   // porsentaje de descuento a la promocion
   int descuentoPromo;
   std::cout << "Escriba el porsentaje de descuento de la promocion" << std::endl;
