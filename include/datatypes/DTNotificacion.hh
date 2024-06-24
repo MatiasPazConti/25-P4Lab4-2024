@@ -1,17 +1,19 @@
 #ifndef DTNOTIFICACION
 #define DTNOTIFICACION
+#include "./DTPromocion.hh"
+
 #include <string>
 
 class DTNotificacion
 {
 private:
-  std::string nombrePromocion;
+  DTPromocion *promocion;
   std::string nicknameVendedor;
 
 public:
-  std::string getNombrePromocion();
+  DTPromocion *getInfoPromocion();
   std::string getNicknameVendedor();
-  DTNotificacion(std::string, std::string);
+  DTNotificacion(DTPromocion *, std::string);
   ~DTNotificacion();
 };
 

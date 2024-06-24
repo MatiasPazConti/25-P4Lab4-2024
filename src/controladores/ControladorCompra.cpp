@@ -4,6 +4,7 @@
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
 	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();
+
 	DTCompra *datacompra = new DTCompra(compraActual->getFechaCompra(), compraActual->getMontoFinal(), compraActual->getRegistroProductos(), datacliente);
 	return datacompra;
 }

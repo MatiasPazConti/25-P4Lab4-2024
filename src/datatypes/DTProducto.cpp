@@ -1,6 +1,4 @@
 #include "../../include/datatypes/DTProducto.hh"
-#include "../../include/Promocion.hh"
-#include "../../include/datatypes/DTVendedor.hh"
 
 int DTProducto::getId()
 {
@@ -30,31 +28,27 @@ DTVendedor *DTProducto::getVendedor()
 {
   return vendedor;
 }
-DTProducto::DTProducto() {}
-DTProducto::DTProducto(int i, std::string n, std::string d, float p, int cant, TipoProducto t, DTVendedor *vend)
+DTPromocion *DTProducto::getPromocion()
 {
-  id = i;
-  nombre = n;
-  descripcion = d;
-  precio = p;
-  cantidadEnStock = cant;
-  tipo = t;
-  vendedor = vend;
-  promo = NULL;
+  return promocion;
+}
+DTProducto::DTProducto(int id, std::string nombre, std::string descripcion, float precio, int cantidad, TipoProducto tipoProducto, DTVendedor *vendedor, DTPromocion *promocion)
+{
+  this->id = id;
+  this->nombre = nombre;
+  this->descripcion = descripcion;
+  this->precio = precio;
+  this->cantidadEnStock = cantidad;
+  this->tipo = tipoProducto;
+  this->vendedor = vendedor;
+  this->promocion = promocion;
 }
 DTProducto::~DTProducto(){};
-
-Promocion *DTProducto::getPromocion()
-{
-  return promo;
-}
-
 // Sobrecarga de operador '<<'
 void DTProducto::setPrint(std::ostream &out)
 {
   out << id << ", " << nombre;
 }
-
 std::ostream &operator<<(std::ostream &out, DTProducto &obj)
 {
   obj.setPrint(out);

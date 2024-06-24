@@ -10,29 +10,29 @@ std::string DTPromocion::getDescripcion()
     return descripcion;
 }
 
-DTFecha DTPromocion::getFechaVencimiento()
+DTFecha *DTPromocion::getFechaVencimiento()
 {
     return fechaVencimiento;
 }
 
-std::map<int, DTProductoPromo> DTPromocion::getProductos()
+std::map<int, DTProductoPromo *> DTPromocion::getProductos()
 {
     return productos;
 }
 
-DTProductoPromo DTPromocion::getProducto(int id)
+DTProductoPromo *DTPromocion::getProducto(int id)
 {
     return productos[id];
 }
 
 DTPromocion::DTPromocion() {}
 
-DTPromocion::DTPromocion(std::string n, std::string d, DTFecha f, std::map<int, DTProductoPromo> p)
+DTPromocion::DTPromocion(std::string nombre, std::string descripcion, DTFecha *fechaVencimiento, std::map<int, DTProductoPromo *> productos)
 {
-    nombre = n;
-    descripcion = d;
-    fechaVencimiento = f;
-    productos = p;
+    this->nombre = nombre;
+    this->descripcion = descripcion;
+    this->fechaVencimiento = fechaVencimiento;
+    this->productos = productos;
 }
 
 DTPromocion::~DTPromocion() {}

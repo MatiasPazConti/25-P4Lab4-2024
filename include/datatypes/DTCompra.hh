@@ -1,8 +1,8 @@
 #ifndef DTCOMPRA
 #define DTCOMPRA
-#include "DTFecha.hh"
-#include "DTCliente.hh"
-#include "DTRegistroProducto.hh"
+#include "./DTFecha.hh"
+#include "./DTCliente.hh"
+#include "./DTRegistroProducto.hh"
 
 #include <iostream>
 #include <set>
