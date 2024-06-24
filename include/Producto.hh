@@ -7,6 +7,9 @@
 #include "./Promocion.hh"
 #include "./Vendedor.hh"
 
+class Promocion;
+class Vendedor;
+
 class Producto
 {
 private:

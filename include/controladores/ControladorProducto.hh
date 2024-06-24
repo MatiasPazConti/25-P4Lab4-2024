@@ -1,10 +1,8 @@
 #ifndef CONTROLADOR_PRODUCTO
 #define CONTROLADOR_PRODUCTO
 
-#include "../datatypes/DTProducto.hh"
 #include "../interfaces/IControladorProducto.hh"
-#include "../TipoProducto.hh"
-#include "../Producto.hh"
+
 #include <iostream>
 #include <set>
 
@@ -18,6 +16,7 @@ private:
 
 public:
   static ControladorProducto *getInstancia();
+  Producto *getProducto(int);
   void registrarDatosProductos(std::string, float, int, std::string, TipoProducto, std::string);
   DTProducto *obtenerProductoDisponible(int);
   std::set<DTProducto *> obtenerProductosDisponibles(); // falta hacerla en el cpp // agregado PD chequearlo.

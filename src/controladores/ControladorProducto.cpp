@@ -1,6 +1,16 @@
 #include "../../include/controladores/ControladorProducto.hh"
 #include "../../include/fabrica/Fabrica.hh"
 
+Producto *ControladorProducto::getProducto(int id)
+{
+  bool encontrado = false;
+  for (std::set<Producto *>::iterator it = productos.begin(); (it != productos.end()) && !encontrado; it++)
+  {
+    if ((*it)->getId() == id)
+    {
+    }
+  }
+}
 DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
 {
   for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
@@ -20,7 +30,6 @@ void ControladorProducto::registrarDatosProductos(std::string nombre, float prec
   Producto *prod = new Producto(lastID, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
   this->productos.insert(prod);
 }
-
 ControladorProducto::ControladorProducto() {}
 ControladorProducto::~ControladorProducto(){};
 ControladorProducto *ControladorProducto::instancia = NULL;

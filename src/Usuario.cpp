@@ -1,6 +1,6 @@
 #include "../include/Usuario.hh"
 
-Usuario::Usuario(std::string nickname, std::string password, DTFecha fechaNacimiento)
+Usuario::Usuario(std::string nickname, std::string password, DTFecha *fechaNacimiento)
 {
   this->nickname = nickname;
   this->password = password;
@@ -11,7 +11,7 @@ Usuario::~Usuario()
 {
 }
 
-DTFecha Usuario::getFechaNacimiento()
+DTFecha *Usuario::getFechaNacimiento()
 {
   return fechaNacimiento;
 }

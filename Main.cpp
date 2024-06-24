@@ -123,75 +123,75 @@ void CargarDatos()
   // US1 - Usuario Uno - Vendedor
   std::string nickUS1 = "ana23";
   std::string passUS1 = "qwer1234";
-  DTFecha fechaUS1 = DTFecha(15, 5, 1988);
+  DTFecha *fechaUS1 = new DTFecha(15, 5, 1988);
   std::string rutUS1 = "212345678001";
   controladorUsuario->altaNuevoVendedor(nickUS1, passUS1, fechaUS1, rutUS1);
 
   // US2 - Usuario Dos - Vendedor
   std::string nickUS2 = "carlos78";
   std::string passUS2 = "asdfghj";
-  DTFecha fechaUS2 = DTFecha(18, 6, 1986);
+  DTFecha *fechaUS2 = new DTFecha(18, 6, 1986);
   std::string rutUS2 = "356789012345";
   controladorUsuario->altaNuevoVendedor(nickUS2, passUS2, fechaUS2, rutUS2);
 
   // US3 - Usuario Tres - Vendedor
   std::string nickUS3 = "diegom";
   std::string passUS3 = "zxcvbn";
-  DTFecha fechaUS3 = DTFecha(28, 7, 1993);
+  DTFecha *fechaUS3 = new DTFecha(28, 7, 1993);
   std::string rutUS3 = "190123456789";
   controladorUsuario->altaNuevoVendedor(nickUS3, passUS3, fechaUS3, rutUS3);
 
   // US4 - Usuario Cuatro - Cliente
   std::string nickUS4 = "juan87";
   std::string passUS4 = "1qaz2wsx";
-  DTFecha fechaUS4 = DTFecha(20, 10, 1992);
-  DTDireccion adressUS4 = DTDireccion("Av. 18 de Julio", 456);
+  DTFecha *fechaUS4 = new DTFecha(20, 10, 1992);
+  DTDireccion *adressUS4 = new DTDireccion("Av. 18 de Julio", 456);
   std::string cityUS4 = "Melo";
   controladorUsuario->altaNuevoCliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
 
   // US5 - Usuario Cinco - Cliente
   std::string nickUS5 = "laura";
   std::string passUS5 = "3edc4rfv";
-  DTFecha fechaUS5 = DTFecha(22, 9, 1979);
-  DTDireccion adressUS5 = DTDireccion("Rondeau", 1617);
+  DTFecha *fechaUS5 = new DTFecha(22, 9, 1979);
+  DTDireccion *adressUS5 = new DTDireccion("Rondeau", 1617);
   std::string cityUS5 = "Montevideo";
   controladorUsuario->altaNuevoCliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
 
   // US6 - Usuario Seis - Vendedor
   std::string nickUS6 = "maria01";
   std::string passUS6 = "5tgb6yhn";
-  DTFecha fechaUS6 = DTFecha(25, 3, 1985);
+  DTFecha *fechaUS6 = new DTFecha(25, 3, 1985);
   std::string rutUS6 = "321098765432";
   controladorUsuario->altaNuevoVendedor(nickUS6, passUS6, fechaUS6, rutUS6);
 
   // US7 - Usuario Siete - Cliente
   std::string nickUS7 = "natalia";
   std::string passUS7 = "poiuyt";
-  DTFecha fechaUS7 = DTFecha(14, 4, 1982);
-  DTDireccion adressUS7 = DTDireccion("Paysandu", 2021);
+  DTFecha *fechaUS7 = new DTFecha(14, 4, 1982);
+  DTDireccion *adressUS7 = new DTDireccion("Paysandu", 2021);
   std::string cityUS7 = "Salto";
   controladorUsuario->altaNuevoCliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
 
   // US8 - Usuario Ocho - Cliente
   std::string nickUS8 = "pablo10";
   std::string passUS8 = "lkjhgv";
-  DTFecha fechaUS8 = DTFecha(30, 11, 1995);
-  DTDireccion adressUS8 = DTDireccion("Av. Rivera", 1819);
+  DTFecha *fechaUS8 = new DTFecha(30, 11, 1995);
+  DTDireccion *adressUS8 = new DTDireccion("Av. Rivera", 1819);
   std::string cityUS8 = "Mercedes";
   controladorUsuario->altaNuevoCliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
 
   // US9 - Usuario Nueve - Cliente
   std::string nickUS9 = "roberto";
   std::string passUS9 = "mnbvcx";
-  DTFecha fechaUS9 = DTFecha(12, 8, 1990);
-  DTDireccion adressUS9 = DTDireccion("Av. Brasil", 1011);
+  DTFecha *fechaUS9 = new DTFecha(12, 8, 1990);
+  DTDireccion *adressUS9 = new DTDireccion("Av. Brasil", 1011);
   std::string cityUS9 = "Montevideo";
   controladorUsuario->altaNuevoCliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
 
   // US10 - Usuario Diez - Vendedor
   std::string nickUS10 = "sofia25";
   std::string passUS10 = "1234asdf";
-  DTFecha fechaUS10 = DTFecha(7, 12, 1983);
+  DTFecha *fechaUS10 = new DTFecha(7, 12, 1983);
   std::string rutUS10 = "445678901234";
   controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
@@ -535,7 +535,7 @@ void NuevoVendedor() // Implementado //
       std::cout << "Ingrese un numero de anio valido" << std::endl;
       std::cin >> anioUS;
     }
-    DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
+    DTFecha *fechaUS = new DTFecha(diaUS, mesUS, anioUS);
     std::string rutUS;
     std::cout << "Escriba su codigo RUT" << std::endl;
     std::cin >> rutUS;
@@ -597,14 +597,14 @@ void NuevoCliente() // Implementado //
       std::cout << "Ingrese un numero de anio valido" << std::endl;
       std::cin >> anioUS;
     }
-    DTFecha fechaUS = DTFecha(diaUS, mesUS, anioUS);
+    DTFecha *fechaUS = new DTFecha(diaUS, mesUS, anioUS);
     std::string calleUS;
     std::cout << "Escriba la calle de su domicilio" << std::endl;
     std::getline(std::cin >> std::ws, calleUS);
     int nroPuertaUS;
     std::cout << "Escriba su numero de puerta" << std::endl;
     std::cin >> nroPuertaUS;
-    DTDireccion adressUS = DTDireccion(calleUS, nroPuertaUS);
+    DTDireccion *adressUS = new DTDireccion(calleUS, nroPuertaUS);
     std::string cityUS;
     std::cout << "Escriba la ciudad en la que vive" << std::endl;
     std::getline(std::cin >> std::ws, cityUS); // uso ws para limpiar los espacios pendientes

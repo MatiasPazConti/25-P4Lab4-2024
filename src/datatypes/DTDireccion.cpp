@@ -6,8 +6,6 @@ DTDireccion::DTDireccion(std::string nombreCalle, int nroPuerta)
   this->nroPuerta = nroPuerta;
 }
 
-DTDireccion::DTDireccion() {}
-
 DTDireccion::~DTDireccion()
 {
 }
