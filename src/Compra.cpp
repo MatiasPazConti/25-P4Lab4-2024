@@ -2,7 +2,7 @@
 
 DTFecha *Compra::getFechaCompra()
 {
-  return fechaCompra;
+  return *fechaCompra;
 }
 float Compra::getMontoFinal()
 {
@@ -23,45 +23,44 @@ DTRegistroProducto *Compra::getRegistroProducto(int id)
         return *it;
       }
     }
+    return NULL;
   }
-  return NULL;
-}
-std::set<DTRegistroProducto *> Compra::getRegistroProductos()
-{
-  return registroProductos;
-}
-void Compra::setFechaCompra(int dia, int mes, int anio)
-{
-  DTFecha *nuevaFecha = new DTFecha(dia, mes, anio);
-  fechaCompra = nuevaFecha;
-}
-void Compra::setMontoFinal(float monto)
-{
-  montoFinal = monto;
-}
-void Compra::setCliente(Cliente *c)
-{
-  cliente = c;
-}
-void Compra::addRegistroProducto(DTRegistroProducto *reg)
-{
-  registroProductos.insert(reg);
-}
-Compra::Compra(DTFecha *fechaCompra, float montoFinal, Cliente *cliente)
-{
-  this->fechaCompra = fechaCompra;
-  this->montoFinal = montoFinal;
-  this->cliente = cliente;
-}
-Compra::~Compra()
-{
-  while (!registroProductos.empty())
+  std::set<DTRegistroProducto *> Compra::getRegistroProductos()
   {
-    std::set<DTRegistroProducto *>::iterator inicio = registroProductos.begin();
-    DTRegistroProducto *aBorrar = *inicio;
-    registroProductos.erase(inicio);
-    delete aBorrar;
+    return registroProductos;
   }
-  cliente = NULL;
-  delete fechaCompra;
-}
+  void Compra::setFechaCompra(int dia, int mes, int anio)
+  {
+    DTFecha *nuevaFecha = new DTFecha(dia, mes, anio);
+    fechaCompra = nuevaFecha;
+  }
+  void Compra::setMontoFinal(float monto)
+  {
+    montoFinal = monto;
+  }
+  void Compra::setCliente(Cliente * c)
+  {
+    cliente = c;
+  }
+  void Compra::addRegistroProducto(DTRegistroProducto * reg)
+  {
+    registroProductos.insert(reg);
+  }
+  Compra::Compra(DTFecha * fechaCompra, float montoFinal, Cliente *cliente)
+  {
+    this->fechaCompra = fechaCompra;
+    this->montoFinal = montoFinal;
+    this->cliente = cliente;
+  }
+  Compra::~Compra()
+  {
+    while (!registroProductos.empty())
+    {
+      std::set<DTRegistroProducto *>::iterator inicio = registroProductos.begin();
+      DTRegistroProducto *aBorrar = *inicio;
+      registroProductos.erase(inicio);
+      delete aBorrar;
+    }
+    cliente = NULL;
+    delete fechaCompra;
+  }

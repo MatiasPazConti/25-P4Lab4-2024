@@ -4,12 +4,16 @@
 #include "./DTFecha.hh"
 #include "./DTProductoPromo.hh"
 #include "./DTVendedor.hh"
+<<<<<<< HEAD
 
+    == == ==
+    =
+>>>>>>> origin/main
 #include <iostream>
 #include <map>
 #include <set>
 
-class DTProducto;
+        class DTProducto;
 class DTVendedor;
 
 class DTPromocion

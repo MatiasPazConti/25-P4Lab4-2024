@@ -73,7 +73,10 @@ void Promocion::setFechaDeVencimiento(DTFecha *f)
 {
     fechaDeVencimiento = f;
 }
-
+void Promocion::setPorcentajeDescuento(float pd)
+{
+    porcentajeDescuento = pd;
+}
 void Promocion::setVendedor(Vendedor *v)
 {
     vendedor = v;
@@ -89,7 +92,7 @@ void Promocion::setInfoProductos(std::map<int, InfoPromoProducto *> pi)
     infoProductos = pi;
 }
 
-DTPromocion *Promocion::getDataPromocion() // revisar
+DTPromocion *Promocion::getDataPromocion()
 {
     std::map<int, DTProductoPromo *> dataProductosPromo;
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)

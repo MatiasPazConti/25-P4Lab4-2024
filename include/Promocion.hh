@@ -34,7 +34,6 @@ public:
     Producto *getProducto(int);
     std::map<int, InfoPromoProducto *> getInfoProductos();
     InfoPromoProducto *getInfoProducto(int);
-    float getPorcentajeDescuento();
 
     void setNombre(std::string);
     void setDescripcion(std::string);
@@ -43,7 +42,6 @@ public:
     void setProductos(std::set<Producto *>);
     void setInfoProductos(std::map<int, InfoPromoProducto *>);
 
-    DTProductoPromo *getDataProductoPromo();
     DTPromocion *getDataPromocion();
 
     Promocion(std::string, std::string, DTFecha *, float, Vendedor *, std::set<Producto *>, std::map<int, InfoPromoProducto *>);

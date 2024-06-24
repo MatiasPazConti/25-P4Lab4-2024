@@ -36,6 +36,8 @@ public:
   void asignarVendedor(std::string nombre);
   void agregarAPromo(int id, int cantMin);
   void altaNuevaPromo();
+  DTPromocion *getPromocion(std::string);
+  std::set<DTProducto *> productosEnUnaPromo(std::string nombrePromo);
 };
 
 #endif

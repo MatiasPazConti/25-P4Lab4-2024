@@ -1,4 +1,6 @@
 #include "../../include/datatypes/DTFecha.hh"
+#include <iomanip>  
+#include <sstream>  
 
 int DTFecha::getDia()
 {

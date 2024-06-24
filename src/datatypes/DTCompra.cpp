@@ -15,11 +15,18 @@ DTRegistroProducto *DTCompra::getRegistroProducto(int id)
   }
   return NULL;
 }
+<<<<<<< HEAD
 std::set<DTRegistroProducto *> DTCompra::getRegistroProductos()
 {
   return registroProductos;
 }
-float DTCompra::getMontoFinal()
+float DTCompra::getMontoFinal() == == == =
+                                             float DTCompra::getMontoFinal()
+{
+  return montoFinal;
+}
+DTCliente DTCompra::getCliente()
+>>>>>>> origin/main
 {
   return montoFinal;
 }

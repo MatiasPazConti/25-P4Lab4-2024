@@ -55,7 +55,8 @@ ControladorPromocion::~ControladorPromocion() {}
 ControladorPromocion *ControladorPromocion::instancia = nullptr;
 ControladorPromocion *ControladorPromocion::getInstancia()
 {
-  if (instancia == nullptr)
+  std::set<DTPromocion *> promosVigentes;
+  for (auto it = promociones.begin(); it != promociones.end(); ++it)
   {
     instancia = new ControladorPromocion();
   }

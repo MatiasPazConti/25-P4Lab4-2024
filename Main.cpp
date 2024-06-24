@@ -744,7 +744,6 @@ void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
   std::string vendedorPromo;
   std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
   std::cin >> vendedorPromo;
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
   while (!ExisteVendedor(vendedorPromo, vendedores))
   {
     std::cout << "El vendedor ingresado no existe" << std::endl;
@@ -1018,16 +1017,16 @@ void ConsultaNotificacion() // incompleto // falta obtener string de nombre de l
   {
     std::string nickVendedor = (*it)->getNicknameVendedor();
     std::string nombrePromocion = (*it)->getNombrePromocion();
-    // std::set<string> productosEnPromo = (*it)->getProductosEnPromo();
+    std::set<DTProducto *> productosEnPromo = controladorPromocion->productosEnUnaPromo(nombrePromocion);
     std::cout << "Vendedor: " << nickVendedor << ", Promocion: " << nombrePromocion;
-    // for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
-    //{
-    //   std::cout << ", Producto: " << (*it2);
-    // };
+    for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
+    {
+      std::cout << ", Producto: " << (*it2);
+    };
     std::cout << std::endl;
     nickVendedores.insert(nickVendedor);
   };
-  // controladorUsuario->eliminarNotificaciones(nickCliente, nickVendedores);
+  // controladorUsuario->eliminarNotificaciones(std::string nickCliente,std::set<std::string> nickVendedores);
 }
 void EliminarSuscripcion() // Implementado
 {
