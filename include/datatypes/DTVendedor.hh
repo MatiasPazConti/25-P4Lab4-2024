@@ -5,6 +5,7 @@
 #include "./DTProducto.hh"
 
 class DTProducto;
+class DTPromocion;
 
 class DTVendedor : public DTUsuario
 {

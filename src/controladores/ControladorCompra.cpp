@@ -29,9 +29,7 @@ void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 	DTProducto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
 	DTRegistroProducto *registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->addRegistroProducto(registro);
-	std::cout << "Error4" << std::endl;
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
-	std::cout << "Error5" << std::endl;
 };
 void ControladorCompra::registrarCompraExitosa(bool b)
 {
@@ -46,29 +44,35 @@ void ControladorCompra::registrarCompraExitosa(bool b)
 }
 void ControladorCompra::calcularDescuentos()
 {
-	/*
 	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
 	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 	{
 		if ((*it)->getInfoPromo() != NULL)
 		{
-			std::map<int, InfoPromoProducto *> productosPromo = (*it)->getInfoPromo()->getProductos();
+			std::map<int, DTProductoPromo *> productosPromo = (*it)->getInfoPromo()->getProductos();
 			std::set<DTRegistroProducto *> auxiliar;
 			for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 			{
-				if (productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad())
+				if (productosPromo[(*it)->getId()]->getCantidadMinima() <= (*it)->getCantidad())
 				{
 					auxiliar.insert(*it);
 				}
 			}
 			if (auxiliar.size() == productosPromo.size())
 			{
-				compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal() * (*it)->getPromo()->getPorcentajeDescuento());
+				std::cout << "Descuento aplicado" << std::endl;
+				int monto1 = compraActual->getMontoFinal();
+				int monto2 = (*it)->getInfoPromo()->getPorcentajeDescuento();
+				int montoF = monto1 - (monto1 * monto2 / 100);
+				compraActual->setMontoFinal(montoF);
 				break;
 			}
+			else
+			{
+				std::cout << "No hay descuentos disponibles" << std::endl;
+			};
 		}
 	};
-	*/
 }
 ControladorCompra::ControladorCompra() {}
 ControladorCompra::~ControladorCompra()

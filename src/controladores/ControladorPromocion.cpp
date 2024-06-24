@@ -1,6 +1,20 @@
 #include "../../include/controladores/ControladorPromocion.hh"
 #include "../../include/fabrica/Fabrica.hh"
 
+Promocion *ControladorPromocion::getPromocion(std::string nombrePromocion)
+{
+  return promociones[nombrePromocion];
+}
+std::set<DTPromocion *> ControladorPromocion::obtenerPromocionesVigentes()
+{
+  std::set<DTPromocion *> promosVigentes;
+  for (auto it = promociones.begin(); it != promociones.end(); ++it)
+  {
+    DTPromocion *dtpromo = ((it)->second)->getDataPromocion();
+    promosVigentes.insert(dtpromo);
+  };
+  return promosVigentes;
+}
 void ControladorPromocion::registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha *fechaVencimiento, float porcentajeDescuento)
 {
   if (promociones.count(nombre) == 0) // ver si fecha vencimiento > fecha actual?
@@ -26,8 +40,15 @@ void ControladorPromocion::agregarAPromo(int id, int cantMin)
 }
 void ControladorPromocion::altaNuevaPromo()
 {
-  Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, vendedor, productos, infoProductos);
+  Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, porcentajeDescuento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
+  for (auto it = productos.begin(); it != productos.end(); ++it)
+  {
+    (*it)->addPromocion(promo);
+  }
+  infoProductos.clear();
+  productos.clear();
+  vendedor = NULL;
 }
 ControladorPromocion::ControladorPromocion() {}
 ControladorPromocion::~ControladorPromocion() {}

@@ -53,7 +53,7 @@ void DTCompra::setPrint(std::ostream &out)
   out << "Productos en compra" << std::endl;
   for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
   {
-    out << (*it) << std::endl;
+    out << *(*it) << std::endl;
   }
 }
 std::ostream &operator<<(std::ostream &out, DTCompra &obj)

@@ -46,7 +46,7 @@ public:
     DTProductoPromo *getDataProductoPromo();
     DTPromocion *getDataPromocion();
 
-    Promocion(std::string, std::string, DTFecha *, Vendedor *, std::set<Producto *>, std::map<int, InfoPromoProducto *>);
+    Promocion(std::string, std::string, DTFecha *, float, Vendedor *, std::set<Producto *>, std::map<int, InfoPromoProducto *>);
     ~Promocion();
 };
 

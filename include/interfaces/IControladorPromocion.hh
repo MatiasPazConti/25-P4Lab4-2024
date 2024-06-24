@@ -8,6 +8,8 @@
 class IControladorPromocion
 {
 public:
+  virtual Promocion *getPromocion(std::string) = 0;
+  virtual std::set<DTPromocion *> obtenerPromocionesVigentes() = 0;
   virtual void agregarAPromo(int id, int cantidadMin) = 0;
   virtual void altaNuevaPromo() = 0;
   virtual void registrarDatosPromo(std::string nombre, std::string descripcion, DTFecha *fechaVencimiento, float porcentaje) = 0;

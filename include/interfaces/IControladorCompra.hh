@@ -20,6 +20,7 @@ public:
   virtual void crearCompra(std::string, int, int, int) = 0; // dia/mes/anio de hoy
   virtual void agregarProductoACompra(int, int) = 0;
   virtual void registrarCompraExitosa(bool) = 0;
+  virtual void calcularDescuentos() = 0;
 };
 
 #endif

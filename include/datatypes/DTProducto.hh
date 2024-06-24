@@ -6,6 +6,7 @@
 #include "./DTVendedor.hh"
 #include <iostream>
 
+class DTPromocion;
 class DTVendedor;
 
 class DTProducto
