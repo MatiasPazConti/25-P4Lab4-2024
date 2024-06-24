@@ -1,20 +1,21 @@
 #ifndef DTCOMENTARIO
 #define DTCOMENTARIO
-#include "DTFecha.hh"
 #include <iostream>
+#include "DTFecha.hh"
 
 class DTComentario
 {
 private:
   int id;
-  DTFecha *fecha;
+  DTFecha fecha;
   std::string texto;
 
 public:
   int getId();
-  DTFecha *getFecha();
+  DTFecha getFecha();
   std::string getTexto();
-  DTComentario(int, DTFecha *, std::string);
+  DTComentario();
+  DTComentario(int, DTFecha, std::string);
   ~DTComentario();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

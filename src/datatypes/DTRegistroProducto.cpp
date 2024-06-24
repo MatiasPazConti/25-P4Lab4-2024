@@ -12,21 +12,20 @@ int DTRegistroProducto::getCantidad()
 {
   return cantidad;
 }
-float DTRegistroProducto::getPrecio()
-{
-  return precio;
+float DTRegistroProducto::getPrecio(){
+    return precio;
 }
-DTPromocion *DTRegistroProducto::getInfoPromo()
-{
-  return promocion;
+Promocion* DTRegistroProducto::getPromo(){
+    return promo;
 }
-DTRegistroProducto::DTRegistroProducto(int id, std::string nombre, int cantidad, float precio, DTPromocion *promocion)
+
+DTRegistroProducto::DTRegistroProducto(int i, std::string n, int cant,float p, Promocion* pro)
 {
-  this->id = id;
-  this->nombre = nombre;
-  this->cantidad = cantidad;
-  this->precio = precio;
-  this->promocion = promocion;
+  id = i;
+  nombre = n;
+  cantidad = cant;
+  precio = p;
+  promo = pro;
 }
 DTRegistroProducto::~DTRegistroProducto() {}
 // Sobrecarga de operador '<<'
@@ -34,6 +33,7 @@ void DTRegistroProducto::setPrint(std::ostream &out)
 {
   out << id << ", " << nombre << ", " << cantidad << ", " << precio;
 }
+
 std::ostream &operator<<(std::ostream &out, DTRegistroProducto &obj)
 {
   obj.setPrint(out);

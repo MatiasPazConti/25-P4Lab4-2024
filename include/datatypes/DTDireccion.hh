@@ -11,7 +11,7 @@ private:
 public:
   std::string getNombreCalle();
   int getNroPuerta();
-  DTDireccion *copiarDireccion();
+  DTDireccion();
   DTDireccion(std::string nombreCalle, int nroPuerta);
   ~DTDireccion();
 };

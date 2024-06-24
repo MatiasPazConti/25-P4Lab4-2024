@@ -1,14 +1,11 @@
 #ifndef PRODUCTO
 #define PRODUCTO
 #include <iostream>
+#include "./TipoProducto.hh"
 #include "./datatypes/DTProducto.hh"
 #include "./datatypes/DTVendedor.hh"
-#include "./TipoProducto.hh"
-#include "./Promocion.hh"
-#include "./Vendedor.hh"
 
-class Promocion;
-class Vendedor;
+
 
 class Producto
 {
@@ -19,28 +16,29 @@ private:
   float precio;
   int cantidadEnStock;
   TipoProducto tipo;
-  Vendedor *vendedor;
-  Promocion *promocion;
+  DTVendedor *vendedor;
+  Promocion *promo;
 
 public:
-  int getId();
-  std::string getNombre();
-  std::string getDescripcion();
-  float getPrecio();
-  int getCantidadEnStock();
-  DTVendedor *getInfoVendedor();
-  TipoProducto getTipoProducto();
-  DTProducto *getDataProducto();
-  Promocion *getPromocion();
   void setId(int);
   void setNombre(std::string);
   void setDescrpcion(std::string);
   void setPrecio(float);
   void setCantidadEnStock(int);
   void setTipoProducto(TipoProducto);
-  void addPromocion(Promocion *);
-  void setVendedor(Vendedor *);
-  Producto(int, std::string, std::string, float, int, TipoProducto, Vendedor *);
+  void setPromocion(Promocion *);
+  int getId();
+  std::string getNombre();
+  std::string getDescripcion();
+  float getPrecio();
+  int getCantidadEnStock();
+  DTVendedor *getVendedor();
+  void setVendedor(DTVendedor *);
+  TipoProducto getTipoProducto();
+  DTProducto *getDataProducto();
+  Promocion *getPromocion();
+  Producto();
+  Producto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *);
   ~Producto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

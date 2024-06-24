@@ -2,14 +2,14 @@
 #define DTREGISTRO_PRODUCTO
 
 #include <iostream>
-#include "./DTPromocion.hh"
+#include "../Promocion.hh"
 
 class DTRegistroProducto
 {
 private:
   int id;
   std::string nombre;
-  DTPromocion *promocion;
+  Promocion* promo;
   int cantidad;
   float precio;
 
@@ -18,8 +18,9 @@ public:
   std::string getNombre();
   int getCantidad();
   float getPrecio();
-  DTPromocion *getInfoPromo();
-  DTRegistroProducto(int, std::string, int, float, DTPromocion *); // id,nombre,cantidad,precio
+  Promocion* getPromo();
+  DTRegistroProducto();
+  DTRegistroProducto(int, std::string, int, float, Promocion*); // id,nombre,cantidad,precio
   ~DTRegistroProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

@@ -19,13 +19,14 @@ private:
 
 public:
     static ControladorCompra *getInstancia();
-    DTCompra *obtenerDatosCompra();
-    bool estaEnCompra(int);
     void crearCompra(std::string, int, int, int); // dia/mes/anio de hoy
+    void asignarCliente(std::string);
     void agregarProductoACompra(int, int);
+    DTCompra *obtenerDatosCompra();
     void registrarCompraExitosa(bool b);
     void calcularDescuentos();
     ~ControladorCompra();
+    bool estaEnCompra(int);
 };
 
 #endif

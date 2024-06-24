@@ -1,11 +1,11 @@
 #include "../../include/controladores/ControladorUsuario.hh"
 
-void ControladorUsuario::altaNuevoCliente(std::string nickname, std::string password, DTFecha *fechaNacimiento, DTDireccion *direccion, std::string ciudadResidencia)
+void ControladorUsuario::altaNuevoCliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadResidencia)
 {
   Cliente *nuevoCliente = new Cliente(nickname, password, fechaNacimiento, direccion, ciudadResidencia);
   clientes.insert(nuevoCliente);
 }
-void ControladorUsuario::altaNuevoVendedor(std::string nickname, std::string password, DTFecha *fechaNacimiento, std::string codigoRUT)
+void ControladorUsuario::altaNuevoVendedor(std::string nickname, std::string password, DTFecha fechaNacimiento, std::string codigoRUT)
 {
   Vendedor *nuevoVendedor = new Vendedor(nickname, password, fechaNacimiento, codigoRUT);
   vendedores.insert(nuevoVendedor);

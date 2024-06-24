@@ -16,16 +16,17 @@ private:
   std::set<DTRegistroProducto *> registroProductos;
 
 public:
-  DTFecha *getFechaCompra();
+  DTFecha getFechaCompra();
+  void setFechaCompra(int, int, int);
   float getMontoFinal();
+  void setMontoFinal(float);
   Cliente *getCliente();
+  void setCliente(Cliente *);
   DTRegistroProducto *getRegistroProducto(int);
   std::set<DTRegistroProducto *> getRegistroProductos();
-  void setFechaCompra(int, int, int);
-  void setMontoFinal(float);
-  void setCliente(Cliente *);
-  void addRegistroProducto(DTRegistroProducto *);
-  Compra(DTFecha *, float, Cliente *);
+  void setRegistroProducto(DTRegistroProducto*);
+  Compra();
+  Compra(DTFecha*, float, Cliente*);
   ~Compra();
 };
 

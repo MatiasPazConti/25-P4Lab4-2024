@@ -1,7 +1,5 @@
 #ifndef DTNOTIFICACION
 #define DTNOTIFICACION
-#include "./DTPromocion.hh"
-
 #include <string>
 
 class DTNotificacion
