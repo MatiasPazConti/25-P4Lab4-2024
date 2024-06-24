@@ -21,7 +21,6 @@ public:
   virtual DTProducto *obtenerProductoDisponible(int) = 0;
   virtual Producto *getProducto(int) = 0;
   virtual std::set<DTProducto *> obtenerProductosDisponibles() = 0;
-  virtual Producto* getProducto(int) = 0;
 };
 
 #endif

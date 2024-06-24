@@ -38,18 +38,14 @@ void ControladorPromocion::agregarAPromo(int id, int cantMin) // ver si prod ya 
   productos.insert(Fabrica::getInterfazProducto()->getProducto(id));
   InfoPromoProducto *promoProd = new InfoPromoProducto(id, cantMin);
   infoProductos.insert({id, promoProd});
-void ControladorPromocion::agregarAPromo(int id, int cantMin)
-{
-  //promociones.insert(Fabrica::getInterfazProducto()->getProducto(id));
-  infoProductos.insert({id, InfoPromoProducto(id, cantMin)});
-  dtProductosPromo.insert({id, DTProductoPromo(id, nombre, cantMin, 0)});
 }
 
 void ControladorPromocion::altaNuevaPromo()
 {
   Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, porcentajeDescuento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
-  for (auto it = productos.begin(); it != productos.end(); ++it){
+  for (auto it = productos.begin(); it != productos.end(); ++it)
+  {
     (*it)->setPromocion(promo);
   }
 }
@@ -57,6 +53,7 @@ void ControladorPromocion::altaNuevaPromo()
 ControladorPromocion::~ControladorPromocion()
 {
 }
+
 ControladorPromocion::ControladorPromocion() {}
 
 ControladorPromocion *ControladorPromocion::instancia = nullptr;
@@ -67,4 +64,16 @@ ControladorPromocion *ControladorPromocion::getInstancia()
     instancia = new ControladorPromocion();
   }
   return instancia;
+}
+
+std::set<DTProducto *> ControladorPromocion::productosEnUnaPromo(std::string nombrePromo)
+{
+  Promocion *promo = promociones[nombrePromo];
+  std::set<Producto *> productos = promo->getProductos();
+  std::set<DTProducto *> aDevolver;
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    aDevolver.insert((*it)->getDataProducto());
+  }
+  return aDevolver;
 }

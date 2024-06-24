@@ -117,6 +117,19 @@ bool EstaEnPromo(int idProducto) // funcion auxiliar
   return false;
 }
 
+int IdProducto(std::string nickProducto)
+{
+  std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    if ((*it)->getNombre() == nickProducto)
+    {
+      return (*it)->getId();
+    };
+  };
+  return 0;
+}
+
 // Carga de datos iniciales: // Usuarios, Productos, Promos // Falta: Compras Comentarios
 void CargarDatos()
 {
@@ -196,7 +209,6 @@ void CargarDatos()
   controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
 
   // PR1 - Producto 1 - US2
-  int idPR1 = 1;
   std::string nombrePR1 = "Camiseta Azul";
   std::string descripcionPR1 = "Camiseta de poliester, color azul";
   float precioPR1 = 1400;
@@ -206,7 +218,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR1, precioPR1, stockPR1, descripcionPR1, tipoPR1, punteroVendedorPR1);
 
   // PR2 - Producto 2 - US1
-  int idPR2 = 2;
   std::string nombrePR2 = "Televisor LED";
   std::string descripcionPR2 = "Televisor LED 55 pulgadas";
   float precioPR2 = 40500;
@@ -216,7 +227,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR2, precioPR2, stockPR2, descripcionPR2, tipoPR2, punteroVendedorPR1);
 
   // PR3 - Producto 3 - US2
-  int idPR3 = 3;
   std::string nombrePR3 = "Chaqueta de Cuero";
   std::string descripcionPR3 = "Chaqueta de cuero, color negro";
   float precioPR3 = 699.99;
@@ -226,7 +236,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR3, precioPR3, stockPR3, descripcionPR3, tipoPR3, punteroVendedorPR3);
 
   // PR4 - Producto 4 - US1
-  int idPR4 = 4;
   std::string nombrePR4 = "Microondas Digital";
   std::string descripcionPR4 = "Microondas digital, 30L";
   float precioPR4 = 1199.99;
@@ -236,7 +245,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR4, precioPR4, stockPR4, descripcionPR4, tipoPR4, punteroVendedorPR4);
 
   // PR5 - Producto 5 - US3
-  int idPR5 = 5;
   std::string nombrePR5 = "Luz LED";
   std::string descripcionPR5 = "Luz Bluetooth LED";
   float precioPR5 = 599.99;
@@ -246,7 +254,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR5, precioPR5, stockPR5, descripcionPR5, tipoPR5, punteroVendedorPR5);
 
   // PR6 - Producto 6 - US2
-  int idPR6 = 6;
   std::string nombrePR6 = "Pantalones Vaqueros";
   std::string descripcionPR6 = "Pantalones vaqueros, talla 32";
   float precioPR6 = 60;
@@ -256,7 +263,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR6, precioPR6, stockPR6, descripcionPR6, tipoPR6, punteroVendedorPR6);
 
   // PR7 - Producto 7 - US3
-  int idPR7 = 7;
   std::string nombrePR7 = "Auriculares Bluetooth";
   std::string descripcionPR7 = "Auriculares bluethooth para celular";
   float precioPR7 = 199.99;
@@ -266,7 +272,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR7, precioPR7, stockPR7, descripcionPR7, tipoPR7, punteroVendedorPR7);
 
   // PR8 - Producto 8 - US1
-  int idPR8 = 8;
   std::string nombrePR8 = "Refrigerador";
   std::string descripcionPR8 = "Refrigerador de doble puerta";
   float precioPR8 = 15499;
@@ -276,7 +281,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR8, precioPR8, stockPR8, descripcionPR8, tipoPR8, punteroVendedorPR8);
 
   // PR9 - Producto 9 - US1
-  int idPR9 = 9;
   std::string nombrePR9 = "Cafetera";
   std::string descripcionPR9 = "Cafetera de goteo programable";
   float precioPR9 = 23000;
@@ -286,7 +290,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR9, precioPR9, stockPR9, descripcionPR9, tipoPR9, punteroVendedorPR9);
 
   // PR10 - Producto 10 - US2
-  int idPR10 = 10;
   std::string nombrePR10 = "Zapatillas Deportivas";
   std::string descripcionPR10 = "Zapatillas para correr, talla 42";
   float precioPR10 = 5500;
@@ -296,7 +299,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR10, precioPR10, stockPR10, descripcionPR10, tipoPR10, punteroVendedorPR10);
 
   // PR11 - Producto 11 - US2
-  int idPR11 = 11;
   std::string nombrePR11 = "Mochila";
   std::string descripcionPR11 = "Mochila de viaje, 40L";
   float precioPR11 = 9000;
@@ -306,7 +308,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR11, precioPR11, stockPR11, descripcionPR11, tipoPR11, punteroVendedorPR11);
 
   // PR12 - Producto 12 - US3
-  int idPR12 = 12;
   std::string nombrePR12 = "Plancha de Ropa";
   std::string descripcionPR12 = "2 Plancha a vapor, 1500W";
   float precioPR12 = 2534;
@@ -316,7 +317,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR12, precioPR12, stockPR12, descripcionPR12, tipoPR12, punteroVendedorPR12);
 
   // PR13 - Producto 13 - US10
-  int idPR13 = 13;
   std::string nombrePR13 = "Gorra";
   std::string descripcionPR13 = "Gorra para deportes, color rojo";
   float precioPR13 = 200;
@@ -326,7 +326,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR13, precioPR13, stockPR13, descripcionPR13, tipoPR13, punteroVendedorPR13);
 
   // PR14 - Producto 14 - US3
-  int idPR14 = 14;
   std::string nombrePR14 = "Tablet";
   std::string descripcionPR14 = "Tablet Android de 10 pulgadas";
   float precioPR14 = 15000;
@@ -336,7 +335,6 @@ void CargarDatos()
   controladorProducto->registrarDatosProductos(nombrePR14, precioPR14, stockPR14, descripcionPR14, tipoPR14, punteroVendedorPR14);
 
   // PR15 - Producto 15 - US10
-  int idPR15 = 15;
   std::string nombrePR15 = "Reloj de Pared";
   std::string descripcionPR15 = "Reloj de pared vintage";
   float precioPR15 = 150.50;
@@ -359,11 +357,14 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS1);
   // Productos relacionados Promocion 1
   // PP1: producto: PR2, Min: 1
+  int idPR2 = IdProducto(nombrePR2);
   controladorPromocion->agregarAPromo(idPR2, 1);
   // PP2: producto: PR4, Min: 1
+  int idPR4 = IdProducto(nombrePR4);
   controladorPromocion->agregarAPromo(idPR4, 1);
   // PP3: producto: PR8, Min: 1
-  controladorPromocion->agregarAPromo(idPR4, 1);
+  int idPR8 = IdProducto(nombrePR8);
+  controladorPromocion->agregarAPromo(idPR8, 1);
   controladorPromocion->altaNuevaPromo();
 
   // PM2 - Promocion 2
@@ -375,8 +376,10 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS2);
   // Productos relacionados Promocion 2
   // PP4: producto: PR3, Min: 2
+  int idPR3 = IdProducto(nombrePR3);
   controladorPromocion->agregarAPromo(idPR3, 2);
   // PP5: producto: PR6, Min: 3
+  int idPR6 = IdProducto(nombrePR6);
   controladorPromocion->agregarAPromo(idPR6, 3);
   controladorPromocion->altaNuevaPromo();
 
@@ -389,6 +392,7 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
   // PP6: producto: PR5, Min: 2
+  int idPR5 = IdProducto(nombrePR5);
   controladorPromocion->agregarAPromo(idPR5, 2);
   controladorPromocion->altaNuevaPromo();
 
@@ -401,6 +405,7 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
   // PP7: producto: PR14, Min: 1
+  int idPR14 = IdProducto(nombrePR14);
   controladorPromocion->agregarAPromo(idPR14, 1);
   controladorPromocion->altaNuevaPromo();
 
@@ -740,7 +745,7 @@ void ConsultarUnProducto() // Implementado //
   std::cout << std::endl;
 }
 
-void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
+void CrearPromocion() // Implementado // falta: asignarle la promo al vendedor
 {
   // ingreso de datos de la promo
   std::string nombrePromo;
@@ -891,9 +896,9 @@ void RealizarCompra()
   std::cin >> dia;
   std::cin >> mes;
   std::cin >> anio;
-  controladorCompra->crearCompra(clienteCompra,dia,mes,anio);
-  //Imprimir productos
-  std::set<DTProducto*> productosDisp = controladorProducto->obtenerProductosDisponibles();
+  controladorCompra->crearCompra(clienteCompra, dia, mes, anio);
+  // Imprimir productos
+  std::set<DTProducto *> productosDisp = controladorProducto->obtenerProductosDisponibles();
   std::cout << "Productos disponibles:" << std::endl;
   for (auto it = productosDisp.begin(); it != productosDisp.end(); it++)
   {
@@ -902,7 +907,7 @@ void RealizarCompra()
     std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
     std::cout << std::endl;
   }
-  //Seleccion de productos
+  // Seleccion de productos
   int opcion = 1;
   while (opcion != 2)
   {
@@ -911,7 +916,7 @@ void RealizarCompra()
       int IdAgregarCompra;
       std::cout << "Escriba el codigo de producto que desea asignar a la compra" << std::endl;
       std::cin >> IdAgregarCompra;
-     while (controladorCompra->estaEnCompra(IdAgregarCompra))
+      while (controladorCompra->estaEnCompra(IdAgregarCompra))
       {
         std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
         std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
@@ -920,7 +925,7 @@ void RealizarCompra()
       int cantidadAgregarCompra;
       std::cout << "Escriba la cantidad del producto" << std::endl;
       std::cin >> cantidadAgregarCompra;
-      controladorCompra->agregarProductoACompra(IdAgregarCompra,cantidadAgregarCompra);
+      controladorCompra->agregarProductoACompra(IdAgregarCompra, cantidadAgregarCompra);
     }
     std::cout << "1-Agregar otro producto a la compra" << std::endl;
     std::cout << "2-No agregar mas productos" << std::endl;
@@ -930,17 +935,22 @@ void RealizarCompra()
   std::cout << "Calcular descuentos:" << std::endl;
   controladorCompra->calcularDescuentos();
   // Mostrar detalles compra
-  DTCompra* dataCompra = controladorCompra->obtenerDatosCompra();
+  DTCompra *dataCompra = controladorCompra->obtenerDatosCompra();
   std::cout << "Datos compra:" << std::endl;
   std::cout << (*dataCompra) << std::endl;
-  //Confirmacion de compra
+  // Confirmacion de compra
+  std::cout << dataCompra << std::endl;
+  // Confirmacion de compra
   int confirmacion;
   std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;
   std::cin >> confirmacion;
-  if(confirmacion == 1){
+  if (confirmacion == 1)
+  {
     controladorCompra->registrarCompraExitosa(true);
-      std::cout << "Compra registrada con exito" << std::endl;
-  }else{
+    std::cout << "Compra registrada con exito" << std::endl;
+  }
+  else
+  {
     controladorCompra->registrarCompraExitosa(false);
     std::cout << "Compra cancelada" << std::endl;
   }
@@ -958,7 +968,7 @@ void EnviarProducto()
 {
 }
 
-void ExpedienteUsuario() // incompleto // falta obtener lista de promos de un vendedor
+void ExpedienteUsuario() // incompleto // falta: listar compras realizadas por un cliente / obtener lista de promos de un vendedor
 {
   ListarUsuarios();
   std::string nickUsuario;
@@ -1038,7 +1048,7 @@ void SuscribirseNotificacion() // Implementado
   }
 }
 
-void ConsultaNotificacion() // incompleto // falta obtener string de nombre de los "productosEnPromo", "eliminarNotificaciones"
+void ConsultaNotificacion() // incompleto // falta "eliminarNotificaciones"
 {
   ListarNickClientes();
   std::string nickCliente;
@@ -1057,16 +1067,16 @@ void ConsultaNotificacion() // incompleto // falta obtener string de nombre de l
   {
     std::string nickVendedor = (*it)->getNicknameVendedor();
     std::string nombrePromocion = (*it)->getNombrePromocion();
-    // std::set<string> productosEnPromo = (*it)->getProductosEnPromo();
+    std::set<DTProducto *> productosEnPromo = controladorPromocion->productosEnUnaPromo(nombrePromocion);
     std::cout << "Vendedor: " << nickVendedor << ", Promocion: " << nombrePromocion;
-    // for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
-    //{
-    //   std::cout << ", Producto: " << (*it2);
-    // };
+    for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
+    {
+      std::cout << ", Producto: " << (*it2);
+    };
     std::cout << std::endl;
     nickVendedores.insert(nickVendedor);
   };
-  // controladorUsuario->eliminarNotificaciones(nickCliente, nickVendedores);
+  // controladorUsuario->eliminarNotificaciones(std::string nickCliente,std::set<std::string> nickVendedores);
 }
 
 void EliminarSuscripcion() // Implementado

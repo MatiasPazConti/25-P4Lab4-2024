@@ -3,11 +3,11 @@
 
 void ControladorCompra::crearCompra(std::string nickname, int dia, int mes, int anio)
 {
-    DTFecha *fechaCompra = new DTFecha(dia, mes, anio);
-    Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
-	float precioInicial= 0;
-    Compra *nuevaCompra = new Compra(fechaCompra, precioInicial, cliente);
-    this->compraActual = nuevaCompra;
+	DTFecha *fechaCompra = new DTFecha(dia, mes, anio);
+	Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
+	float precioInicial = 0;
+	Compra *nuevaCompra = new Compra(fechaCompra, precioInicial, cliente);
+	this->compraActual = nuevaCompra;
 };
 
 void ControladorCompra::asignarCliente(std::string)
@@ -17,35 +17,41 @@ void ControladorCompra::asignarCliente(std::string)
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
 	Producto *producto = Fabrica::getInterfazProducto()->getProducto(id);
-	DTRegistroProducto* registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
+	DTRegistroProducto *registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->setRegistroProducto(registro);
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
 };
 
-void ControladorCompra::calcularDescuentos(){
-	std::cout <<"Error1"<< std::endl;
-	std::set<DTRegistroProducto*> productos = compraActual->getRegistroProductos();
-	for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
-		if ((*it)->getPromo() != NULL){
-			std::cout <<"Error2"<< std::endl;
-			std::map<int, InfoPromoProducto> productosPromo = (*it)->getPromo()->getInfoProductos();
-			std::set<DTRegistroProducto*> auxiliar;
-			for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
-				if(productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad()){
+void ControladorCompra::calcularDescuentos()
+{
+	/*std::cout << "Error1" << std::endl;
+	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
+	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+	{
+		if ((*it)->getPromo() != NULL)
+		{
+			std::cout << "Error2" << std::endl;
+			std::map<int, InfoPromoProducto > productosPromo = (*it)->getPromo()->getInfoProductos();
+			std::set<DTRegistroProducto *> auxiliar;
+			for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+			{
+				if (productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad())
+				{
 					auxiliar.insert(*it);
 				}
 			}
-		std::cout <<"Error3"<< std::endl;
-		if(auxiliar.size() == productosPromo.size()){
-			  std::cout <<"Descuento aplicado"<< std::endl;
-			compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal()*(*it)->getPromo()->getPorcentajeDescuento());
-			break;
+			std::cout << "Error3" << std::endl;
+			if (auxiliar.size() == productosPromo.size())
+			{
+				std::cout << "Descuento aplicado" << std::endl;
+				compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal() * (*it)->getPromo()->getPorcentajeDescuento());
+				break;
+			}
+			std::cout << "No hay descuentos disponibles" << std::endl;
 		}
-		  std::cout <<"No hay descuentos disponibles"<< std::endl;
-		}
-    };
-
+	};*/
 }
+
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
 	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();
@@ -76,8 +82,10 @@ ControladorCompra *ControladorCompra::getInstancia()
 	return instancia;
 }
 
-bool ControladorCompra::estaEnCompra(int id){
-	if(compraActual->getRegistroProducto(id) == NULL){
+bool ControladorCompra::estaEnCompra(int id)
+{
+	if (compraActual->getRegistroProducto(id) == NULL)
+	{
 		return false;
 	}
 	return true;

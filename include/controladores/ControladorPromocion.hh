@@ -26,8 +26,6 @@ private:
   std::map<int, InfoPromoProducto *> infoProductos; // info promo productos identificado por id
   // std::map<int, DTProductoPromo> dtProductosPromo;  data producto promo identificado por id
   std::map<std::string, Promocion *> promociones; // promociones identificadas por nombre
-  static ControladorPromocion *instancia;
-  ControladorPromocion();
 
 public:
   static ControladorPromocion *getInstancia();
@@ -38,8 +36,7 @@ public:
   void agregarAPromo(int id, int cantMin);
   void altaNuevaPromo();
   DTPromocion *getPromocion(std::string);
-  static ControladorPromocion *getInstancia();
-  ~ControladorPromocion();
+  std::set<DTProducto *> productosEnUnaPromo(std::string nombrePromo);
 };
 
 #endif

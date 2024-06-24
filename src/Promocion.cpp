@@ -14,10 +14,7 @@ DTFecha Promocion::getFechaDeVencimiento()
 {
     return fechaDeVencimiento;
 }
-float Promocion::getPorcentajeDescuento()
-{
-    return porcentajeDescuento;
-}
+
 Vendedor *Promocion::getVendedor()
 {
     return vendedor;
