@@ -53,4 +53,7 @@ Vendedor::Vendedor(std::string nickname, std::string password, DTFecha *fechaNac
 {
   this->codigoRUT = codigoRUT;
 }
-Vendedor::~Vendedor() {}
+Vendedor::~Vendedor()
+{
+  Usuario::~Usuario();
+}

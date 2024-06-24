@@ -16,4 +16,6 @@ DTCliente::DTCliente(std::string nickname, DTFecha *fechaNacimiento, DTDireccion
 }
 DTCliente::~DTCliente()
 {
+  delete direccion;
+  DTUsuario::~DTUsuario();
 }

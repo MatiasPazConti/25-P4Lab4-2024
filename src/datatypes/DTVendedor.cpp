@@ -11,4 +11,5 @@ DTVendedor::DTVendedor(std::string nickname, DTFecha *fechaNacimiento, std::stri
 }
 DTVendedor::~DTVendedor()
 {
+  DTUsuario::~DTUsuario();
 }

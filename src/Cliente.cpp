@@ -14,7 +14,7 @@ std::set<Vendedor *> Cliente::getSuscripciones()
 }
 DTCliente *Cliente::getDataCliente()
 {
-  DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento(), direccion, ciudadDeResidencia);
+  DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento()->copiarFecha(), direccion->copiarDireccion(), ciudadDeResidencia);
   return dataCliente;
 }
 void Cliente::añadirSuscripcion(Vendedor *suscripcion)
@@ -48,4 +48,8 @@ Cliente::Cliente(std::string nickname, std::string password, DTFecha *fechaNacim
   this->direccion = direccion;
   this->ciudadDeResidencia = ciudadDeResidencia;
 }
-Cliente::~Cliente() {}
+Cliente::~Cliente()
+{
+  delete direccion;
+  Usuario::~Usuario();
+}
