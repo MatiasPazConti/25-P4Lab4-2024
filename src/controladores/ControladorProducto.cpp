@@ -1,20 +1,5 @@
 #include "../../include/controladores/ControladorProducto.hh"
-#include "../../include/fabrica/Fabrica.hh"
 
-Producto *ControladorProducto::getProducto(int id)
-{
-  Producto *producto = NULL;
-  bool encontrado = false;
-  for (std::set<Producto *>::iterator it = productos.begin(); (it != productos.end()) && !encontrado; it++)
-  {
-    if ((*it)->getId() == id)
-    {
-      producto = *it;
-      encontrado = true;
-    }
-  }
-  return producto;
-}
 DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
 {
   for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
@@ -27,14 +12,31 @@ DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
   }
   return NULL;
 }
-void ControladorProducto::registrarDatosProductos(std::string nombre, float precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, std::string nickVendedor)
+
+Producto *ControladorProducto::getProducto(int id)
 {
-  lastID++;
-  Vendedor *vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickVendedor);
-  Producto *nuevoProducto = new Producto(lastID, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
-  this->productos.insert(nuevoProducto);
-  vendedor->añadirProducto(nuevoProducto);
+  for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+  {
+    if ((*it)->getId() == id)
+    {
+      return (*it);
+    }
+  }
+  return NULL;
 }
+
+void ControladorProducto::registrarDatosProductos(std::string nombre, float precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor *vendedor)
+{
+  int id = lastID + 1;
+  Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
+  this->productos.insert(prod);
+  lastID = id;
+}
+
+void ControladorProducto::altaNuevoProducto()
+{
+}
+
 ControladorProducto::ControladorProducto() {}
 ControladorProducto::~ControladorProducto(){};
 ControladorProducto *ControladorProducto::instancia = NULL;

@@ -9,13 +9,13 @@
 class DTCliente : public DTUsuario
 {
 private:
-  DTDireccion *direccion;
+  DTDireccion direccion;
   std::string ciudadDeResidencia;
 
 public:
-  DTDireccion *getDireccion();
+  DTDireccion getDireccion();
   std::string getCiudadDeResidencia();
-  DTCliente(std::string, DTFecha *, DTDireccion *, std::string);
+  DTCliente(std::string nickname, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia);
   ~DTCliente();
 };
 

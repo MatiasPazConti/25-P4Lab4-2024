@@ -1,6 +1,6 @@
 #include "../../include/datatypes/DTCliente.hh"
 
-DTDireccion *DTCliente::getDireccion()
+DTDireccion DTCliente::getDireccion()
 {
   return direccion;
 }
@@ -8,7 +8,7 @@ std::string DTCliente::getCiudadDeResidencia()
 {
   return ciudadDeResidencia;
 }
-DTCliente::DTCliente(std::string nickname, DTFecha *fechaNacimiento, DTDireccion *direccion, std::string ciudadDeResidencia)
+DTCliente::DTCliente(std::string nickname, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia)
     : DTUsuario(nickname, fechaNacimiento)
 {
   this->direccion = direccion;
@@ -16,6 +16,4 @@ DTCliente::DTCliente(std::string nickname, DTFecha *fechaNacimiento, DTDireccion
 }
 DTCliente::~DTCliente()
 {
-  delete direccion;
-  DTUsuario::~DTUsuario();
 }

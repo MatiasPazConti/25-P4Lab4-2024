@@ -1,6 +1,6 @@
 #include "../include/Cliente.hh"
 
-DTDireccion *Cliente::getDireccion()
+DTDireccion Cliente::getDireccion()
 {
   return direccion;
 }
@@ -14,7 +14,7 @@ std::set<Vendedor *> Cliente::getSuscripciones()
 }
 DTCliente *Cliente::getDataCliente()
 {
-  DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento()->copiarFecha(), direccion->copiarDireccion(), ciudadDeResidencia);
+  DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento(), direccion, ciudadDeResidencia);
   return dataCliente;
 }
 void Cliente::añadirSuscripcion(Vendedor *suscripcion)
@@ -43,13 +43,9 @@ std::set<DTNotificacion *> Cliente::listarNotificaciones()
 {
   return notificaciones;
 }
-Cliente::Cliente(std::string nickname, std::string password, DTFecha *fechaNacimiento, DTDireccion *direccion, std::string ciudadDeResidencia) : Usuario(nickname, password, fechaNacimiento)
+Cliente::Cliente(std::string nickname, std::string password, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia) : Usuario(nickname, password, fechaNacimiento)
 {
   this->direccion = direccion;
   this->ciudadDeResidencia = ciudadDeResidencia;
 }
-Cliente::~Cliente()
-{
-  delete direccion;
-  Usuario::~Usuario();
-}
+Cliente::~Cliente() {}

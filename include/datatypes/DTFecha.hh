@@ -1,7 +1,6 @@
 #ifndef DTFECHA
 #define DTFECHA
 #include <iostream>
-#include <string>
 
 class DTFecha
 {
@@ -14,11 +13,11 @@ public:
   int getDia();
   int getMes();
   int getAnio();
-  std::string toString();
-  int compararFecha(DTFecha fecha);
-  DTFecha *copiarFecha();
+  DTFecha();
   DTFecha(int dia, int mes, int anio);
   ~DTFecha();
+  std::string toString();
+  int compararFecha(DTFecha fecha);
 };
 
 #endif

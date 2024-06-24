@@ -4,24 +4,16 @@
 #include "./DTFecha.hh"
 #include "./DTProductoPromo.hh"
 #include "./DTVendedor.hh"
-<<<<<<< HEAD
-
-    == == ==
-    =
->>>>>>> origin/main
 #include <iostream>
 #include <map>
 #include <set>
-
-        class DTProducto;
-class DTVendedor;
 
 class DTPromocion
 {
 private:
     std::string nombre;
     std::string descripcion;
-    DTFecha *fechaVencimiento;
+    DTFecha fechaVencimiento;
     float porcentajeDescuento;
     DTVendedor *vendedor;
     std::map<int, DTProductoPromo *> productos;
@@ -29,12 +21,13 @@ private:
 public:
     std::string getNombre();
     std::string getDescripcion();
-    DTFecha *getFechaVencimiento();
+    DTFecha getFechaVencimiento();
     float getPorcentajeDescuento();
-    DTVendedor *getInfoVendedor();
+    DTVendedor *getVendedor();
     std::map<int, DTProductoPromo *> getProductos();
     DTProductoPromo *getProducto(int id);
-    DTPromocion(std::string, std::string, DTFecha *, float, DTVendedor *, std::map<int, DTProductoPromo *>);
+    DTPromocion();
+    DTPromocion(std::string, std::string, DTFecha, float, DTVendedor *, std::map<int, DTProductoPromo *>);
     ~DTPromocion();
 };
 

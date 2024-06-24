@@ -9,13 +9,13 @@ class Usuario
 private:
   std::string nickname;
   std::string password;
-  DTFecha *fechaNacimiento;
+  DTFecha fechaNacimiento;
 
 public:
   std::string getNickname();
   std::string getPassword();
-  DTFecha *getFechaNacimiento();
-  Usuario(std::string nickname, std::string password, DTFecha *fechaNacimiento);
+  DTFecha getFechaNacimiento();
+  Usuario(std::string nickname, std::string password, DTFecha fechaNacimiento);
   ~Usuario();
 };
 

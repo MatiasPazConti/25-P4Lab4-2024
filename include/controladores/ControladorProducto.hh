@@ -2,9 +2,11 @@
 #define CONTROLADOR_PRODUCTO
 
 #include "../interfaces/IControladorProducto.hh"
-
 #include <iostream>
 #include <set>
+#include "../TipoProducto.hh"
+#include "../Producto.hh"
+#include "../datatypes/DTProducto.hh"
 
 class ControladorProducto : public IControladorProducto
 {
@@ -16,8 +18,8 @@ private:
 
 public:
   static ControladorProducto *getInstancia();
-  Producto *getProducto(int);
-  void registrarDatosProductos(std::string, float, int, std::string, TipoProducto, std::string);
+  void registrarDatosProductos(std::string, float, int, std::string, TipoProducto, DTVendedor *);
+  void altaNuevoProducto();
   DTProducto *obtenerProductoDisponible(int);
   Producto *getProducto(int);                           // usada en agregarAPromo en ControladorPromocion
   std::set<DTProducto *> obtenerProductosDisponibles(); // falta hacerla en el cpp // agregado PD chequearlo.

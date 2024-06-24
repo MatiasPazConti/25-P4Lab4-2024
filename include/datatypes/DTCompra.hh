@@ -1,8 +1,8 @@
 #ifndef DTCOMPRA
 #define DTCOMPRA
-#include "./DTFecha.hh"
-#include "./DTCliente.hh"
-#include "./DTRegistroProducto.hh"
+#include "DTFecha.hh"
+#include "DTCliente.hh"
+#include "DTRegistroProducto.hh"
 
 #include <iostream>
 #include <set>
@@ -10,22 +10,22 @@
 class DTCompra
 {
 private:
-  DTFecha *fechaDeCompra;
+  DTFecha fechaDeCompra;
   std::set<DTRegistroProducto *> registroProductos;
   float montoFinal;
   DTCliente *cliente;
-
 public:
-  DTFecha *getFechaDeCompra();
-  DTRegistroProducto *getRegistroProducto(int);
-  std::set<DTRegistroProducto *> getRegistroProductos();
+  DTFecha getFechaDeCompra();
+  DTRegistroProducto* getRegistroProducto(int); 
+  std::set<DTRegistroProducto*> getRegistroProductos();
   float getMontoFinal();
-  DTCliente *getCliente();
-  DTCompra(DTFecha *, float, std::set<DTRegistroProducto *>, DTCliente *);
+  DTCliente getCliente();
+  DTCompra();
+  DTCompra(DTFecha, float, std::set<DTRegistroProducto*>,DTCliente*);
   ~DTCompra();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };
 
-std::ostream &operator<<(std::ostream &out, DTCompra &obj); // cout
+std::ostream &operator<<(std::ostream &out, DTCompra &obj); // cout 
 
 #endif

@@ -4,22 +4,19 @@
 #include "./datatypes/DTFecha.hh"
 #include "./datatypes/DTPromocion.hh"
 #include "./InfoPromoProducto.hh"
-#include "./Producto.hh"
-#include "./Vendedor.hh"
+#include "Producto.hh"
+#include "Vendedor.hh"
 
 #include <iostream>
 #include <set>
 #include <map>
-
-class Producto;
-class Vendedor;
 
 class Promocion
 {
 private:
     std::string nombre;
     std::string descripcion;
-    DTFecha *fechaDeVencimiento;
+    DTFecha fechaDeVencimiento;
     float porcentajeDescuento;
     Vendedor *vendedor;
     std::set<Producto *> productos;
@@ -28,7 +25,8 @@ private:
 public:
     std::string getNombre();
     std::string getDescripcion();
-    DTFecha *getFechaDeVencimiento();
+    DTFecha getFechaDeVencimiento();
+    float getPorcentajeDescuento();
     Vendedor *getVendedor();
     std::set<Producto *> getProductos();
     Producto *getProducto(int);
@@ -37,14 +35,18 @@ public:
 
     void setNombre(std::string);
     void setDescripcion(std::string);
-    void setFechaDeVencimiento(DTFecha *);
+    void setFechaDeVencimiento(DTFecha);
+    void setPorcentajeDescuento(float);
     void setVendedor(Vendedor *);
     void setProductos(std::set<Producto *>);
     void setInfoProductos(std::map<int, InfoPromoProducto *>);
 
     DTPromocion *getDataPromocion();
 
-    Promocion(std::string, std::string, DTFecha *, float, Vendedor *, std::set<Producto *>, std::map<int, InfoPromoProducto *>);
+    Promocion();
+    Promocion(std::string, std::string, DTFecha, float);
+    Promocion(std::string, std::string, DTFecha, float, Vendedor *); //?
+    Promocion(std::string, std::string, DTFecha, float, Vendedor *, std::set<Producto *>, std::map<int, InfoPromoProducto *>);
     ~Promocion();
 };
 
