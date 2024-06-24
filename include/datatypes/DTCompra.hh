@@ -7,13 +7,15 @@
 #include <iostream>
 #include <set>
 
+class DTCliente;
+
 class DTCompra
 {
 private:
   DTFecha *fechaDeCompra;
-  std::set<DTRegistroProducto *> registroProductos;
   float montoFinal;
   DTCliente *cliente;
+  std::set<DTRegistroProducto *> registroProductos;
 
 public:
   DTFecha *getFechaDeCompra();
@@ -21,7 +23,7 @@ public:
   std::set<DTRegistroProducto *> getRegistroProductos();
   float getMontoFinal();
   DTCliente *getCliente();
-  DTCompra(DTFecha *, float, std::set<DTRegistroProducto *>, DTCliente *);
+  DTCompra(DTFecha *, float, DTCliente *, std::set<DTRegistroProducto *>);
   ~DTCompra();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

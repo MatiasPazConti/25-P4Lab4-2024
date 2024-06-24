@@ -27,23 +27,23 @@ DTCliente *DTCompra::getCliente()
 {
   return cliente;
 }
-DTCompra::DTCompra(DTFecha *f, float m, std::set<DTRegistroProducto *> reg, DTCliente *c)
+DTCompra::DTCompra(DTFecha *f, float m, DTCliente *c, std::set<DTRegistroProducto *> reg)
 {
   fechaDeCompra = f;
   montoFinal = m;
-  registroProductos = reg;
   cliente = c;
+  registroProductos = reg;
 }
 DTCompra::~DTCompra()
 {
   delete fechaDeCompra;
+  delete cliente;
   while (!registroProductos.empty())
   {
     std::set<DTRegistroProducto *>::iterator inicio = registroProductos.begin();
     DTRegistroProducto *aBorrar = *inicio;
     registroProductos.erase(inicio);
     delete aBorrar;
-    delete cliente;
   }
 }
 // Sobrecarga de operador '<<'

@@ -19,15 +19,19 @@ class Vendedor : public Usuario
 private:
   std::string codigoRUT;
   std::set<Producto *> productos;
+  std::set<Promocion *> promociones;
   std::set<IObservador *> suscriptores;
 
 public:
   std::string getCodigoRUT();
+  std::set<Promocion *> getPromociones();
   DTVendedor *getDataVendedor();
   DTProducto *getDataProducto(int);
   bool tieneSuscriptores();
+  void añadirPromocion(Promocion *);
   void añadirProducto(Producto *);
   void añadirSuscriptor(Cliente *);
+  void removerPromocion(Promocion *);
   void removerProducto(Producto *);
   void removerSuscriptor(Cliente *);
   void notificarObservadores(DTPromocion *);

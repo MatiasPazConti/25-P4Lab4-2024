@@ -20,6 +20,12 @@ DTPromocion *DTRegistroProducto::getInfoPromo()
 {
   return promocion;
 }
+DTRegistroProducto *DTRegistroProducto::copiarRegistroProducto()
+{
+  DTPromocion *copiaInfoPromocion = promocion->copiarPromocion();
+  DTRegistroProducto *copiaRegistro = new DTRegistroProducto(id, nombre, cantidad, precio, copiaInfoPromocion);
+  return copiaRegistro;
+}
 DTRegistroProducto::DTRegistroProducto(int id, std::string nombre, int cantidad, float precio, DTPromocion *promocion)
 {
   this->id = id;

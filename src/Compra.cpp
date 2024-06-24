@@ -30,6 +30,18 @@ std::set<DTRegistroProducto *> Compra::getRegistroProductos()
 {
   return registroProductos;
 }
+DTCompra *Compra::getDatosCompra()
+{
+  DTCliente *infoCliente = cliente->getDataCliente();
+  std::set<DTRegistroProducto *> copiaResgitroProductos;
+  for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); it++)
+  {
+    DTRegistroProducto *copiaRegistro = (*it)->copiarRegistroProducto();
+    copiaResgitroProductos.insert(copiaRegistro);
+  }
+  DTCompra *dataCompra = new DTCompra(fechaCompra, montoFinal, infoCliente, registroProductos);
+  return dataCompra;
+}
 void Compra::setFechaCompra(int dia, int mes, int anio)
 {
   DTFecha *nuevaFecha = new DTFecha(dia, mes, anio);

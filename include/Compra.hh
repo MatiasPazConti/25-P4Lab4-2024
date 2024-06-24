@@ -2,10 +2,12 @@
 #define COMPRA
 
 #include "./datatypes/DTFecha.hh"
-#include "Cliente.hh"
 #include "./datatypes/DTRegistroProducto.hh"
+#include "Cliente.hh"
 #include <iostream>
 #include <set>
+
+class Cliente;
 
 class Compra
 {
@@ -21,6 +23,7 @@ public:
   Cliente *getCliente();
   DTRegistroProducto *getRegistroProducto(int);
   std::set<DTRegistroProducto *> getRegistroProductos();
+  DTCompra *getDatosCompra();
   void setFechaCompra(int, int, int);
   void setMontoFinal(float);
   void setCliente(Cliente *);

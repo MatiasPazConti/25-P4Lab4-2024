@@ -5,7 +5,7 @@ DTCompra *ControladorCompra::obtenerDatosCompra()
 {
 	DTCliente *datacliente = compraActual->getCliente()->getDataCliente();
 
-	DTCompra *datacompra = new DTCompra(compraActual->getFechaCompra(), compraActual->getMontoFinal(), compraActual->getRegistroProductos(), datacliente);
+	DTCompra *datacompra = new DTCompra(compraActual->getFechaCompra(), compraActual->getMontoFinal(), datacliente, compraActual->getRegistroProductos());
 	return datacompra;
 }
 bool ControladorCompra::estaEnCompra(int id)
@@ -23,6 +23,7 @@ void ControladorCompra::crearCompra(std::string nickname, int dia, int mes, int 
 	Cliente *cliente = Fabrica::getInterfazUsuario()->getCliente(nickname);
 	Compra *nuevaCompra = new Compra(fechaCompra, precioInicial, cliente);
 	this->compraActual = nuevaCompra;
+	cliente->añadirCompra(compraActual);
 };
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {

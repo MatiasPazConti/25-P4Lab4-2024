@@ -4,9 +4,19 @@ std::string Vendedor::getCodigoRUT()
 {
   return codigoRUT;
 }
+std::set<Promocion *> Vendedor::getPromociones()
+{
+  return promociones;
+}
 DTVendedor *Vendedor::getDataVendedor()
 {
-  DTVendedor *dataVendedor = new DTVendedor(getNickname(), getFechaNacimiento(), codigoRUT);
+  std::set<DTPromocion *> listaPromociones;
+  for (std::set<Promocion *>::iterator it = promociones.begin(); it != promociones.end(); it++)
+  {
+    DTPromocion *dataPromo = (*it)->getDataPromocion();
+    listaPromociones.insert(dataPromo);
+  }
+  DTVendedor *dataVendedor = new DTVendedor(getNickname(), getFechaNacimiento(), codigoRUT, listaPromociones);
   return dataVendedor;
 }
 DTProducto *Vendedor::getDataProducto(int id)
@@ -27,6 +37,10 @@ bool Vendedor::tieneSuscriptores()
 {
   return !suscriptores.empty();
 }
+void Vendedor::añadirPromocion(Promocion *promocion)
+{
+  promociones.insert(promocion);
+}
 void Vendedor::añadirProducto(Producto *producto)
 {
   productos.insert(producto);
@@ -34,6 +48,10 @@ void Vendedor::añadirProducto(Producto *producto)
 void Vendedor::añadirSuscriptor(Cliente *suscriptor)
 {
   suscriptores.insert(suscriptor);
+}
+void Vendedor::removerPromocion(Promocion *promocion)
+{
+  promociones.erase(promocion);
 }
 void Vendedor::removerProducto(Producto *producto)
 {

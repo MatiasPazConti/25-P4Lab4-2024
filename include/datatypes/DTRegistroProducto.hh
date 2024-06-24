@@ -19,6 +19,7 @@ public:
   int getCantidad();
   float getPrecio();
   DTPromocion *getInfoPromo();
+  DTRegistroProducto *copiarRegistroProducto();
   DTRegistroProducto(int, std::string, int, float, DTPromocion *); // id,nombre,cantidad,precio
   ~DTRegistroProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
