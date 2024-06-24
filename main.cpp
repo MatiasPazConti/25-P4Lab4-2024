@@ -912,9 +912,61 @@ void RealizarCompra() // Implementado
     std::cout << "Compra cancelada" << std::endl;
   }
 }
+
 void DejarComentario()
 {
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  listarInfoVendedores(vendedores);
+  listarNickClientes();
+  std::string nickUsuario;
+  std::cout << "Escriba su nickname de usuario" << std::endl;
+  std::cin >> nickUsuario;
+  while (!ExisteUsuario(nickUsuario))
+  {
+    std::cout << "El usuario ingresado no existe" << std::endl;
+    std::cout << "Porfavor ingrese un usuario valido" << std::endl;
+    std::cin >> nickUsuario;
+  }
+  std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    int idProductos = (*it)->getId();
+    std::string nickProductos = (*it)->getNombre();
+    std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
+    std::cout << std::endl;
+  }
+  int idProducto;
+  std::cout << "Escriba el ID del producto que desea comentar." << std::endl;
+  std::cin >> idProducto;
+  std::cout << "1-Realizar un nuevo comentario" << std::endl
+            << "2-Responder un comentario existente";
+  std::cout << std::endl;
+  int opcionElegida;
+  std::cin >> opcionElegida;
+  if (opcionElegida == 1)
+  {
+    std::string texto;
+    std::cout << "Escriba su comentario del producto" << std::endl;
+    std::getline(std::cin >> std::ws, texto);
+    // comentar ese texto en "idProducto"
+  }
+  else if (opcionElegida == 2)
+  {
+    // lsitar comentarios del producto
+    int aResponder;
+    std::cout << "Escriba el ID del comentario que desea responder." << std::endl;
+    std::cin >> aResponder;
+    std::string texto;
+    std::cout << "Escriba su comentario del producto" << std::endl;
+    std::getline(std::cin >> std::ws, texto);
+    // comentar ese texto en respuesta de "aResponder"
+  }
+  else
+  {
+    std::cout << "Opcion invalida" << std::endl;
+  }
 }
+
 void EliminarComentario()
 {
 }

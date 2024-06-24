@@ -27,6 +27,11 @@ DTCliente *Cliente::getDataCliente()
   DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento()->copiarFecha(), direccion->copiarDireccion(), ciudadDeResidencia, listaInfoCompras);
   return dataCliente;
 }
+DTUsuario *Cliente::getDataUsuario()
+{
+  DTUsuario *dataUsuario = getDataCliente();
+  return dataUsuario;
+}
 void Cliente::añadirSuscripcion(Vendedor *suscripcion)
 {
   suscripciones.insert(suscripcion);

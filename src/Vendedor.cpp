@@ -19,6 +19,11 @@ DTVendedor *Vendedor::getDataVendedor()
   DTVendedor *dataVendedor = new DTVendedor(getNickname(), getFechaNacimiento(), codigoRUT, listaPromociones);
   return dataVendedor;
 }
+DTUsuario *Vendedor::getDataUsuario()
+{
+  DTUsuario *dataUsuario = getDataVendedor();
+  return dataUsuario;
+}
 DTProducto *Vendedor::getDataProducto(int id)
 {
   DTProducto *dataProducto = NULL;

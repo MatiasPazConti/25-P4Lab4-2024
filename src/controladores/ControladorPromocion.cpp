@@ -46,6 +46,7 @@ void ControladorPromocion::altaNuevaPromo()
   {
     (*it)->addPromocion(promo);
   }
+  vendedor->añadirPromocion(promo);
   if (vendedor->tieneSuscriptores())
   {
     DTPromocion *infoPromocion = promo->getDataPromocion();

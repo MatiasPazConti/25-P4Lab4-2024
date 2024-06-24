@@ -28,6 +28,7 @@ public:
   std::set<Vendedor *> getSuscripciones();
   std::set<Compra *> getComprasPrevias();
   DTCliente *getDataCliente();
+  DTUsuario *getDataUsuario();
   void añadirSuscripcion(Vendedor *);
   void añadirCompra(Compra *);
   void removerSuscripcion(Vendedor *);

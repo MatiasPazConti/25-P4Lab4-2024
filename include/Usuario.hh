@@ -15,8 +15,9 @@ public:
   std::string getNickname();
   std::string getPassword();
   DTFecha *getFechaNacimiento();
+  virtual DTUsuario *getDataUsuario() = 0;
   Usuario(std::string nickname, std::string password, DTFecha *fechaNacimiento);
-  ~Usuario();
+  virtual ~Usuario();
 };
 
 #endif

@@ -26,6 +26,7 @@ public:
   std::string getCodigoRUT();
   std::set<Promocion *> getPromociones();
   DTVendedor *getDataVendedor();
+  DTUsuario *getDataUsuario();
   DTProducto *getDataProducto(int);
   bool tieneSuscriptores();
   void añadirPromocion(Promocion *);
