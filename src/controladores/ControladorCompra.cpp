@@ -27,7 +27,7 @@ void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 
 void ControladorCompra::calcularDescuentos()
 {
-	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
+	/*std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
 	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 	{
 		if ((*it)->getPromo() != NULL)
@@ -47,7 +47,7 @@ void ControladorCompra::calcularDescuentos()
 				break;
 			}
 		}
-	};
+	};*/
 }
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
