@@ -6,6 +6,8 @@
 #include "./DTVendedor.hh"
 #include <iostream>
 
+class DTVendedor;
+
 class DTProducto
 {
 private:

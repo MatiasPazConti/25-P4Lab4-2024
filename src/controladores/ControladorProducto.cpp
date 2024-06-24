@@ -1,4 +1,5 @@
 #include "../../include/controladores/ControladorProducto.hh"
+#include "../../include/fabrica/Fabrica.hh"
 
 DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
 {
@@ -12,16 +13,12 @@ DTProducto *ControladorProducto::obtenerProductoDisponible(int id)
   }
   return NULL;
 }
-void ControladorProducto::registrarDatosProductos(std::string nombre, float precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, DTVendedor *vendedor)
+void ControladorProducto::registrarDatosProductos(std::string nombre, float precio, int cantidadEnStock, std::string descripcion, TipoProducto tipo, std::string nickVendedor)
 {
-  int id = lastID + 1;
-  Producto *prod = new Producto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
+  lastID++;
+  Vendedor *vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickVendedor);
+  Producto *prod = new Producto(lastID, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
   this->productos.insert(prod);
-  lastID = id;
-}
-
-void ControladorProducto::altaNuevoProducto()
-{
 }
 
 ControladorProducto::ControladorProducto() {}

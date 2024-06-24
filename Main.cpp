@@ -202,8 +202,7 @@ void CargarDatos()
   float precioPR1 = 1400;
   int stockPR1 = 50;
   TipoProducto tipoPR1 = TipoProducto::Ropa;
-  DTVendedor *punteroVendedorPR1 = datoVendedor(nickUS2);
-  controladorProducto->registrarDatosProductos(nombrePR1, precioPR1, stockPR1, descripcionPR1, tipoPR1, punteroVendedorPR1);
+  controladorProducto->registrarDatosProductos(nombrePR1, precioPR1, stockPR1, descripcionPR1, tipoPR1, nickUS2);
 
   // PR2 - Producto 2 - US1
   int idPR2 = 2;
@@ -212,8 +211,7 @@ void CargarDatos()
   float precioPR2 = 40500;
   int stockPR2 = 30;
   TipoProducto tipoPR2 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR2 = datoVendedor(nickUS1);
-  controladorProducto->registrarDatosProductos(nombrePR2, precioPR2, stockPR2, descripcionPR2, tipoPR2, punteroVendedorPR1);
+  controladorProducto->registrarDatosProductos(nombrePR2, precioPR2, stockPR2, descripcionPR2, tipoPR2, nickUS1);
 
   // PR3 - Producto 3 - US2
   int idPR3 = 3;
@@ -222,8 +220,7 @@ void CargarDatos()
   float precioPR3 = 699.99;
   int stockPR3 = 20;
   TipoProducto tipoPR3 = TipoProducto::Ropa;
-  DTVendedor *punteroVendedorPR3 = datoVendedor(nickUS2);
-  controladorProducto->registrarDatosProductos(nombrePR3, precioPR3, stockPR3, descripcionPR3, tipoPR3, punteroVendedorPR3);
+  controladorProducto->registrarDatosProductos(nombrePR3, precioPR3, stockPR3, descripcionPR3, tipoPR3, nickUS2);
 
   // PR4 - Producto 4 - US1
   int idPR4 = 4;
@@ -232,8 +229,7 @@ void CargarDatos()
   float precioPR4 = 1199.99;
   int stockPR4 = 15;
   TipoProducto tipoPR4 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR4 = datoVendedor(nickUS1);
-  controladorProducto->registrarDatosProductos(nombrePR4, precioPR4, stockPR4, descripcionPR4, tipoPR4, punteroVendedorPR4);
+  controladorProducto->registrarDatosProductos(nombrePR4, precioPR4, stockPR4, descripcionPR4, tipoPR4, nickUS1);
 
   // PR5 - Producto 5 - US3
   int idPR5 = 5;
@@ -242,8 +238,7 @@ void CargarDatos()
   float precioPR5 = 599.99;
   int stockPR5 = 40;
   TipoProducto tipoPR5 = TipoProducto::Otros;
-  DTVendedor *punteroVendedorPR5 = datoVendedor(nickUS3);
-  controladorProducto->registrarDatosProductos(nombrePR5, precioPR5, stockPR5, descripcionPR5, tipoPR5, punteroVendedorPR5);
+  controladorProducto->registrarDatosProductos(nombrePR5, precioPR5, stockPR5, descripcionPR5, tipoPR5, nickUS3);
 
   // PR6 - Producto 6 - US2
   int idPR6 = 6;
@@ -252,8 +247,7 @@ void CargarDatos()
   float precioPR6 = 60;
   int stockPR6 = 25;
   TipoProducto tipoPR6 = TipoProducto::Ropa;
-  DTVendedor *punteroVendedorPR6 = datoVendedor(nickUS2);
-  controladorProducto->registrarDatosProductos(nombrePR6, precioPR6, stockPR6, descripcionPR6, tipoPR6, punteroVendedorPR6);
+  controladorProducto->registrarDatosProductos(nombrePR6, precioPR6, stockPR6, descripcionPR6, tipoPR6, nickUS2);
 
   // PR7 - Producto 7 - US3
   int idPR7 = 7;
@@ -262,8 +256,7 @@ void CargarDatos()
   float precioPR7 = 199.99;
   int stockPR7 = 35;
   TipoProducto tipoPR7 = TipoProducto::Otros;
-  DTVendedor *punteroVendedorPR7 = datoVendedor(nickUS3);
-  controladorProducto->registrarDatosProductos(nombrePR7, precioPR7, stockPR7, descripcionPR7, tipoPR7, punteroVendedorPR7);
+  controladorProducto->registrarDatosProductos(nombrePR7, precioPR7, stockPR7, descripcionPR7, tipoPR7, nickUS3);
 
   // PR8 - Producto 8 - US1
   int idPR8 = 8;
@@ -272,8 +265,7 @@ void CargarDatos()
   float precioPR8 = 15499;
   int stockPR8 = 10;
   TipoProducto tipoPR8 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR8 = datoVendedor(nickUS1);
-  controladorProducto->registrarDatosProductos(nombrePR8, precioPR8, stockPR8, descripcionPR8, tipoPR8, punteroVendedorPR8);
+  controladorProducto->registrarDatosProductos(nombrePR8, precioPR8, stockPR8, descripcionPR8, tipoPR8, nickUS1);
 
   // PR9 - Producto 9 - US1
   int idPR9 = 9;
@@ -282,8 +274,7 @@ void CargarDatos()
   float precioPR9 = 23000;
   int stockPR9 = 50;
   TipoProducto tipoPR9 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR9 = datoVendedor(nickUS1);
-  controladorProducto->registrarDatosProductos(nombrePR9, precioPR9, stockPR9, descripcionPR9, tipoPR9, punteroVendedorPR9);
+  controladorProducto->registrarDatosProductos(nombrePR9, precioPR9, stockPR9, descripcionPR9, tipoPR9, nickUS1);
 
   // PR10 - Producto 10 - US2
   int idPR10 = 10;
@@ -292,8 +283,7 @@ void CargarDatos()
   float precioPR10 = 5500;
   int stockPR10 = 20;
   TipoProducto tipoPR10 = TipoProducto::Ropa;
-  DTVendedor *punteroVendedorPR10 = datoVendedor(nickUS2);
-  controladorProducto->registrarDatosProductos(nombrePR10, precioPR10, stockPR10, descripcionPR10, tipoPR10, punteroVendedorPR10);
+  controladorProducto->registrarDatosProductos(nombrePR10, precioPR10, stockPR10, descripcionPR10, tipoPR10, nickUS2);
 
   // PR11 - Producto 11 - US2
   int idPR11 = 11;
@@ -302,8 +292,7 @@ void CargarDatos()
   float precioPR11 = 9000;
   int stockPR11 = 30;
   TipoProducto tipoPR11 = TipoProducto::Otros;
-  DTVendedor *punteroVendedorPR11 = datoVendedor(nickUS2);
-  controladorProducto->registrarDatosProductos(nombrePR11, precioPR11, stockPR11, descripcionPR11, tipoPR11, punteroVendedorPR11);
+  controladorProducto->registrarDatosProductos(nombrePR11, precioPR11, stockPR11, descripcionPR11, tipoPR11, nickUS2);
 
   // PR12 - Producto 12 - US3
   int idPR12 = 12;
@@ -312,8 +301,7 @@ void CargarDatos()
   float precioPR12 = 2534;
   int stockPR12 = 25;
   TipoProducto tipoPR12 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR12 = datoVendedor(nickUS3);
-  controladorProducto->registrarDatosProductos(nombrePR12, precioPR12, stockPR12, descripcionPR12, tipoPR12, punteroVendedorPR12);
+  controladorProducto->registrarDatosProductos(nombrePR12, precioPR12, stockPR12, descripcionPR12, tipoPR12, nickUS3);
 
   // PR13 - Producto 13 - US10
   int idPR13 = 13;
@@ -322,8 +310,7 @@ void CargarDatos()
   float precioPR13 = 200;
   int stockPR13 = 50;
   TipoProducto tipoPR13 = TipoProducto::Ropa;
-  DTVendedor *punteroVendedorPR13 = datoVendedor(nickUS10);
-  controladorProducto->registrarDatosProductos(nombrePR13, precioPR13, stockPR13, descripcionPR13, tipoPR13, punteroVendedorPR13);
+  controladorProducto->registrarDatosProductos(nombrePR13, precioPR13, stockPR13, descripcionPR13, tipoPR13, nickUS10);
 
   // PR14 - Producto 14 - US3
   int idPR14 = 14;
@@ -332,8 +319,7 @@ void CargarDatos()
   float precioPR14 = 15000;
   int stockPR14 = 15;
   TipoProducto tipoPR14 = TipoProducto::Electrodomesticos;
-  DTVendedor *punteroVendedorPR14 = datoVendedor(nickUS3);
-  controladorProducto->registrarDatosProductos(nombrePR14, precioPR14, stockPR14, descripcionPR14, tipoPR14, punteroVendedorPR14);
+  controladorProducto->registrarDatosProductos(nombrePR14, precioPR14, stockPR14, descripcionPR14, tipoPR14, nickUS3);
 
   // PR15 - Producto 15 - US10
   int idPR15 = 15;
@@ -342,8 +328,7 @@ void CargarDatos()
   float precioPR15 = 150.50;
   int stockPR15 = 20;
   TipoProducto tipoPR15 = TipoProducto::Otros;
-  DTVendedor *punteroVendedorPR15 = datoVendedor(nickUS10);
-  controladorProducto->registrarDatosProductos(nombrePR15, precioPR15, stockPR15, descripcionPR15, tipoPR15, punteroVendedorPR15);
+  controladorProducto->registrarDatosProductos(nombrePR15, precioPR15, stockPR15, descripcionPR15, tipoPR15, nickUS10);
 
   /////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////
@@ -638,10 +623,10 @@ void ListarUsuarios() // Implementado //
   for (auto it = vendedores.begin(); it != vendedores.end(); it++)
   {
     std::string nick = (*it)->getNickname();
-    DTFecha fecha = (*it)->getFechaNacimiento();
-    int dia = fecha.getDia();
-    int mes = fecha.getMes();
-    int anio = fecha.getAnio();
+    DTFecha *fecha = (*it)->getFechaNacimiento();
+    int dia = fecha->getDia();
+    int mes = fecha->getMes();
+    int anio = fecha->getAnio();
     std::string rut = (*it)->getCodigoRUT();
     std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
     std::cout << std::endl;
@@ -650,13 +635,13 @@ void ListarUsuarios() // Implementado //
   for (auto it = clientes.begin(); it != clientes.end(); it++)
   {
     std::string nick = (*it)->getNickname();
-    DTFecha fecha = (*it)->getFechaNacimiento();
-    int dia = fecha.getDia();
-    int mes = fecha.getMes();
-    int anio = fecha.getAnio();
-    DTDireccion adress = (*it)->getDireccion();
-    int nroPuerta = adress.getNroPuerta();
-    std::string calle = adress.getNombreCalle();
+    DTFecha *fecha = (*it)->getFechaNacimiento();
+    int dia = fecha->getDia();
+    int mes = fecha->getMes();
+    int anio = fecha->getAnio();
+    DTDireccion *adress = (*it)->getDireccion();
+    int nroPuerta = adress->getNroPuerta();
+    std::string calle = adress->getNombreCalle();
     std::string ciudad = (*it)->getCiudadDeResidencia();
     std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
     std::cout << std::endl;
@@ -691,8 +676,7 @@ void AltaDeProducto() // Implementado // falta asignarle el producto al vendedor
               << "3-Otros" << std::endl;
     std::cin >> intCategoriaProducto;
     TipoProducto categoriaProducto = (TipoProducto)intCategoriaProducto;
-    DTVendedor *punteroVendedor = datoVendedor(nickVendedor);
-    controladorProducto->registrarDatosProductos(nombreProducto, precioProducto, stockProducto, descripcionProducto, categoriaProducto, punteroVendedor);
+    controladorProducto->registrarDatosProductos(nombreProducto, precioProducto, stockProducto, descripcionProducto, categoriaProducto, nickVendedor);
     std::cout << "El producto fue registrado con exito" << std::endl;
   }
   else
@@ -846,9 +830,9 @@ void RealizarCompra()
   std::cin >> dia;
   std::cin >> mes;
   std::cin >> anio;
-  controladorCompra->crearCompra(clienteCompra,dia,mes,anio);
-  //Imprimir productos
-  std::set<DTProducto*> productosDisp = controladorProducto->obtenerProductosDisponibles();
+  controladorCompra->crearCompra(clienteCompra, dia, mes, anio);
+  // Imprimir productos
+  std::set<DTProducto *> productosDisp = controladorProducto->obtenerProductosDisponibles();
   std::cout << "Productos disponibles:" << std::endl;
   for (auto it = productosDisp.begin(); it != productosDisp.end(); it++)
   {
@@ -857,7 +841,7 @@ void RealizarCompra()
     std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
     std::cout << std::endl;
   }
-  //Seleccion de productos
+  // Seleccion de productos
   int opcion = 1;
   while (opcion != 2)
   {
@@ -866,33 +850,36 @@ void RealizarCompra()
       int IdAgregarCompra;
       std::cout << "Escriba el codigo de producto que desea asignar a la compra" << std::endl;
       std::cin >> IdAgregarCompra;
-     // while (controladorCompra->estaEnCompra(IdAgregarCompra))
-     // {
-     //   std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
-     //   std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
-     //   std::cin >> IdAgregarCompra;
-     // };
+      // while (controladorCompra->estaEnCompra(IdAgregarCompra))
+      // {
+      //   std::cout << "El producto seleccionado ya se encuentra en la compra" << std::endl;
+      //   std::cout << "Porfavor ingrese un nuevo producto" << std::endl;
+      //   std::cin >> IdAgregarCompra;
+      // };
       int cantidadAgregarCompra;
       std::cout << "Escriba la cantidad del producto" << std::endl;
       std::cin >> cantidadAgregarCompra;
-      controladorCompra->agregarProductoACompra(IdAgregarCompra,cantidadAgregarCompra);
+      controladorCompra->agregarProductoACompra(IdAgregarCompra, cantidadAgregarCompra);
     }
     std::cout << "1-Agregar otro producto a la compra" << std::endl;
     std::cout << "2-No agregar mas productos" << std::endl;
     std::cin >> opcion;
   }
   // Mostrar detalles compra
-  DTCompra* dataCompra = controladorCompra->obtenerDatosCompra();
+  DTCompra *dataCompra = controladorCompra->obtenerDatosCompra();
   std::cout << "Datos compra:" << std::endl;
   std::cout << dataCompra << std::endl;
-  //Confirmacion de compra
+  // Confirmacion de compra
   int confirmacion;
   std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;
   std::cin >> confirmacion;
-  if(confirmacion == 1){
+  if (confirmacion == 1)
+  {
     controladorCompra->registrarCompraExitosa(true);
-      std::cout << "Compra registrada con exito" << std::endl;
-  }else{
+    std::cout << "Compra registrada con exito" << std::endl;
+  }
+  else
+  {
     controladorCompra->registrarCompraExitosa(false);
     std::cout << "Compra registrada cancelada" << std::endl;
   }
@@ -927,10 +914,10 @@ void ExpedienteUsuario() // incompleto // falta obtener lista de promos de un ve
   {
     DTCliente *esCliente = datoCliente(nickUsuario);
     std::string nick = esCliente->getNickname();
-    DTFecha fecha = esCliente->getFechaNacimiento();
-    int dia = fecha.getDia();
-    int mes = fecha.getMes();
-    int anio = fecha.getAnio();
+    DTFecha *fecha = esCliente->getFechaNacimiento();
+    int dia = fecha->getDia();
+    int mes = fecha->getMes();
+    int anio = fecha->getAnio();
     std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio;
     std::cout << std::endl;
     // ListarComprasRealizadas(nickCliente);
@@ -939,10 +926,10 @@ void ExpedienteUsuario() // incompleto // falta obtener lista de promos de un ve
   {
     DTVendedor *esVendedor = datoVendedor(nickUsuario);
     std::string nickVendedor = esVendedor->getNickname();
-    DTFecha fechaVendedor = esVendedor->getFechaNacimiento();
-    int dia = fechaVendedor.getDia();
-    int mes = fechaVendedor.getMes();
-    int anio = fechaVendedor.getAnio();
+    DTFecha *fechaVendedor = esVendedor->getFechaNacimiento();
+    int dia = fechaVendedor->getDia();
+    int mes = fechaVendedor->getMes();
+    int anio = fechaVendedor->getAnio();
     std::cout << "Nickname: " << nickVendedor << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio;
     std::cout << std::endl;
     ListarProductosDeVendedor(nickVendedor);

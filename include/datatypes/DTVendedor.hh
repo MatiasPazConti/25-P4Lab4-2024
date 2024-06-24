@@ -4,6 +4,8 @@
 #include "./DTUsuario.hh"
 #include "./DTProducto.hh"
 
+class DTProducto;
+
 class DTVendedor : public DTUsuario
 {
 private:

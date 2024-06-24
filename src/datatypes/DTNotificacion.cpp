@@ -1,16 +1,16 @@
 #include "../../include/datatypes/DTNotificacion.hh"
 
-DTPromocion *DTNotificacion::getInfoPromocion()
+std::string DTNotificacion::getNombrePromocion()
 {
-  return promocion;
+  return nombrePromocion;
 }
 std::string DTNotificacion::getNicknameVendedor()
 {
   return nicknameVendedor;
 }
-DTNotificacion::DTNotificacion(DTPromocion *promocion, std::string nicknameVendedor)
+DTNotificacion::DTNotificacion(std::string nombrePromocion, std::string nicknameVendedor)
 {
-  this->promocion = promocion;
+  this->nombrePromocion = nombrePromocion;
   this->nicknameVendedor = nicknameVendedor;
 }
 DTNotificacion::~DTNotificacion() {}
