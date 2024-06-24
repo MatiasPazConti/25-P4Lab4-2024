@@ -14,6 +14,7 @@ private:
 
 public:
   std::string getCodigoRUT();
+  DTVendedor *copiarInfoVendedor();
   DTVendedor(std::string, DTFecha *, std::string);
   ~DTVendedor();
 };

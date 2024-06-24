@@ -23,6 +23,10 @@ DTProducto *Vendedor::getDataProducto(int id)
   }
   return dataProducto;
 }
+bool Vendedor::tieneSuscriptores()
+{
+  return !suscriptores.empty();
+}
 void Vendedor::añadirProducto(Producto *producto)
 {
   productos.insert(producto);
@@ -38,6 +42,16 @@ void Vendedor::removerProducto(Producto *producto)
 void Vendedor::removerSuscriptor(Cliente *suscriptor)
 {
   suscriptores.erase(suscriptor);
+}
+void Vendedor::notificarObservadores(DTPromocion *infoPromocion)
+{
+  DTNotificacion *nuevaNotificacion = new DTNotificacion(infoPromocion);
+  for (std::set<IObservador *>::iterator it = suscriptores.begin(); it != suscriptores.end(); it++)
+  {
+    DTNotificacion *copiaNotificacion = nuevaNotificacion->copiarNotificacion();
+    (*it)->notificar(copiaNotificacion);
+  }
+  delete nuevaNotificacion;
 }
 std::set<DTProducto *> Vendedor::listarProductos()
 {

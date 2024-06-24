@@ -15,6 +15,7 @@ public:
     std::string getNombre();
     int getCantidadMinima();
     float getPorcentajeDescuento();
+    DTProductoPromo *copiarInfoProductoPromo();
     DTProductoPromo(int, std::string, int, float);
     ~DTProductoPromo();
 };

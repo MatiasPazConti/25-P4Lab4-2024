@@ -25,10 +25,12 @@ public:
   std::string getCodigoRUT();
   DTVendedor *getDataVendedor();
   DTProducto *getDataProducto(int);
+  bool tieneSuscriptores();
   void añadirProducto(Producto *);
   void añadirSuscriptor(Cliente *);
   void removerProducto(Producto *);
   void removerSuscriptor(Cliente *);
+  void notificarObservadores(DTPromocion *);
   std::set<DTProducto *> listarProductos();
   Vendedor(std::string, std::string, DTFecha *, std::string);
   ~Vendedor();

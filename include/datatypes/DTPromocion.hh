@@ -30,6 +30,7 @@ public:
     DTVendedor *getInfoVendedor();
     std::map<int, DTProductoPromo *> getProductos();
     DTProductoPromo *getProducto(int id);
+    DTPromocion *copiarPromocion();
     DTPromocion(std::string, std::string, DTFecha *, float, DTVendedor *, std::map<int, DTProductoPromo *>);
     ~DTPromocion();
 };

@@ -25,16 +25,16 @@ void Cliente::removerSuscripcion(Vendedor *suscripcion)
 {
   suscripciones.erase(suscripcion);
 }
-void Cliente::notificar(std::string nombrePromocion, std::string nicknameVendedor)
+void Cliente::notificar(DTNotificacion *notificacion)
 {
-  DTNotificacion *notificacion = new DTNotificacion(nombrePromocion, nicknameVendedor);
   notificaciones.insert(notificacion);
 }
 void Cliente::eliminarNotificaciones()
 {
-  for (std::set<DTNotificacion *>::iterator it = notificaciones.begin(); it != notificaciones.end(); it++)
+  while (!notificaciones.empty())
   {
-    DTNotificacion *aBorrar = *it;
+    std::set<DTNotificacion *>::iterator inicio = notificaciones.begin();
+    DTNotificacion *aBorrar = *inicio;
     notificaciones.erase(aBorrar);
     delete aBorrar;
   }

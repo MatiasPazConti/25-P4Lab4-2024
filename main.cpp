@@ -1013,21 +1013,11 @@ void ConsultaNotificacion() // incompleto // falta obtener string de nombre de l
     std::cin >> nickCliente;
   }
   std::set<DTNotificacion *> notificaciones = controladorUsuario->listarNotificaciones(nickCliente);
-  std::set<std::string> nickVendedores;
   for (auto it = notificaciones.begin(); it != notificaciones.end(); it++)
   {
-    std::string nickVendedor = (*it)->getNicknameVendedor();
-    std::string nombrePromocion = (*it)->getNombrePromocion();
-    // std::set<string> productosEnPromo = (*it)->getProductosEnPromo();
-    std::cout << "Vendedor: " << nickVendedor << ", Promocion: " << nombrePromocion;
-    // for (auto it2 = productosEnPromo.begin(); it2 != productosEnPromo.end(); it2++)
-    //{
-    //   std::cout << ", Producto: " << (*it2);
-    // };
-    std::cout << std::endl;
-    nickVendedores.insert(nickVendedor);
+    std::cout << (*it);
   };
-  // controladorUsuario->eliminarNotificaciones(nickCliente, nickVendedores);
+  controladorUsuario->eliminarNotificaciones(nickCliente);
 }
 void EliminarSuscripcion() // Implementado
 {

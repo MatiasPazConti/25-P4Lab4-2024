@@ -22,6 +22,7 @@ public:
   virtual void altaNuevoVendedor(std::string, std::string, DTFecha *, std::string) = 0;
   virtual void realizarSuscripciones(std::string, std::set<std::string>) = 0;
   virtual void eliminarSuscripciones(std::string, std::set<std::string>) = 0;
+  virtual void eliminarNotificaciones(std::string) = 0;
   virtual std::set<DTUsuario *> listarUsuarios() = 0;
   virtual std::set<DTCliente *> listarClientes() = 0;
   virtual std::set<DTVendedor *> listarVendedores() = 0;

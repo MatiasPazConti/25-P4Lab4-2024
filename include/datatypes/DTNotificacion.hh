@@ -7,14 +7,16 @@
 class DTNotificacion
 {
 private:
-  std::string nombrePromocion;
-  std::string nicknameVendedor;
+  DTPromocion *promocion;
 
 public:
-  std::string getNombrePromocion();
-  std::string getNicknameVendedor();
-  DTNotificacion(std::string, std::string);
+  DTPromocion *getInfoPromocion();
+  DTNotificacion *copiarNotificacion();
+  DTNotificacion(DTPromocion *);
   ~DTNotificacion();
+  void setPrint(std::ostream &out);
 };
+
+std::ostream &operator<<(std::ostream &out, DTNotificacion &obj);
 
 #endif

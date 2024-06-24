@@ -46,6 +46,11 @@ void ControladorPromocion::altaNuevaPromo()
   {
     (*it)->addPromocion(promo);
   }
+  if (vendedor->tieneSuscriptores())
+  {
+    DTPromocion *infoPromocion = promo->getDataPromocion();
+    vendedor->notificarObservadores(infoPromocion);
+  }
   infoProductos.clear();
   productos.clear();
   vendedor = NULL;

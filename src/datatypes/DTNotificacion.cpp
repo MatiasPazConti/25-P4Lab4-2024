@@ -1,16 +1,38 @@
 #include "../../include/datatypes/DTNotificacion.hh"
 
-std::string DTNotificacion::getNombrePromocion()
+DTPromocion *DTNotificacion::getInfoPromocion()
 {
-  return nombrePromocion;
+  return promocion;
 }
-std::string DTNotificacion::getNicknameVendedor()
+DTNotificacion *DTNotificacion::copiarNotificacion()
 {
-  return nicknameVendedor;
+  DTPromocion *copiaInfoPromo = promocion->copiarPromocion();
+  DTNotificacion *copiaNotificacion = new DTNotificacion(copiaInfoPromo);
+  return copiaNotificacion;
 }
-DTNotificacion::DTNotificacion(std::string nombrePromocion, std::string nicknameVendedor)
+DTNotificacion::DTNotificacion(DTPromocion *promocion)
 {
-  this->nombrePromocion = nombrePromocion;
-  this->nicknameVendedor = nicknameVendedor;
+  this->promocion = promocion;
 }
-DTNotificacion::~DTNotificacion() {}
+DTNotificacion::~DTNotificacion()
+{
+  delete promocion;
+}
+void DTNotificacion::setPrint(std::ostream &out)
+{
+  DTPromocion *infoPromo = promocion;
+  DTVendedor *infoVendedor = infoPromo->getInfoVendedor();
+  std::map<int, DTProductoPromo *> infoProductosPromo = promocion->getProductos();
+  out << "Vendedor: " << infoVendedor->getNickname() << "\n";
+  out << "Promocion: " << infoPromo->getNombre() << "\n";
+  out << "Productos:\n";
+  for (std::map<int, DTProductoPromo *>::iterator it = infoProductosPromo.begin(); it != infoProductosPromo.end(); it++)
+  {
+    out << "- " << it->second->getNombre() << "\n";
+  }
+}
+std::ostream &operator<<(std::ostream &out, DTNotificacion &obj)
+{
+  obj.setPrint(out);
+  return out;
+}
