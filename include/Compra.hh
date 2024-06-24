@@ -4,6 +4,7 @@
 #include "./datatypes/DTFecha.hh"
 #include "Cliente.hh"
 #include "./datatypes/DTRegistroProducto.hh"
+#include "./datatypes/DTCompra.hh"
 #include <iostream>
 #include <set>
 
@@ -24,7 +25,8 @@ public:
   void setCliente(Cliente *);
   DTRegistroProducto *getRegistroProducto(int);
   std::set<DTRegistroProducto *> getRegistroProductos();
-  void setRegistroProducto(DTRegistroProducto*);
+  void setRegistroProducto(DTRegistroProducto *);
+  DTCompra *getDataCompra();
   Compra();
   Compra(DTFecha, float, Cliente);
   ~Compra();

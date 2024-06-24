@@ -12,10 +12,22 @@ std::set<Vendedor *> Cliente::getSuscripciones()
 {
   return suscripciones;
 }
+std::set<DTCompra *> Cliente::getComprasPasadas()
+{
+  return comprasPasadas;
+}
 DTCliente *Cliente::getDataCliente()
 {
   DTCliente *dataCliente = new DTCliente(getNickname(), getFechaNacimiento(), direccion, ciudadDeResidencia);
   return dataCliente;
+}
+void Cliente::añadirCompra(DTCompra *compra)
+{
+  comprasPasadas.insert(compra);
+}
+void Cliente::removerCompra(DTCompra *compra)
+{
+  comprasPasadas.erase(compra);
 }
 void Cliente::añadirSuscripcion(Vendedor *suscripcion)
 {

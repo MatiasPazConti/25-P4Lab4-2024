@@ -8,6 +8,10 @@ std::string DTCliente::getCiudadDeResidencia()
 {
   return ciudadDeResidencia;
 }
+std::set<DTCompra *> DTCliente::getComprasPasadas()
+{
+  return comprasPasadas;
+};
 DTCliente::DTCliente(std::string nickname, DTFecha fechaNacimiento, DTDireccion direccion, std::string ciudadDeResidencia)
     : DTUsuario(nickname, fechaNacimiento)
 {

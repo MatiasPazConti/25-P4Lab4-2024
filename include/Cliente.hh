@@ -4,6 +4,7 @@
 #include "./interfaces/IObservador.hh"
 #include "./datatypes/DTCliente.hh"
 #include "./datatypes/DTDireccion.hh"
+#include "./datatypes/DTCompra.hh"
 #include "./Usuario.hh"
 #include "./Vendedor.hh"
 
@@ -18,12 +19,16 @@ private:
   std::string ciudadDeResidencia;
   std::set<Vendedor *> suscripciones;
   std::set<DTNotificacion *> notificaciones;
+  std::set<DTCompra *> comprasPasadas;
 
 public:
   DTDireccion getDireccion();
   std::string getCiudadDeResidencia();
   std::set<Vendedor *> getSuscripciones();
+  std::set<DTCompra *> getComprasPasadas();
   DTCliente *getDataCliente();
+  void añadirCompra(DTCompra *);
+  void removerCompra(DTCompra *);
   void añadirSuscripcion(Vendedor *);
   void removerSuscripcion(Vendedor *);
   void notificar(std::string, std::string);

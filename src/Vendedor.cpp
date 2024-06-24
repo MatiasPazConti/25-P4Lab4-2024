@@ -23,6 +23,12 @@ DTProducto *Vendedor::getDataProducto(int id)
   }
   return dataProducto;
 }
+
+void Vendedor::añadirPromocion(Promocion *promocion)
+{
+  promociones.insert(promocion);
+}
+
 void Vendedor::añadirProducto(Producto *producto)
 {
   productos.insert(producto);
@@ -30,6 +36,10 @@ void Vendedor::añadirProducto(Producto *producto)
 void Vendedor::añadirSuscriptor(Cliente *suscriptor)
 {
   suscriptores.insert(suscriptor);
+}
+void Vendedor::removerPromocion(Promocion *promocion)
+{
+  promociones.erase(promocion);
 }
 void Vendedor::removerProducto(Producto *producto)
 {

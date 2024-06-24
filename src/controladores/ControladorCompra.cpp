@@ -17,31 +17,37 @@ void ControladorCompra::asignarCliente(std::string)
 void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 {
 	DTProducto *producto = Fabrica::getInterfazProducto()->obtenerProductoDisponible(id);
-	DTRegistroProducto* registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
+	DTRegistroProducto *registro = new DTRegistroProducto(id, producto->getNombre(), cantidad, producto->getPrecio(), producto->getPromocion());
 	compraActual->setRegistroProducto(registro);
-	std::cout << "Error4"<< std::endl; 
+	std::cout << "Error4" << std::endl;
 	compraActual->setMontoFinal(compraActual->getMontoFinal() + producto->getPrecio() * cantidad);
-	std::cout << "Error5"<< std::endl; 
+	std::cout << "Error5" << std::endl;
+	(compraActual->getCliente())->añadirCompra(compraActual->getDataCompra());
 };
 
-void ControladorCompra::calcularDescuentos(){
-	std::set<DTRegistroProducto*> productos = compraActual->getRegistroProductos();
-	for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
-		if ((*it)->getPromo() != NULL){
+void ControladorCompra::calcularDescuentos()
+{
+	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
+	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+	{
+		if ((*it)->getPromo() != NULL)
+		{
 			std::map<int, InfoPromoProducto> productosPromo = (*it)->getPromo()->getInfoProductos();
-			std::set<DTRegistroProducto*> auxiliar;
-			for (std::set<DTRegistroProducto*>::iterator it = productos.begin(); it != productos.end(); ++it){
-				if(productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad()){
+			std::set<DTRegistroProducto *> auxiliar;
+			for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
+			{
+				if (productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad())
+				{
 					auxiliar.insert(*it);
 				}
 			}
-		if(auxiliar.size() == productosPromo.size()){
-			compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal()*(*it)->getPromo()->getPorcentajeDescuento());
-			break;
+			if (auxiliar.size() == productosPromo.size())
+			{
+				compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal() * (*it)->getPromo()->getPorcentajeDescuento());
+				break;
+			}
 		}
-		}
-    };
-
+	};
 }
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {
@@ -73,8 +79,10 @@ ControladorCompra *ControladorCompra::getInstancia()
 	return instancia;
 }
 
-bool ControladorCompra::estaEnCompra(int id){
-	if(compraActual->getRegistroProducto(id) == NULL){
+bool ControladorCompra::estaEnCompra(int id)
+{
+	if (compraActual->getRegistroProducto(id) == NULL)
+	{
 		return false;
 	}
 	return true;

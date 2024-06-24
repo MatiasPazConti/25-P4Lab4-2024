@@ -4,8 +4,11 @@ std::string DTVendedor::getCodigoRUT()
 {
   return codigoRUT;
 }
-DTVendedor::DTVendedor(std::string nickname, DTFecha fechaNacimiento, std::string codigoRUT)
-    : DTUsuario(nickname, fechaNacimiento)
+std::set<DTPromocion *> DTVendedor::getPromociones()
+{
+  return promociones;
+}
+DTVendedor::DTVendedor(std::string nickname, DTFecha fechaNacimiento, std::string codigoRUT) : DTUsuario(nickname, fechaNacimiento)
 {
   this->codigoRUT = codigoRUT;
 }

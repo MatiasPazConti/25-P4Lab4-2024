@@ -18,13 +18,16 @@ private:
   std::string codigoRUT;
   std::set<Producto *> productos;
   std::set<IObservador *> suscriptores;
+  std::set<Promocion *> promociones;
 
 public:
   std::string getCodigoRUT();
   DTVendedor *getDataVendedor();
   DTProducto *getDataProducto(int);
+  void añadirPromocion(Promocion *);
   void añadirProducto(Producto *);
   void añadirSuscriptor(Cliente *);
+  void removerPromocion(Promocion *);
   void removerProducto(Producto *);
   void removerSuscriptor(Cliente *);
   std::set<DTProducto *> listarProductos();

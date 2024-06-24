@@ -8,25 +8,26 @@ float Compra::getMontoFinal()
 {
   return montoFinal;
 }
-Cliente* Compra::getCliente()
+Cliente *Compra::getCliente()
 {
   return cliente;
 }
-void Compra::setFechaCompra(int dia,int mes,int anio)
+void Compra::setFechaCompra(int dia, int mes, int anio)
 {
-  fechaCompra = DTFecha(dia,mes,anio);
+  fechaCompra = DTFecha(dia, mes, anio);
 }
 void Compra::setMontoFinal(float monto)
 {
   montoFinal = monto;
 }
-void Compra::setCliente(Cliente* c)
+void Compra::setCliente(Cliente *c)
 {
   cliente = c;
 }
-DTRegistroProducto *Compra::getRegistroProducto(int id) 
+DTRegistroProducto *Compra::getRegistroProducto(int id)
 {
-  if(!registroProductos.empty()){ 
+  if (!registroProductos.empty())
+  {
     for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
     {
       if ((*it)->getId() == id)
@@ -37,21 +38,27 @@ DTRegistroProducto *Compra::getRegistroProducto(int id)
   }
   return NULL;
 }
-void Compra::setRegistroProducto(DTRegistroProducto* reg)
+void Compra::setRegistroProducto(DTRegistroProducto *reg)
 {
-  std::cout << "Error 40"<< std::endl;
+  std::cout << "Error 40" << std::endl;
   registroProductos.insert(reg);
-  std::cout << "Error 41"<< std::endl;
+  std::cout << "Error 41" << std::endl;
 }
-Compra::Compra(){}
+DTCompra *Compra::getDataCompra()
+{
+  DTCompra *compra = new DTCompra(fechaCompra, montoFinal, registroProductos, cliente->getDataCliente());
+  return compra;
+}
+Compra::Compra() {}
 Compra::Compra(DTFecha fecha, float monto, Cliente c)
 {
   fechaCompra = fecha;
   montoFinal = monto;
   *cliente = c;
 }
-Compra::~Compra(){}
+Compra::~Compra() {}
 
-std::set<DTRegistroProducto*>Compra::getRegistroProductos(){
+std::set<DTRegistroProducto *> Compra::getRegistroProductos()
+{
   return registroProductos;
 }

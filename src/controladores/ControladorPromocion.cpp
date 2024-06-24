@@ -44,6 +44,7 @@ void ControladorPromocion::altaNuevaPromo()
 {
   Promocion *promo = new Promocion(nombre, descripcion, fechaVencimiento, porcentajeDescuento, vendedor, productos, infoProductos);
   promociones.insert({promo->getNombre(), promo});
+  vendedor->añadirPromocion(promo);
 }
 
 ControladorPromocion::~ControladorPromocion()
