@@ -1,11 +1,14 @@
 #ifndef DTPRODUCTO
 #define DTPRODUCTO
 
-#include <iostream>
 #include "../TipoProducto.hh"
+#include "./DTPromocion.hh"
+#include "./DTVendedor.hh"
+#include <iostream>
 
-class Promocion;
+class DTPromocion;
 class DTVendedor;
+
 class DTProducto
 {
 private:
@@ -16,7 +19,8 @@ private:
   int cantidadEnStock;
   TipoProducto tipo;
   DTVendedor *vendedor;
-  Promocion *promo;
+  DTPromocion *promocion;
+
 public:
   int getId();
   std::string getNombre();
@@ -25,9 +29,8 @@ public:
   int getCantidadEnStock();
   TipoProducto getTipoProducto();
   DTVendedor *getVendedor();
-  Promocion *getPromocion();
-  DTProducto();
-  DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *);
+  DTPromocion *getPromocion();
+  DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *, DTPromocion *);
   ~DTProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'
 };

@@ -10,6 +10,8 @@
 
 #include <set>
 
+class Producto;
+class Promocion;
 class Cliente;
 
 class Vendedor : public Usuario
@@ -28,7 +30,7 @@ public:
   void removerProducto(Producto *);
   void removerSuscriptor(Cliente *);
   std::set<DTProducto *> listarProductos();
-  Vendedor(std::string, std::string, DTFecha, std::string);
+  Vendedor(std::string, std::string, DTFecha *, std::string);
   ~Vendedor();
 };
 

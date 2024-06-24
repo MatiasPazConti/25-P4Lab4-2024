@@ -10,7 +10,7 @@ std::string Promocion::getDescripcion()
     return descripcion;
 }
 
-DTFecha Promocion::getFechaDeVencimiento()
+DTFecha *Promocion::getFechaDeVencimiento()
 {
     return fechaDeVencimiento;
 }
@@ -69,14 +69,11 @@ void Promocion::setDescripcion(std::string d)
     descripcion = d;
 }
 
-void Promocion::setFechaDeVencimiento(DTFecha f)
+void Promocion::setFechaDeVencimiento(DTFecha *f)
 {
     fechaDeVencimiento = f;
 }
-void Promocion::setPorcentajeDescuento(float pd)
-{
-    porcentajeDescuento = pd;
-}
+
 void Promocion::setVendedor(Vendedor *v)
 {
     vendedor = v;
@@ -92,49 +89,27 @@ void Promocion::setInfoProductos(std::map<int, InfoPromoProducto *> pi)
     infoProductos = pi;
 }
 
-DTPromocion *Promocion::getDataPromocion()
+DTPromocion *Promocion::getDataPromocion() // revisar
 {
     std::map<int, DTProductoPromo *> dataProductosPromo;
     for (std::set<Producto *>::iterator it = productos.begin(); it != productos.end(); ++it)
     {
-        int cantMin = (infoProductos[(*it)->getId()])->getCantidadMinima();
-        DTProductoPromo *prodPromo = new DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin);
-        dataProductosPromo.insert({(*it)->getId(), prodPromo});
-    };
-    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento, porcentajeDescuento, vendedor->getDataVendedor(), dataProductosPromo);
+        int cantMin = infoProductos[(*it)->getId()]->getCantidadMinima();
+        float porcentajeDesc = getPorcentajeDescuento();
+        DTProductoPromo *nuevaData = new DTProductoPromo((*it)->getId(), (*it)->getNombre(), cantMin, porcentajeDesc);
+        dataProductosPromo.insert({(*it)->getId(), nuevaData});
+    }
+    DTPromocion *dataPromocion = new DTPromocion(nombre, descripcion, fechaDeVencimiento->copiarFecha(), porcentajeDescuento, vendedor->getDataVendedor(), dataProductosPromo);
     return dataPromocion;
 }
-
-Promocion::Promocion()
+Promocion::Promocion(std::string nombre, std::string descripcion, DTFecha *fechaVencimiento, float porcentajeDescuento, Vendedor *vendedor, std::set<Producto *> productos, std::map<int, InfoPromoProducto *> infoProductos)
 {
+    this->nombre = nombre;
+    this->descripcion = descripcion;
+    this->fechaDeVencimiento = fechaVencimiento;
+    this->porcentajeDescuento = porcentajeDescuento;
+    this->vendedor = vendedor;
+    this->productos = productos;
+    this->infoProductos = infoProductos;
 }
-
-Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd)
-{
-    nombre = n;
-    descripcion = d;
-    fechaDeVencimiento = f;
-    porcentajeDescuento = pd;
-}
-
-Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v)
-{
-    nombre = n;
-    descripcion = d;
-    fechaDeVencimiento = f;
-    porcentajeDescuento = pd;
-    vendedor = v;
-}
-
-Promocion::Promocion(std::string n, std::string d, DTFecha f, float pd, Vendedor *v, std::set<Producto *> p, std::map<int, InfoPromoProducto *> pi)
-{
-    nombre = n;
-    descripcion = d;
-    fechaDeVencimiento = f;
-    porcentajeDescuento = pd;
-    vendedor = v;
-    productos = p;
-    infoProductos = pi;
-}
-
 Promocion::~Promocion() {}
