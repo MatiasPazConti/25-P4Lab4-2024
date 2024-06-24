@@ -34,6 +34,7 @@ void ListarNickClientes() // funcion auxiliar
 
 void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
 {
+  std::cout << "llegue aca" << std::endl;
   std::set<DTProducto *> productos = controladorUsuario->listarProductosVendedor(nickname);
   for (auto it = productos.begin(); it != productos.end(); it++)
   {
@@ -785,11 +786,11 @@ void CrearPromocion() // Implementado // falta: asignarle la promo al vendedor
   }
   controladorPromocion->registrarDatosPromo(nombrePromo, descripcionPromo, fechaPromo, descuentoPromo);
   // seleccion de vendedor
-  controladorUsuario->listarVendedores();
+  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
+  ListarNickVendedores(vendedores);
   std::string vendedorPromo;
   std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
   std::cin >> vendedorPromo;
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
   while (!ExisteVendedor(vendedorPromo, vendedores))
   {
     std::cout << "El vendedor ingresado no existe" << std::endl;
@@ -826,9 +827,10 @@ void CrearPromocion() // Implementado // falta: asignarle la promo al vendedor
   controladorPromocion->altaNuevaPromo();
 }
 
-void ConsultarPromocion()
+void ConsultarPromocion() // Implementado ¿?
 {
   std::cout << "PROMOCIONES VIGENTES EN EL SISTEMA" << std::endl;
+  std::cout << std::endl;
   std::set<DTPromocion *> promociones = controladorPromocion->obtenerPromocionesVigentes();
   for (auto it = promociones.begin(); it != promociones.end(); it++)
   {
@@ -850,32 +852,37 @@ void ConsultarPromocion()
       std::cout << "Codigo: " << idProductos << ", Nombre: " << nickProductos;
       std::cout << std::endl;
     }
+    std::cout << std::endl;
   }
   std::cout << "1-Ver en detalle los productos de una promocion" << std::endl
             << "2-Salir";
+  std::cout << std::endl;
   int opcionElegida;
   std::cin >> opcionElegida;
   if (opcionElegida == 1)
   {
     std::cout << "Ingrese el nombre de la promocion: ";
+    std::cout << std::endl;
     std::string nombrePromoElegida;
     std::cin >> nombrePromoElegida;
+    std::cout << std::endl;
     DTPromocion *promoElegida = controladorPromocion->getPromocion(nombrePromoElegida);
     std::cout << "Informacion del vendedor de la promocion: " << std::endl;
     DTVendedor *vendedorElegido = (promoElegida->getVendedor());
     std::cout << "Nombre: " << vendedorElegido->getNickname() << std::endl
               << "Fecha de nacimiento" << vendedorElegido->getFechaNacimiento().getDia() << vendedorElegido->getFechaNacimiento().getMes() << vendedorElegido->getFechaNacimiento().getAnio() << std::endl
               << "Codigo Rut: " << vendedorElegido->getCodigoRUT() << std::endl;
+    std::cout << std::endl;
     std::cout << "Informacion de los productos de la promocion: " << std::endl;
     ListarProductosDeVendedor(vendedorElegido->getNickname());
   }
   else if (opcionElegida == 2)
   {
-    //////
+    return;
   }
 };
 
-void RealizarCompra()
+void RealizarCompra() // Implementado
 {
   // seleccion de cliente
   ListarNickClientes();
@@ -938,8 +945,6 @@ void RealizarCompra()
   DTCompra *dataCompra = controladorCompra->obtenerDatosCompra();
   std::cout << "Datos compra:" << std::endl;
   std::cout << (*dataCompra) << std::endl;
-  // Confirmacion de compra
-  std::cout << dataCompra << std::endl;
   // Confirmacion de compra
   int confirmacion;
   std::cout << "Desea confirmar la compra? (SI(1) / NO(2))" << std::endl;

@@ -44,13 +44,53 @@ void ControladorCompra::calcularDescuentos()
 			if (auxiliar.size() == productosPromo.size())
 			{
 				std::cout << "Descuento aplicado" << std::endl;
-				compraActual->setMontoFinal(compraActual->getMontoFinal() - compraActual->getMontoFinal() * (*it)->getPromo()->getPorcentajeDescuento());
+				int monto1 = compraActual->getMontoFinal();
+				int monto2 = (*it)->getPromo()->getPorcentajeDescuento();
+				int montoF = monto1 - (monto1 * monto2 / 100);
+				compraActual->setMontoFinal(montoF);
+				// compraActual->setMontoFinal(compraActual->getMontoFinal() - (compraActual->getMontoFinal() * (*it)->getPromo()->getPorcentajeDescuento()));
 				break;
 			}
-			std::cout << "No hay descuentos disponibles" << std::endl;
+			else
+			{
+				std::cout << "No hay descuentos disponibles" << std::endl;
+			};
 		}
 	};
 }
+/*void ControladorCompra::calcularDescuentos()
+{
+	std::set<DTRegistroProducto *> productosCompra = compraActual->getRegistroProductos();
+	for (std::set<DTRegistroProducto *>::iterator it = productosCompra.begin(); it != productosCompra.end(); ++it)
+	{
+		if ((*it)->getPromo() != NULL)
+		{
+			std::map<int, InfoPromoProducto *> productosPromo = (*it)->getPromo()->getInfoProductos();
+			std::set<DTRegistroProducto *> auxiliar;
+			for (std::set<DTRegistroProducto *>::iterator it2 = productosCompra.begin(); it2 != productosCompra.end(); ++it2)
+			{
+				int idProductoCompra = (*it2)->getId();
+				if (productosPromo[idProductoCompra]->getCantidadMinima() <= (*it2)->getCantidad())
+				{
+					std::cout << "aca llego" << std::endl;
+					auxiliar.insert(*it2);
+				}
+			}
+			std::cout << auxiliar.size() << std::endl;
+			std::cout << productosPromo.size() << std::endl;
+			if (auxiliar.size() == productosPromo.size())
+			{
+				std::cout << "Descuento aplicado" << std::endl;
+				int monto1 = compraActual->getMontoFinal();
+				int monto2 = (*it)->getPromo()->getPorcentajeDescuento();
+				int montoF = monto1 - (monto1 * monto2 / 100);
+				compraActual->setMontoFinal(montoF);
+				return;
+			};
+		}
+	}
+	std::cout << "No hay descuentos disponibles" << std::endl;
+}*/
 
 DTCompra *ControladorCompra::obtenerDatosCompra()
 {

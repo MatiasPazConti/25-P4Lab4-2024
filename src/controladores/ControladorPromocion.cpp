@@ -48,6 +48,9 @@ void ControladorPromocion::altaNuevaPromo()
   {
     (*it)->setPromocion(promo);
   }
+  infoProductos.clear();
+  productos.clear();
+  vendedor = nullptr;
 }
 
 ControladorPromocion::~ControladorPromocion()
