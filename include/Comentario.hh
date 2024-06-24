@@ -4,6 +4,7 @@
 #include "./datatypes/DTProducto.hh"
 #include "./datatypes/DTComentario.hh"
 
+#include <iostream>
 #include <set>
 
 class Comentario

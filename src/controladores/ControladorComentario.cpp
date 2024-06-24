@@ -20,15 +20,14 @@ int ControladorComentario::getNuevoID()
   nuevoID++;
   return nuevoID;
 }
-/*
-std::set<DTComentario *> listarComentariosUsuario(std::string nickname)
+std::set<DTComentario *> ControladorComentario::listarComentariosUsuario(std::string nickname)
 {
   std::set<DTComentario *> listaComentarios;
   Usuario *usuario = Fabrica::getInterfazUsuario()->getUsuario(nickname);
   listaComentarios = usuario->listarComentarios();
   return listaComentarios;
 }
-std::set<DTComentario *> listarComentariosProducto(int id)
+std::set<DTComentario *> ControladorComentario::listarComentariosProducto(int id)
 {
   std::set<DTComentario *> listaComentarios;
   Producto *producto = Fabrica::getInterfazProducto()->getProducto(id);
@@ -40,11 +39,12 @@ void ControladorComentario::comentarProducto(std::string comentario, DTFecha *fe
   Usuario *remitente = Fabrica::getInterfazUsuario()->getUsuario(nickRemitente);
   Producto *producto = Fabrica::getInterfazProducto()->getProducto(idProducto);
   DTProducto *dataProducto = producto->getDataProducto();
+
   Comentario *nuevoComentario = new Comentario(getNuevoID(), fecha, comentario, nickRemitente, NULL, dataProducto);
+
   remitente->añadirComentario(nuevoComentario);
   producto->añadirComentario(nuevoComentario);
   comentarios.insert(nuevoComentario);
-
 }
 void ControladorComentario::responderComentario(std::string comentario, DTFecha *fecha, int idComentario, std::string nickRemitente)
 {
@@ -55,7 +55,6 @@ void ControladorComentario::responderComentario(std::string comentario, DTFecha 
   comentarioRespondido->agregarRespuesta(nuevoComentario);
   comentarios.insert(nuevoComentario);
 }
-*/
 void ControladorComentario::eliminarComentario(int idComentario)
 {
   bool encontrado = false;

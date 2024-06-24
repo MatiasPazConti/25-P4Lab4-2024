@@ -2,7 +2,6 @@
 #define CONTROLADOR_COMENTARIO
 
 #include "../interfaces/IControladorComentario.hh"
-#include <set>
 
 class ControladorComentario : public IControladorComentario
 {
@@ -15,10 +14,10 @@ private:
 public:
   Comentario *getComentario(int);
   int getNuevoID();
-  // std::set<DTComentario *> listarComentariosUsuario(std::string);
-  // std::set<DTComentario *> listarComentariosProducto(int);
-  // void comentarProducto(std::string, DTFecha *, int, std::string);
-  // void responderComentario(std::string, DTFecha *, int, std::string);
+  std::set<DTComentario *> listarComentariosUsuario(std::string);
+  std::set<DTComentario *> listarComentariosProducto(int);
+  void comentarProducto(std::string, DTFecha *, int, std::string);
+  void responderComentario(std::string, DTFecha *, int, std::string);
   void eliminarComentario(int);
   static ControladorComentario *getInstancia();
   ~ControladorComentario();
