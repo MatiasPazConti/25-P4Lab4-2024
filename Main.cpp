@@ -164,31 +164,41 @@ bool EstaEnPromo(int idProducto) // funcion auxiliar
   }
   return false;
 }
+int idProducto(std::string nickProducto, std::string nickVendedor) // funcion auxiliar
+{
+  std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
+  for (auto it = productos.begin(); it != productos.end(); it++)
+  {
+    if (((*it)->getNombre() == nickProducto) && ((*it)->getVendedor()->getNickname() == nickVendedor))
+    {
+      return (*it)->getId();
+    };
+  };
+  return 0;
+}
 //------------------------------------------CARGA DE DATOS INICIALES-----------------------------------
 // Usuarios, Productos, Promos // Falta: Compras Comentarios
 void CargarDatos()
 {
+  // USUARIOS:
   // US1 - Usuario Uno - Vendedor
   std::string nickUS1 = "ana23";
   std::string passUS1 = "qwer1234";
   DTFecha *fechaUS1 = new DTFecha(15, 5, 1988);
   std::string rutUS1 = "212345678001";
   controladorUsuario->altaNuevoVendedor(nickUS1, passUS1, fechaUS1, rutUS1);
-
   // US2 - Usuario Dos - Vendedor
   std::string nickUS2 = "carlos78";
   std::string passUS2 = "asdfghj";
   DTFecha *fechaUS2 = new DTFecha(18, 6, 1986);
   std::string rutUS2 = "356789012345";
   controladorUsuario->altaNuevoVendedor(nickUS2, passUS2, fechaUS2, rutUS2);
-
   // US3 - Usuario Tres - Vendedor
   std::string nickUS3 = "diegom";
   std::string passUS3 = "zxcvbn";
   DTFecha *fechaUS3 = new DTFecha(28, 7, 1993);
   std::string rutUS3 = "190123456789";
   controladorUsuario->altaNuevoVendedor(nickUS3, passUS3, fechaUS3, rutUS3);
-
   // US4 - Usuario Cuatro - Cliente
   std::string nickUS4 = "juan87";
   std::string passUS4 = "1qaz2wsx";
@@ -196,7 +206,6 @@ void CargarDatos()
   DTDireccion *adressUS4 = new DTDireccion("Av. 18 de Julio", 456);
   std::string cityUS4 = "Melo";
   controladorUsuario->altaNuevoCliente(nickUS4, passUS4, fechaUS4, adressUS4, cityUS4);
-
   // US5 - Usuario Cinco - Cliente
   std::string nickUS5 = "laura";
   std::string passUS5 = "3edc4rfv";
@@ -204,14 +213,12 @@ void CargarDatos()
   DTDireccion *adressUS5 = new DTDireccion("Rondeau", 1617);
   std::string cityUS5 = "Montevideo";
   controladorUsuario->altaNuevoCliente(nickUS5, passUS5, fechaUS5, adressUS5, cityUS5);
-
   // US6 - Usuario Seis - Vendedor
   std::string nickUS6 = "maria01";
   std::string passUS6 = "5tgb6yhn";
   DTFecha *fechaUS6 = new DTFecha(25, 3, 1985);
   std::string rutUS6 = "321098765432";
   controladorUsuario->altaNuevoVendedor(nickUS6, passUS6, fechaUS6, rutUS6);
-
   // US7 - Usuario Siete - Cliente
   std::string nickUS7 = "natalia";
   std::string passUS7 = "poiuyt";
@@ -219,7 +226,6 @@ void CargarDatos()
   DTDireccion *adressUS7 = new DTDireccion("Paysandu", 2021);
   std::string cityUS7 = "Salto";
   controladorUsuario->altaNuevoCliente(nickUS7, passUS7, fechaUS7, adressUS7, cityUS7);
-
   // US8 - Usuario Ocho - Cliente
   std::string nickUS8 = "pablo10";
   std::string passUS8 = "lkjhgv";
@@ -227,7 +233,6 @@ void CargarDatos()
   DTDireccion *adressUS8 = new DTDireccion("Av. Rivera", 1819);
   std::string cityUS8 = "Mercedes";
   controladorUsuario->altaNuevoCliente(nickUS8, passUS8, fechaUS8, adressUS8, cityUS8);
-
   // US9 - Usuario Nueve - Cliente
   std::string nickUS9 = "roberto";
   std::string passUS9 = "mnbvcx";
@@ -235,154 +240,119 @@ void CargarDatos()
   DTDireccion *adressUS9 = new DTDireccion("Av. Brasil", 1011);
   std::string cityUS9 = "Montevideo";
   controladorUsuario->altaNuevoCliente(nickUS9, passUS9, fechaUS9, adressUS9, cityUS9);
-
   // US10 - Usuario Diez - Vendedor
   std::string nickUS10 = "sofia25";
   std::string passUS10 = "1234asdf";
   DTFecha *fechaUS10 = new DTFecha(7, 12, 1983);
   std::string rutUS10 = "445678901234";
   controladorUsuario->altaNuevoVendedor(nickUS10, passUS10, fechaUS10, rutUS10);
-
+  // PRODUCTOS:
   // PR1 - Producto 1 - US2
-  int idPR1 = 1;
   std::string nombrePR1 = "Camiseta Azul";
   std::string descripcionPR1 = "Camiseta de poliester, color azul";
   float precioPR1 = 1400;
   int stockPR1 = 50;
   TipoProducto tipoPR1 = TipoProducto::Ropa;
   controladorProducto->registrarDatosProductos(nombrePR1, precioPR1, stockPR1, descripcionPR1, tipoPR1, nickUS2);
-
   // PR2 - Producto 2 - US1
-  int idPR2 = 2;
   std::string nombrePR2 = "Televisor LED";
   std::string descripcionPR2 = "Televisor LED 55 pulgadas";
   float precioPR2 = 40500;
   int stockPR2 = 30;
   TipoProducto tipoPR2 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR2, precioPR2, stockPR2, descripcionPR2, tipoPR2, nickUS1);
-
   // PR3 - Producto 3 - US2
-  int idPR3 = 3;
   std::string nombrePR3 = "Chaqueta de Cuero";
   std::string descripcionPR3 = "Chaqueta de cuero, color negro";
   float precioPR3 = 699.99;
   int stockPR3 = 20;
   TipoProducto tipoPR3 = TipoProducto::Ropa;
   controladorProducto->registrarDatosProductos(nombrePR3, precioPR3, stockPR3, descripcionPR3, tipoPR3, nickUS2);
-
   // PR4 - Producto 4 - US1
-  int idPR4 = 4;
   std::string nombrePR4 = "Microondas Digital";
   std::string descripcionPR4 = "Microondas digital, 30L";
   float precioPR4 = 1199.99;
   int stockPR4 = 15;
   TipoProducto tipoPR4 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR4, precioPR4, stockPR4, descripcionPR4, tipoPR4, nickUS1);
-
   // PR5 - Producto 5 - US3
-  int idPR5 = 5;
   std::string nombrePR5 = "Luz LED";
   std::string descripcionPR5 = "Luz Bluetooth LED";
   float precioPR5 = 599.99;
   int stockPR5 = 40;
   TipoProducto tipoPR5 = TipoProducto::Otros;
   controladorProducto->registrarDatosProductos(nombrePR5, precioPR5, stockPR5, descripcionPR5, tipoPR5, nickUS3);
-
   // PR6 - Producto 6 - US2
-  int idPR6 = 6;
   std::string nombrePR6 = "Pantalones Vaqueros";
   std::string descripcionPR6 = "Pantalones vaqueros, talla 32";
   float precioPR6 = 60;
   int stockPR6 = 25;
   TipoProducto tipoPR6 = TipoProducto::Ropa;
   controladorProducto->registrarDatosProductos(nombrePR6, precioPR6, stockPR6, descripcionPR6, tipoPR6, nickUS2);
-
   // PR7 - Producto 7 - US3
-  int idPR7 = 7;
   std::string nombrePR7 = "Auriculares Bluetooth";
   std::string descripcionPR7 = "Auriculares bluethooth para celular";
   float precioPR7 = 199.99;
   int stockPR7 = 35;
   TipoProducto tipoPR7 = TipoProducto::Otros;
   controladorProducto->registrarDatosProductos(nombrePR7, precioPR7, stockPR7, descripcionPR7, tipoPR7, nickUS3);
-
   // PR8 - Producto 8 - US1
-  int idPR8 = 8;
   std::string nombrePR8 = "Refrigerador";
   std::string descripcionPR8 = "Refrigerador de doble puerta";
   float precioPR8 = 15499;
   int stockPR8 = 10;
   TipoProducto tipoPR8 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR8, precioPR8, stockPR8, descripcionPR8, tipoPR8, nickUS1);
-
   // PR9 - Producto 9 - US1
-  int idPR9 = 9;
   std::string nombrePR9 = "Cafetera";
   std::string descripcionPR9 = "Cafetera de goteo programable";
   float precioPR9 = 23000;
   int stockPR9 = 50;
   TipoProducto tipoPR9 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR9, precioPR9, stockPR9, descripcionPR9, tipoPR9, nickUS1);
-
   // PR10 - Producto 10 - US2
-  int idPR10 = 10;
   std::string nombrePR10 = "Zapatillas Deportivas";
   std::string descripcionPR10 = "Zapatillas para correr, talla 42";
   float precioPR10 = 5500;
   int stockPR10 = 20;
   TipoProducto tipoPR10 = TipoProducto::Ropa;
   controladorProducto->registrarDatosProductos(nombrePR10, precioPR10, stockPR10, descripcionPR10, tipoPR10, nickUS2);
-
   // PR11 - Producto 11 - US2
-  int idPR11 = 11;
   std::string nombrePR11 = "Mochila";
   std::string descripcionPR11 = "Mochila de viaje, 40L";
   float precioPR11 = 9000;
   int stockPR11 = 30;
   TipoProducto tipoPR11 = TipoProducto::Otros;
   controladorProducto->registrarDatosProductos(nombrePR11, precioPR11, stockPR11, descripcionPR11, tipoPR11, nickUS2);
-
   // PR12 - Producto 12 - US3
-  int idPR12 = 12;
   std::string nombrePR12 = "Plancha de Ropa";
   std::string descripcionPR12 = "2 Plancha a vapor, 1500W";
   float precioPR12 = 2534;
   int stockPR12 = 25;
   TipoProducto tipoPR12 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR12, precioPR12, stockPR12, descripcionPR12, tipoPR12, nickUS3);
-
   // PR13 - Producto 13 - US10
-  int idPR13 = 13;
   std::string nombrePR13 = "Gorra";
   std::string descripcionPR13 = "Gorra para deportes, color rojo";
   float precioPR13 = 200;
   int stockPR13 = 50;
   TipoProducto tipoPR13 = TipoProducto::Ropa;
   controladorProducto->registrarDatosProductos(nombrePR13, precioPR13, stockPR13, descripcionPR13, tipoPR13, nickUS10);
-
   // PR14 - Producto 14 - US3
-  int idPR14 = 14;
   std::string nombrePR14 = "Tablet";
   std::string descripcionPR14 = "Tablet Android de 10 pulgadas";
   float precioPR14 = 15000;
   int stockPR14 = 15;
   TipoProducto tipoPR14 = TipoProducto::Electrodomesticos;
   controladorProducto->registrarDatosProductos(nombrePR14, precioPR14, stockPR14, descripcionPR14, tipoPR14, nickUS3);
-
   // PR15 - Producto 15 - US10
-  int idPR15 = 15;
   std::string nombrePR15 = "Reloj de Pared";
   std::string descripcionPR15 = "Reloj de pared vintage";
   float precioPR15 = 150.50;
   int stockPR15 = 20;
   TipoProducto tipoPR15 = TipoProducto::Otros;
   controladorProducto->registrarDatosProductos(nombrePR15, precioPR15, stockPR15, descripcionPR15, tipoPR15, nickUS10);
-
-  /////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////
-  /////////// Promocion /////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////
-
+  // PROMOCIONES:
   // PM1 - Promocion 1
   std::string nombrePM1 = "Casa nueva";
   std::string descrpcionPM1 = "Para que puedas ahorrar en la casa nueva";
@@ -392,11 +362,14 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS1);
   // Productos relacionados Promocion 1
   // PP1: producto: PR2, Min: 1
+  int idPR2 = idProducto(nombrePR2, nickUS1);
   controladorPromocion->agregarAPromo(idPR2, 1);
   // PP2: producto: PR4, Min: 1
+  int idPR4 = idProducto(nombrePR4, nickUS1);
   controladorPromocion->agregarAPromo(idPR4, 1);
   // PP3: producto: PR8, Min: 1
-  controladorPromocion->agregarAPromo(idPR4, 1);
+  int idPR8 = idProducto(nombrePR8, nickUS1);
+  controladorPromocion->agregarAPromo(idPR8, 1);
   controladorPromocion->altaNuevaPromo();
 
   // PM2 - Promocion 2
@@ -408,8 +381,10 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS2);
   // Productos relacionados Promocion 2
   // PP4: producto: PR3, Min: 2
+  int idPR3 = idProducto(nombrePR3, nickUS2);
   controladorPromocion->agregarAPromo(idPR3, 2);
   // PP5: producto: PR6, Min: 3
+  int idPR6 = idProducto(nombrePR6, nickUS2);
   controladorPromocion->agregarAPromo(idPR6, 3);
   controladorPromocion->altaNuevaPromo();
 
@@ -422,6 +397,7 @@ void CargarDatos()
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
   // PP6: producto: PR5, Min: 2
+  int idPR5 = idProducto(nombrePR5, nickUS3);
   controladorPromocion->agregarAPromo(idPR5, 2);
   controladorPromocion->altaNuevaPromo();
 
@@ -429,11 +405,12 @@ void CargarDatos()
   std::string nombrePM4 = "Liquidacion";
   std::string descrpcionPM4 = "Hasta agotar stock";
   float porsentajeDescuentoPM4 = 10;
-  DTFecha *vencimientoPM4 = new DTFecha(26, 03, 2024);
+  DTFecha *vencimientoPM4 = new DTFecha(26, 3, 2024);
   controladorPromocion->registrarDatosPromo(nombrePM4, descrpcionPM4, vencimientoPM4, porsentajeDescuentoPM4);
   controladorPromocion->asignarVendedor(nickUS3);
   // Productos relacionados Promocion 3
   // PP7: producto: PR14, Min: 1
+  int idPR14 = idProducto(nombrePR14, nickUS3);
   controladorPromocion->agregarAPromo(idPR14, 1);
   controladorPromocion->altaNuevaPromo();
 
