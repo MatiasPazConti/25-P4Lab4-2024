@@ -24,18 +24,18 @@ void ControladorCompra::agregarProductoACompra(int id, int cantidad)
 
 void ControladorCompra::calcularDescuentos()
 {
-	/*std::cout << "Error1" << std::endl;
+	std::cout << "Error1" << std::endl;
 	std::set<DTRegistroProducto *> productos = compraActual->getRegistroProductos();
 	for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 	{
 		if ((*it)->getPromo() != NULL)
 		{
 			std::cout << "Error2" << std::endl;
-			std::map<int, InfoPromoProducto > productosPromo = (*it)->getPromo()->getInfoProductos();
+			std::map<int, InfoPromoProducto *> productosPromo = (*it)->getPromo()->getInfoProductos();
 			std::set<DTRegistroProducto *> auxiliar;
 			for (std::set<DTRegistroProducto *>::iterator it = productos.begin(); it != productos.end(); ++it)
 			{
-				if (productosPromo[(*it)->getId()].getCantidadMinima() <= (*it)->getCantidad())
+				if (productosPromo[(*it)->getId()]->getCantidadMinima() <= (*it)->getCantidad())
 				{
 					auxiliar.insert(*it);
 				}
@@ -49,7 +49,7 @@ void ControladorCompra::calcularDescuentos()
 			}
 			std::cout << "No hay descuentos disponibles" << std::endl;
 		}
-	};*/
+	};
 }
 
 DTCompra *ControladorCompra::obtenerDatosCompra()

@@ -117,7 +117,7 @@ bool EstaEnPromo(int idProducto) // funcion auxiliar
   return false;
 }
 
-int IdProducto(std::string nickProducto)
+int IdProducto(std::string nickProducto) // funcion auxiliar
 {
   std::set<DTProducto *> productos = controladorProducto->obtenerProductosDisponibles();
   for (auto it = productos.begin(); it != productos.end(); it++)
