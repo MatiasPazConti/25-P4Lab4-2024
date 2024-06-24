@@ -31,8 +31,9 @@ void ControladorProducto::registrarDatosProductos(std::string nombre, float prec
 {
   lastID++;
   Vendedor *vendedor = Fabrica::getInterfazUsuario()->getVendedor(nickVendedor);
-  Producto *prod = new Producto(lastID, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
-  this->productos.insert(prod);
+  Producto *nuevoProducto = new Producto(lastID, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
+  this->productos.insert(nuevoProducto);
+  vendedor->añadirProducto(nuevoProducto);
 }
 ControladorProducto::ControladorProducto() {}
 ControladorProducto::~ControladorProducto(){};

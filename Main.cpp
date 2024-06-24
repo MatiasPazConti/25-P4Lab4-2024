@@ -11,7 +11,38 @@ IControladorPromocion *controladorPromocion = Fabrica::getInterfazPromocion();
 IControladorCompra *controladorCompra = Fabrica::getInterfazCompra();
 
 // Funciones Auxiliares;
-void ListarNickVendedores(std::set<DTVendedor *> vendedores) // funcion auxiliar
+void listarInfoVendedores(std::set<DTVendedor *> vendedores)
+{
+  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    DTFecha *fecha = (*it)->getFechaNacimiento();
+    int dia = fecha->getDia();
+    int mes = fecha->getMes();
+    int anio = fecha->getAnio();
+    std::string rut = (*it)->getCodigoRUT();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
+    std::cout << std::endl;
+  }
+}
+void listarInfoClientes(std::set<DTCliente *> clientes)
+{
+  for (auto it = clientes.begin(); it != clientes.end(); it++)
+  {
+    std::string nick = (*it)->getNickname();
+    DTFecha *fecha = (*it)->getFechaNacimiento();
+    int dia = fecha->getDia();
+    int mes = fecha->getMes();
+    int anio = fecha->getAnio();
+    DTDireccion *adress = (*it)->getDireccion();
+    int nroPuerta = adress->getNroPuerta();
+    std::string calle = adress->getNombreCalle();
+    std::string ciudad = (*it)->getCiudadDeResidencia();
+    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
+    std::cout << std::endl;
+  }
+}
+void listarNickVendedores(std::set<DTVendedor *> vendedores) // funcion auxiliar
 {
   for (auto it = vendedores.begin(); it != vendedores.end(); it++)
   {
@@ -20,8 +51,7 @@ void ListarNickVendedores(std::set<DTVendedor *> vendedores) // funcion auxiliar
     std::cout << std::endl;
   }
 }
-
-void ListarNickClientes() // funcion auxiliar
+void listarNickClientes() // funcion auxiliar
 {
   std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
   for (auto it = clientes.begin(); it != clientes.end(); it++)
@@ -31,11 +61,10 @@ void ListarNickClientes() // funcion auxiliar
     std::cout << std::endl;
   }
 }
-
 void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
 {
-  std::set<DTProducto *> productos = controladorUsuario->listarProductosVendedor(nickname);
-  for (auto it = productos.begin(); it != productos.end(); it++)
+  std::set<DTProducto *> listaProductos = controladorUsuario->listarProductosVendedor(nickname);
+  for (auto it = listaProductos.begin(); it != listaProductos.end(); it++)
   {
     int idProducto = (*it)->getId();
     std::string nombreProducto = (*it)->getNombre();
@@ -43,7 +72,6 @@ void ListarProductosDeVendedor(std::string nickname) // funcion auxiliar
     std::cout << std::endl;
   }
 }
-
 bool ExisteVendedor(std::string nickname, std::set<DTVendedor *> vendedores) // funcion auxiliar
 {
   for (auto it = vendedores.begin(); it != vendedores.end(); it++)
@@ -55,7 +83,6 @@ bool ExisteVendedor(std::string nickname, std::set<DTVendedor *> vendedores) // 
   }
   return false;
 }
-
 bool ExisteCliente(std::string nickname, std::set<DTCliente *> clientes) // funcion auxiliar
 {
   for (auto it = clientes.begin(); it != clientes.end(); it++)
@@ -67,7 +94,6 @@ bool ExisteCliente(std::string nickname, std::set<DTCliente *> clientes) // func
   }
   return false;
 }
-
 DTVendedor *datoVendedor(std::string nickname) // funcion auxiliar
 {
   std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
@@ -80,7 +106,6 @@ DTVendedor *datoVendedor(std::string nickname) // funcion auxiliar
   }
   return nullptr;
 }
-
 DTCliente *datoCliente(std::string nickname) // funcion auxiliar
 {
   std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
@@ -93,7 +118,6 @@ DTCliente *datoCliente(std::string nickname) // funcion auxiliar
   }
   return nullptr;
 }
-
 bool ExisteUsuario(std::string nickname) // funcion auxiliar
 {
   std::set<DTUsuario *> usuarios = controladorUsuario->listarUsuarios();
@@ -106,7 +130,6 @@ bool ExisteUsuario(std::string nickname) // funcion auxiliar
   }
   return false;
 }
-
 bool EstaEnPromo(int idProducto) // funcion auxiliar
 {
   DTProducto *producto = controladorProducto->obtenerProductoDisponible(idProducto);
@@ -116,7 +139,6 @@ bool EstaEnPromo(int idProducto) // funcion auxiliar
   }
   return false;
 }
-
 // Carga de datos iniciales: // Usuarios, Productos, Promos // Falta: Compras Comentarios
 void CargarDatos()
 {
@@ -619,43 +641,20 @@ void NuevoCliente() // Implementado //
 
 void ListarUsuarios() // Implementado //
 {
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
-  for (auto it = vendedores.begin(); it != vendedores.end(); it++)
-  {
-    std::string nick = (*it)->getNickname();
-    DTFecha *fecha = (*it)->getFechaNacimiento();
-    int dia = fecha->getDia();
-    int mes = fecha->getMes();
-    int anio = fecha->getAnio();
-    std::string rut = (*it)->getCodigoRUT();
-    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Codigo RUT: " << rut;
-    std::cout << std::endl;
-  }
-  std::set<DTCliente *> clientes = controladorUsuario->listarClientes();
-  for (auto it = clientes.begin(); it != clientes.end(); it++)
-  {
-    std::string nick = (*it)->getNickname();
-    DTFecha *fecha = (*it)->getFechaNacimiento();
-    int dia = fecha->getDia();
-    int mes = fecha->getMes();
-    int anio = fecha->getAnio();
-    DTDireccion *adress = (*it)->getDireccion();
-    int nroPuerta = adress->getNroPuerta();
-    std::string calle = adress->getNombreCalle();
-    std::string ciudad = (*it)->getCiudadDeResidencia();
-    std::cout << "Nickname: " << nick << ", Fecha de nacimiento: " << dia << "/" << mes << "/" << anio << ", Direccion: " << calle << "," << nroPuerta << ", Ciudad: " << ciudad;
-    std::cout << std::endl;
-  }
+  std::set<DTVendedor *> listaVendedores = controladorUsuario->listarVendedores();
+  listarInfoVendedores(listaVendedores);
+  std::set<DTCliente *> listaClientes = controladorUsuario->listarClientes();
+  listarInfoClientes(listaClientes);
 }
 
 void AltaDeProducto() // Implementado // falta asignarle el producto al vendedor
 {
   std::string nickVendedor;
-  std::set<DTVendedor *> vendedores = controladorUsuario->listarVendedores();
-  ListarNickVendedores(vendedores);
+  std::set<DTVendedor *> listaVendedores = controladorUsuario->listarVendedores();
+  listarNickVendedores(listaVendedores);
   std::cout << "Escriba el nombre del vendedor" << std::endl;
   std::cin >> nickVendedor;
-  if (ExisteVendedor(nickVendedor, vendedores))
+  if (ExisteVendedor(nickVendedor, listaVendedores))
   {
     std::string nombreProducto;
     std::cout << "Escriba el nombre del producto" << std::endl;
@@ -764,7 +763,8 @@ void CrearPromocion() // Implementado // falta asignarle la promo al vendedor
   }
   controladorPromocion->registrarDatosPromo(nombrePromo, descripcionPromo, fechaPromo, descuentoPromo);
   // seleccion de vendedor
-  controladorUsuario->listarVendedores();
+  std::set<DTVendedor *> listaVendedores = controladorUsuario->listarVendedores();
+  listarNickVendedores(listaVendedores);
   std::string vendedorPromo;
   std::cout << "Escriba el nickname del vendedor de la promocion" << std::endl;
   std::cin >> vendedorPromo;
@@ -812,7 +812,7 @@ void ConsultarPromocion()
 void RealizarCompra()
 {
   // seleccion de cliente
-  ListarNickClientes();
+  listarNickClientes();
   std::string clienteCompra;
   std::cout << "Escriba el nickname del cliente de la compra" << std::endl;
   std::cin >> clienteCompra;
@@ -939,7 +939,7 @@ void ExpedienteUsuario() // incompleto // falta obtener lista de promos de un ve
 
 void SuscribirseNotificacion() // Implementado
 {
-  ListarNickClientes();
+  listarNickClientes();
   std::string nickCliente;
   std::cout << "Escriba su nickname" << std::endl;
   std::cin >> nickCliente;
@@ -957,7 +957,7 @@ void SuscribirseNotificacion() // Implementado
     if (opcion == 1)
     {
       std::set<DTVendedor *> vendedoresNoSuscripto = controladorUsuario->listarVendedoresNoSuscritos(nickCliente);
-      ListarNickVendedores(vendedoresNoSuscripto);
+      listarNickVendedores(vendedoresNoSuscripto);
       std::string vendedor;
       std::cout << "Ingrese el nickname del vendedor al que desea suscribirse" << std::endl;
       std::cin >> vendedor;
@@ -979,7 +979,7 @@ void SuscribirseNotificacion() // Implementado
 
 void ConsultaNotificacion() // incompleto // falta obtener string de nombre de los "productosEnPromo", "eliminarNotificaciones"
 {
-  ListarNickClientes();
+  listarNickClientes();
   std::string nickCliente;
   std::cout << "Escriba su nickname" << std::endl;
   std::cin >> nickCliente;
@@ -1010,7 +1010,7 @@ void ConsultaNotificacion() // incompleto // falta obtener string de nombre de l
 
 void EliminarSuscripcion() // Implementado
 {
-  ListarNickClientes();
+  listarNickClientes();
   std::string nickCliente;
   std::cout << "Escriba su nickname" << std::endl;
   std::cin >> nickCliente;
@@ -1022,7 +1022,7 @@ void EliminarSuscripcion() // Implementado
     std::cin >> nickCliente;
   }
   std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->listarVendedoresSuscritos(nickCliente);
-  ListarNickVendedores(vendedoresSuscripto);
+  listarNickVendedores(vendedoresSuscripto);
   std::string vendedor;
   std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
   std::cin >> vendedor;
@@ -1033,7 +1033,7 @@ void EliminarSuscripcion() // Implementado
     if (opcion == 1)
     {
       std::set<DTVendedor *> vendedoresSuscripto = controladorUsuario->listarVendedoresSuscritos(nickCliente);
-      ListarNickVendedores(vendedoresSuscripto);
+      listarNickVendedores(vendedoresSuscripto);
       std::string vendedor;
       std::cout << "Ingrese el nickname del vendedor al que desea eliminar su suscripcion" << std::endl;
       std::cin >> vendedor;
