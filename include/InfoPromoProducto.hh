@@ -15,7 +15,6 @@ public:
     int getId();
     void setId(int i);
 
-    InfoPromoProducto();
     InfoPromoProducto(int id, int cant);
     ~InfoPromoProducto();
 };

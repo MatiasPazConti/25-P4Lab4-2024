@@ -371,7 +371,6 @@ void CargarDatos()
   int idPR8 = idProducto(nombrePR8, nickUS1);
   controladorPromocion->agregarAPromo(idPR8, 1);
   controladorPromocion->altaNuevaPromo();
-
   // PM2 - Promocion 2
   std::string nombrePM2 = "Fiesta";
   std::string descrpcionPM2 = "Para que no te quedes sin ropa para las fiestas";
@@ -387,7 +386,6 @@ void CargarDatos()
   int idPR6 = idProducto(nombrePR6, nickUS2);
   controladorPromocion->agregarAPromo(idPR6, 3);
   controladorPromocion->altaNuevaPromo();
-
   // PM3 - Promocion 3
   std::string nombrePM3 = "Domotica";
   std::string descrpcionPM3 = "Para modernizar tu casa";
@@ -400,7 +398,6 @@ void CargarDatos()
   int idPR5 = idProducto(nombrePR5, nickUS3);
   controladorPromocion->agregarAPromo(idPR5, 2);
   controladorPromocion->altaNuevaPromo();
-
   // PM4 - Promocion 4
   std::string nombrePM4 = "Liquidacion";
   std::string descrpcionPM4 = "Hasta agotar stock";

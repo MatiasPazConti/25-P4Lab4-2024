@@ -18,7 +18,6 @@ void InfoPromoProducto::setId(int i)
 {
     id = i;
 }
-InfoPromoProducto::InfoPromoProducto() {}
 
 InfoPromoProducto::InfoPromoProducto(int id, int cant)
 {
