@@ -8,16 +8,14 @@ private:
     int id;
     std::string nombre;
     int cantidadMinima;
-    // float porcentajeDescuento;
+    float porcentajeDescuento;
 
 public:
     int getId();
     std::string getNombre();
     int getCantidadMinima();
-    // float getPorcentajeDescuento();
-
-    DTProductoPromo();
-    DTProductoPromo(int, std::string, int /*, float*/);
+    float getPorcentajeDescuento();
+    DTProductoPromo(int, std::string, int, float);
     ~DTProductoPromo();
 };
 

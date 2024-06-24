@@ -4,7 +4,7 @@ int DTComentario::getId()
 {
   return id;
 }
-DTFecha DTComentario::getFecha()
+DTFecha *DTComentario::getFecha()
 {
   return fecha;
 }
@@ -12,17 +12,17 @@ std::string DTComentario::getTexto()
 {
   return texto;
 }
-DTComentario::DTComentario(int i, DTFecha f, std::string t)
+DTComentario::DTComentario(int id, DTFecha *fecha, std::string texto)
 {
-  id = i;
-  fecha = f;
-  texto = t;
+  this->id = id;
+  this->fecha = fecha;
+  this->texto = texto;
 }
 DTComentario::~DTComentario() {}
 // Sobrecarga de operador '<<'
 void DTComentario::setPrint(std::ostream &out)
 {
-  out << id << ", " << fecha.toString() << ", " << texto;
+  out << id << ", " << fecha->toString() << ", " << texto;
 }
 
 std::ostream &operator<<(std::ostream &out, DTComentario &obj)

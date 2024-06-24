@@ -1,6 +1,6 @@
 #include "../include/Compra.hh"
 
-DTFecha Compra::getFechaCompra()
+DTFecha *Compra::getFechaCompra()
 {
   return *fechaCompra;
 }
@@ -8,24 +8,14 @@ float Compra::getMontoFinal()
 {
   return montoFinal;
 }
-Cliente* Compra::getCliente()
+Cliente *Compra::getCliente()
 {
   return cliente;
 }
-void Compra::setFechaCompra(int dia,int mes,int anio)
+DTRegistroProducto *Compra::getRegistroProducto(int id)
 {
-  fechaCompra = new DTFecha(dia,mes,anio);
-}
-void Compra::setMontoFinal(float monto)
-{
-  montoFinal = monto;
-}
-void Compra::setCliente(Cliente* c)
-{
-  cliente = c;
-}
-DTRegistroProducto *Compra::getRegistroProducto(int id) 
-{
+  if (!registroProductos.empty())
+  {
     for (std::set<DTRegistroProducto *>::iterator it = registroProductos.begin(); it != registroProductos.end(); ++it)
     {
       if ((*it)->getId() == id)
@@ -33,21 +23,44 @@ DTRegistroProducto *Compra::getRegistroProducto(int id)
         return *it;
       }
     }
-  return NULL;
-}
-void Compra::setRegistroProducto(DTRegistroProducto* reg)
-{
-  registroProductos.insert(reg);
-}
-Compra::Compra(){}
-Compra::Compra(DTFecha* fecha, float monto, Cliente* c)
-{
-  fechaCompra = fecha;
-  montoFinal = monto;
-  cliente = c;
-}
-Compra::~Compra(){}
-
-std::set<DTRegistroProducto*>Compra::getRegistroProductos(){
-  return registroProductos;
-}
+    return NULL;
+  }
+  std::set<DTRegistroProducto *> Compra::getRegistroProductos()
+  {
+    return registroProductos;
+  }
+  void Compra::setFechaCompra(int dia, int mes, int anio)
+  {
+    DTFecha *nuevaFecha = new DTFecha(dia, mes, anio);
+    fechaCompra = nuevaFecha;
+  }
+  void Compra::setMontoFinal(float monto)
+  {
+    montoFinal = monto;
+  }
+  void Compra::setCliente(Cliente * c)
+  {
+    cliente = c;
+  }
+  void Compra::addRegistroProducto(DTRegistroProducto * reg)
+  {
+    registroProductos.insert(reg);
+  }
+  Compra::Compra(DTFecha * fechaCompra, float montoFinal, Cliente *cliente)
+  {
+    this->fechaCompra = fechaCompra;
+    this->montoFinal = montoFinal;
+    this->cliente = cliente;
+  }
+  Compra::~Compra()
+  {
+    while (!registroProductos.empty())
+    {
+      std::set<DTRegistroProducto *>::iterator inicio = registroProductos.begin();
+      DTRegistroProducto *aBorrar = *inicio;
+      registroProductos.erase(inicio);
+      delete aBorrar;
+    }
+    cliente = NULL;
+    delete fechaCompra;
+  }

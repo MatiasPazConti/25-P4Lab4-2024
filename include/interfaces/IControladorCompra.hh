@@ -15,12 +15,11 @@
 class IControladorCompra
 {
 public:
-  virtual void crearCompra(std::string, int, int, int) = 0; // dia/mes/anio de hoy
-  virtual void asignarCliente(std::string) = 0;
-  virtual void agregarProductoACompra(int, int) = 0;
   virtual DTCompra *obtenerDatosCompra() = 0;
-  virtual void registrarCompraExitosa(bool) = 0;
   virtual bool estaEnCompra(int) = 0;
+  virtual void crearCompra(std::string, int, int, int) = 0; // dia/mes/anio de hoy
+  virtual void agregarProductoACompra(int, int) = 0;
+  virtual void registrarCompraExitosa(bool) = 0;
   virtual void calcularDescuentos() = 0;
 };
 

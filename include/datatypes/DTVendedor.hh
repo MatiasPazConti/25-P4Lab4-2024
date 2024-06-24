@@ -4,6 +4,9 @@
 #include "./DTUsuario.hh"
 #include "./DTProducto.hh"
 
+class DTProducto;
+class DTPromocion;
+
 class DTVendedor : public DTUsuario
 {
 private:
@@ -11,7 +14,7 @@ private:
 
 public:
   std::string getCodigoRUT();
-  DTVendedor(std::string, DTFecha, std::string);
+  DTVendedor(std::string, DTFecha *, std::string);
   ~DTVendedor();
 };
 

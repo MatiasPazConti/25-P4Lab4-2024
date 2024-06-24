@@ -4,94 +4,98 @@ int Producto::getId()
 {
   return id;
 }
-void Producto::setId(int i)
-{
-  id = i;
-}
 std::string Producto::getNombre()
 {
   return nombre;
 }
-void Producto::setNombre(std::string n)
+void Producto::setId(int i)
 {
-  nombre = n;
+  id = i;
 }
 std::string Producto::getDescripcion()
 {
   return descripcion;
 }
-void Producto::setDescrpcion(std::string des)
-{
-  descripcion = des;
-}
 float Producto::getPrecio()
 {
   return precio;
-}
-void Producto::setPrecio(float pr)
-{
-  precio = pr;
 }
 int Producto::getCantidadEnStock()
 {
   return cantidadEnStock;
 }
-void Producto::setCantidadEnStock(int cant)
-{
-  cantidadEnStock = cant;
-}
 TipoProducto Producto::getTipoProducto()
 {
   return tipo;
+}
+Promocion *Producto::getPromocion()
+{
+  return promocion;
+}
+DTProducto *Producto::getDataProducto()
+{
+  DTVendedor *infoVendedor = vendedor->getDataVendedor();
+  DTPromocion *infoPromocion = NULL;
+  if (promocion != NULL)
+  {
+    infoPromocion = promocion->getDataPromocion();
+  }
+  DTProducto *dataProducto = new DTProducto(id, nombre, descripcion, precio, cantidadEnStock, tipo, infoVendedor, infoPromocion);
+  return dataProducto;
+}
+void Producto::setNombre(std::string n)
+{
+  nombre = n;
+}
+void Producto::setDescrpcion(std::string des)
+{
+  descripcion = des;
+}
+void Producto::setPrecio(float pr)
+{
+  precio = pr;
+}
+void Producto::setCantidadEnStock(int cant)
+{
+  cantidadEnStock = cant;
 }
 void Producto::setTipoProducto(TipoProducto t)
 {
   tipo = t;
 }
-DTProducto *Producto::getDataProducto()
+DTVendedor *Producto::getInfoVendedor()
 {
-  DTProducto *dataProducto = new DTProducto(id, nombre, descripcion, precio, cantidadEnStock, tipo, vendedor);
-  return dataProducto;
-}
-DTVendedor *Producto::getVendedor()
-{
-  return vendedor;
+  DTVendedor *infoVendedor = vendedor->getDataVendedor();
+  return infoVendedor;
 }
 
-void Producto::setVendedor(DTVendedor *v)
+void Producto::setVendedor(Vendedor *v)
 {
-  vendedor = v;
+  vendedor = vendedor;
 }
-Producto::Producto() {}
-Producto::Producto(int i, std::string n, std::string d, float p, int cant, TipoProducto t, DTVendedor *v)
+void Producto::addPromocion(Promocion *promocion)
 {
-  id = i;
-  nombre = n;
-  descripcion = d;
-  precio = p;
-  cantidadEnStock = cant;
-  tipo = t;
-  vendedor = v;
-  promo = NULL;
+  this->promocion = promocion;
+}
+Producto::Producto(int id, std::string nombre, std::string descripcion, float precio, int cantidad, TipoProducto tipo, Vendedor *vendedor)
+{
+  this->id = id;
+  this->nombre = nombre;
+  this->descripcion = descripcion;
+  this->precio = precio;
+  this->cantidadEnStock = cantidad;
+  this->tipo = tipo;
+  this->vendedor = vendedor;
+  this->promocion = NULL;
 }
 Producto::~Producto(){};
-
 // Sobrecarga de operador '<<'
 void Producto::setPrint(std::ostream &out)
 {
   out << id << ", " << nombre;
 }
-
 std::ostream &operator<<(std::ostream &out, Producto &obj)
 {
   obj.setPrint(out);
   return out;
-}
-Promocion *Producto::getPromocion()
-{
-  return promo;
-}
-void Producto::setPromocion(Promocion *p)
-{
-  promo = p;
 }
