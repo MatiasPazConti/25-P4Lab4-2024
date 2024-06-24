@@ -1,8 +1,10 @@
 #ifndef USUARIO
 #define USUARIO
 
-#include "./datatypes/DTFecha.hh"
 #include "./datatypes/DTUsuario.hh"
+#include "./Comentario.hh"
+
+class Comentario;
 
 class Usuario
 {
@@ -10,14 +12,18 @@ private:
   std::string nickname;
   std::string password;
   DTFecha *fechaNacimiento;
+  std::set<Comentario *> comentarios;
 
 public:
   std::string getNickname();
   std::string getPassword();
   DTFecha *getFechaNacimiento();
-  virtual DTUsuario *getDataUsuario() = 0;
+  DTUsuario *getDataUsuario();
+  std::set<DTComentario *> listarComentarios();
+  void añadirComentario(Comentario *);
+  void eliminarComentario(Comentario *);
   Usuario(std::string nickname, std::string password, DTFecha *fechaNacimiento);
-  virtual ~Usuario();
+  ~Usuario();
 };
 
 #endif

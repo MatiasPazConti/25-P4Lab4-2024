@@ -1,4 +1,3 @@
-#include "../include/fabrica/Fabrica.hh"
 #include "../include/Comentario.hh"
 
 bool Comentario::esRespuesta()
@@ -9,44 +8,46 @@ int Comentario::getId()
 {
   return id;
 }
-Usuario *Comentario::getRemitente()
+std::string Comentario::getNickRemitente()
 {
-  return remitente;
+  return nickRemitente;
 }
-Producto *Comentario::getProductoComentado()
+DTProducto *Comentario::getInfoProductoComentado()
 {
-  return productoComentado;
+  return infoProductoComentado;
 }
 Comentario *Comentario::getComentarioRespondido()
 {
   return comentarioRespondido;
 }
-DTComentario *Comentario::getData()
+DTComentario *Comentario::getDataComentario()
 {
+  /*
   DTFecha *copiaFecha = fecha->copiarFecha();
-  DTUsuario *dataRemitente = remitente->getDataUsuario();
   DTComentario *dataComentarioRespondido = NULL;
   DTProducto *dataProductoComentado = NULL;
   std::set<DTComentario *>
       listaRespuestas;
   if (comentarioRespondido != NULL)
   {
-    dataComentarioRespondido = comentarioRespondido->getData();
+    dataComentarioRespondido = comentarioRespondido->getDataComentario();
   }
-  if (productoComentado != NULL)
+  if (infoProductoComentado != NULL)
   {
-    dataProductoComentado = productoComentado->getDataProducto();
+    dataProductoComentado = infoProductoComentado->copiarInfoProducto();
   }
   if (!respuestas.empty())
   {
     for (std::set<Comentario *>::iterator it = respuestas.begin(); it != respuestas.end(); it++)
     {
-      DTComentario *respuesta = (*it)->getData();
+      DTComentario *respuesta = (*it)->getDataComentario();
       listaRespuestas.insert(respuesta);
     }
   }
-  DTComentario *dataComentario = new DTComentario(id, copiaFecha, comentario, dataRemitente, listaRespuestas, dataComentarioRespondido, dataProductoComentado);
+  DTComentario *dataComentario = new DTComentario(id, copiaFecha, comentario, nickRemitente, listaRespuestas, dataComentarioRespondido, dataProductoComentado);
   return dataComentario;
+  */
+  return NULL;
 }
 void Comentario::agregarRespuesta(Comentario *comentario)
 {
@@ -56,16 +57,14 @@ void Comentario::eliminarRespuesta(Comentario *comentario)
 {
   respuestas.erase(comentario);
 }
-Comentario::Comentario(DTFecha *fecha, std::string comentario, Usuario *remitente, Comentario *comentarioRespondido, Producto *productoComentado)
+Comentario::Comentario(int id, DTFecha *fecha, std::string comentario, std::string nickRemitente, Comentario *comentarioRespondido, DTProducto *infoProductoComentado)
 {
-  IControladorComentario *controladorComentario = Fabrica::getInterfazComentario();
-  this->id = controladorComentario->getNuevoID();
+  this->id = id;
   this->fecha = fecha;
   this->comentario = comentario;
-  this->remitente = remitente;
-  this->productoComentado = productoComentado;
+  this->nickRemitente = nickRemitente;
+  this->infoProductoComentado = infoProductoComentado;
   this->comentarioRespondido = comentarioRespondido;
-  controladorComentario->actualizarNuevoID();
 }
 Comentario::~Comentario()
 {

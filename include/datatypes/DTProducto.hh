@@ -30,6 +30,7 @@ public:
   TipoProducto getTipoProducto();
   DTVendedor *getVendedor();
   DTPromocion *getPromocion();
+  DTProducto *copiarInfoProducto();
   DTProducto(int, std::string, std::string, float, int, TipoProducto, DTVendedor *, DTPromocion *);
   ~DTProducto();
   void setPrint(std::ostream &out); // Sobrecarga de operador '<<'

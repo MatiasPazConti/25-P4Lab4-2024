@@ -10,9 +10,10 @@
 
 #include <set>
 
+class IObservador;
+class Cliente;
 class Producto;
 class Promocion;
-class Cliente;
 
 class Vendedor : public Usuario
 {
@@ -26,7 +27,6 @@ public:
   std::string getCodigoRUT();
   std::set<Promocion *> getPromociones();
   DTVendedor *getDataVendedor();
-  DTUsuario *getDataUsuario();
   DTProducto *getDataProducto(int);
   bool tieneSuscriptores();
   void añadirPromocion(Promocion *);

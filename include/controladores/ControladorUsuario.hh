@@ -16,9 +16,10 @@ private:
   ControladorUsuario();
 
 public:
-  static ControladorUsuario *getInstancia();                                              // Implementado
-  Cliente *getCliente(std::string);                                                       // Implementado
-  Vendedor *getVendedor(std::string);                                                     // Implementado
+  static ControladorUsuario *getInstancia(); // Implementado
+  Cliente *getCliente(std::string);          // Implementado
+  Vendedor *getVendedor(std::string);        // Implementado
+  Usuario *getUsuario(std::string);
   void altaNuevoCliente(std::string, std::string, DTFecha *, DTDireccion *, std::string); // Implementado
   void altaNuevoVendedor(std::string, std::string, DTFecha *, std::string);               // Implementado
   void realizarSuscripciones(std::string, std::set<std::string>);                         // Implementado

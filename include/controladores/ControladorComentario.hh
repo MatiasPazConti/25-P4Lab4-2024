@@ -13,10 +13,12 @@ private:
   ControladorComentario();
 
 public:
+  Comentario *getComentario(int);
   int getNuevoID();
-  void actualizarNuevoID();
-  void comentarProducto(std::string, DTFecha, int);
-  void responderComentario(std::string, DTFecha, int);
+  // std::set<DTComentario *> listarComentariosUsuario(std::string);
+  // std::set<DTComentario *> listarComentariosProducto(int);
+  // void comentarProducto(std::string, DTFecha *, int, std::string);
+  // void responderComentario(std::string, DTFecha *, int, std::string);
   void eliminarComentario(int);
   static ControladorComentario *getInstancia();
   ~ControladorComentario();

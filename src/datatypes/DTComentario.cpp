@@ -16,9 +16,9 @@ std::string DTComentario::getComentario()
 {
   return comentario;
 }
-DTUsuario *DTComentario::getInfoRemitente()
+std::string DTComentario::getNickRemitente()
 {
-  return remitente;
+  return nickRemitente;
 }
 std::set<DTComentario *> DTComentario::getInfoRespuestas()
 {
@@ -32,12 +32,12 @@ DTProducto *DTComentario::getInfoProductoComentado()
 {
   return productoComentado;
 }
-DTComentario::DTComentario(int id, DTFecha *fecha, std::string comentario, DTUsuario *remitente, std::set<DTComentario *> respuestas, DTComentario *comentarioRespondido, DTProducto *productoComentado)
+DTComentario::DTComentario(int id, DTFecha *fecha, std::string comentario, std::string nickRemitente, std::set<DTComentario *> respuestas, DTComentario *comentarioRespondido, DTProducto *productoComentado)
 {
   this->id = id;
   this->fecha = fecha;
   this->comentario = comentario;
-  this->remitente = remitente;
+  this->nickRemitente = nickRemitente;
   this->respuestas = respuestas;
   this->comentarioRespondido = comentarioRespondido;
   this->productoComentado = productoComentado;

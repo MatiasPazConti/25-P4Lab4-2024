@@ -61,6 +61,15 @@ Vendedor *ControladorUsuario::getVendedor(std::string nickname)
   }
   return retorno;
 }
+Usuario *ControladorUsuario::getUsuario(std::string nickname)
+{
+  Usuario *retorno = getVendedor(nickname);
+  if (retorno == NULL)
+  {
+    retorno = getCliente(nickname);
+  }
+  return retorno;
+}
 std::set<DTUsuario *> ControladorUsuario::listarUsuarios()
 {
   std::set<DTUsuario *> listaUsuarios;

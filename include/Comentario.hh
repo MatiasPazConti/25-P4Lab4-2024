@@ -1,8 +1,7 @@
 #ifndef COMENTARIO
 #define COMENTARIO
-#include "./Producto.hh"
-#include "./Usuario.hh"
 #include "./datatypes/DTFecha.hh"
+#include "./datatypes/DTProducto.hh"
 #include "./datatypes/DTComentario.hh"
 
 #include <set>
@@ -13,21 +12,21 @@ private:
   int id;
   DTFecha *fecha;
   std::string comentario;
-  Usuario *remitente;
+  std::string nickRemitente;
   std::set<Comentario *> respuestas;
   Comentario *comentarioRespondido;
-  Producto *productoComentado;
+  DTProducto *infoProductoComentado;
 
 public:
   bool esRespuesta();
   int getId();
-  Usuario *getRemitente();
-  Producto *getProductoComentado();
+  std::string getNickRemitente();
+  DTProducto *getInfoProductoComentado();
   Comentario *getComentarioRespondido();
-  DTComentario *getData();
+  DTComentario *getDataComentario();
   void agregarRespuesta(Comentario *);
   void eliminarRespuesta(Comentario *);
-  Comentario(DTFecha *, std::string, Usuario *, Comentario *, Producto *);
+  Comentario(int, DTFecha *, std::string, std::string, Comentario *, DTProducto *);
   ~Comentario();
 };
 

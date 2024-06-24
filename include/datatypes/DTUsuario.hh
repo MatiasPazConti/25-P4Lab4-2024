@@ -2,6 +2,7 @@
 #define DTUSUARIO
 
 #include "./DTFecha.hh"
+#include <set>
 
 class DTUsuario
 {
